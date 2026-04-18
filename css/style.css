@@ -126,6 +126,24 @@ p {
     transition: color 0.3s ease;
 }
 
+/* Always-on brand link for mobile */
+.nav__brand--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    padding: 0.7rem 1.5rem;
+    background: none;
+    color: var(--color-white);
+    pointer-events: auto;
+}
+
+@media (min-width: 769px) {
+    .nav__brand--fixed {
+        display: none;
+    }
+}
+
 .nav__links {
     display: flex;
     list-style: none;
