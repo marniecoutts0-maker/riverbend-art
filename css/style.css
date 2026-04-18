@@ -144,12 +144,26 @@ p {
     }
 }
 
-/* Hide always-on brand link except on home page */
+/* Always-on brand link for mobile, all pages */
 .nav__brand--fixed {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    padding: 0.7rem 1.5rem;
+    background: none;
+    color: var(--color-white);
+    pointer-events: auto;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    transition: color 0.3s ease;
 }
-body#index .nav__brand--fixed {
-    display: block;
+@media (min-width: 769px) {
+    .nav__brand--fixed {
+        display: none;
+    }
 }
 
 .nav__links {
