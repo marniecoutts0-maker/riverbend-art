@@ -836,6 +836,11 @@ p {
         z-index: 1001;
     }
 
+    .nav__brand {
+        z-index: 1001;
+        position: relative;
+    }
+
     /* Transform hamburger into X when open */
     .nav__toggle--open span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 6px);
