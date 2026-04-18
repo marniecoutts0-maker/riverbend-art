@@ -876,6 +876,11 @@ p {
     .nav__toggle {
         display: block;
         z-index: 1001;
+        position: fixed;
+        top: 0.5rem;
+        left: 0.5rem;
+        right: auto;
+        background: none;
     }
 
     .nav__brand {
