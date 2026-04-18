@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riverbend Art — Contemporary Oil Paintings of Montana</title>
+    <meta name="description" content="Original oil paintings of Glacier National Park, Montana wilderness, and Western wildlife by a contemporary artist rooted in the quiet edge of landscape.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav nav--transparent" id="nav">
+        <a href="index.html" class="nav__brand">Riverbend Art</a>
+        <ul class="nav__links" id="navLinks">
+            <li><a href="index.html" class="nav__link nav__link--active">Home</a></li>
+            <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="contact.html" class="nav__link">Contact</a></li>
+        </ul>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img 
+            src="images/Hero Page.jpg" 
+            alt="Oil painting of a waterfall cascading through lush Montana forest" 
+            class="hero__image"
+        >
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <h1 class="hero__title">The Quiet Edge</h1>
+            <p class="hero__subtitle">
+                Oil paintings rooted in Montana's wilderness — where stillness holds 
+                as much weight as the mountains themselves.
+            </p>
+        </div>
+    </section>
+
+    <!-- Selected Works -->
+    <section class="section section--centered">
+        <div class="section__inner">
+            <div class="section__header">
+                <h2 class="section__title">Selected Works</h2>
+                <hr class="section__divider">
+            </div>
+
+            <div class="grid grid--home" id="homeGrid">
+                <!-- Paintings load here from paintings.json (featured: true) -->
+            </div>
+
+            <a href="gallery.html" class="view-more">View Full Gallery</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer__text">&copy; 2026 <span class="footer__brand">Riverbend Art</span>. All rights reserved.</p>
+    </footer>
+
+    <script src="js/paintings-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

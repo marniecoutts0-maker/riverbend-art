@@ -1,0 +1,15 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Empty/broken files
+Grinel Glacier.JPG
+
+# Original full-size images (optimized versions are in images/)
+*.jpg
+*.JPG
+*.jpeg
+!images/*.jpg
+!images/*.JPG
+!images/*.jpeg

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Riverbend Art</title>
+    <meta name="description" content="Inquire about original paintings, commissions, or gallery representation. Contact Riverbend Art.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="index.html" class="nav__brand">Riverbend Art</a>
+        <ul class="nav__links" id="navLinks">
+            <li><a href="index.html" class="nav__link">Home</a></li>
+            <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="contact.html" class="nav__link nav__link--active">Contact</a></li>
+        </ul>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact section">
+        <div class="contact__layout">
+
+            <div class="contact__info">
+                <h1 class="contact__heading">Get in Touch</h1>
+                <p class="contact__text">
+                    Whether you're interested in an available work, a commissioned piece, 
+                    or gallery representation, I'd be glad to hear from you.
+                </p>
+
+                <div class="contact__detail">
+                    <p class="contact__detail-label">Email</p>
+                    <p class="contact__detail-value">
+                        <a href="mailto:hello@riverbendart.com">hello@riverbendart.com</a>
+                    </p>
+                </div>
+
+                <div class="contact__detail">
+                    <p class="contact__detail-label">Studio</p>
+                    <p class="contact__detail-value">Montana, USA</p>
+                </div>
+
+                <div class="contact__detail">
+                    <p class="contact__detail-label">Gallery Representation</p>
+                    <p class="contact__detail-value">Inquiries welcome</p>
+                </div>
+            </div>
+
+            <div class="form">
+                <form id="contactForm" action="#" method="POST">
+                    <div class="form__group">
+                        <label class="form__label" for="name">Name</label>
+                        <input 
+                            class="form__input" 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Your name" 
+                            required
+                            autocomplete="name"
+                        >
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__label" for="email">Email</label>
+                        <input 
+                            class="form__input" 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="your@email.com" 
+                            required
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__label" for="subject">Subject</label>
+                        <select class="form__select" id="subject" name="subject">
+                            <option value="general">General Inquiry</option>
+                            <option value="purchase">Purchase / Availability</option>
+                            <option value="commission">Commission</option>
+                            <option value="gallery">Gallery Representation</option>
+                        </select>
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__label" for="message">Message</label>
+                        <textarea 
+                            class="form__textarea" 
+                            id="message" 
+                            name="message" 
+                            placeholder="Tell me a little about what you're looking for..." 
+                            rows="5" 
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="form__submit">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer__text">&copy; 2026 <span class="footer__brand">Riverbend Art</span>. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
