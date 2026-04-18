@@ -836,6 +836,21 @@ p {
         z-index: 1001;
     }
 
+    /* Transform hamburger into X when open */
+    .nav__toggle--open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+        background: var(--color-white);
+    }
+
+    .nav__toggle--open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav__toggle--open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+        background: var(--color-white);
+    }
+
     .nav--transparent .nav__toggle span {
         background: var(--color-white);
     }

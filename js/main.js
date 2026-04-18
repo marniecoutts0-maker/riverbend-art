@@ -10,22 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.getElementById('navLinks');
 
     if (navToggle && navLinks) {
+        const toggleMenu = () => {
+            navLinks.classList.toggle('nav__links--open');
+            navToggle.classList.toggle('nav__toggle--open');
+        };
+
+        const closeMenu = () => {
+            navLinks.classList.remove('nav__links--open');
+            navToggle.classList.remove('nav__toggle--open');
+        };
+
         navToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            navLinks.classList.toggle('nav__links--open');
+            toggleMenu();
         });
 
         // Close menu when a nav link is tapped
         navLinks.querySelectorAll('.nav__link').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('nav__links--open');
-            });
+            link.addEventListener('click', closeMenu);
         });
 
         // Close menu when tapping the overlay background
         navLinks.addEventListener('click', (e) => {
             if (e.target === navLinks) {
-                navLinks.classList.remove('nav__links--open');
+                closeMenu();
             }
         });
     }
