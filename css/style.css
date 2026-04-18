@@ -144,6 +144,14 @@ p {
     }
 }
 
+/* Hide always-on brand link except on home page */
+.nav__brand--fixed {
+    display: none;
+}
+body#index .nav__brand--fixed {
+    display: block;
+}
+
 .nav__links {
     display: flex;
     list-style: none;
