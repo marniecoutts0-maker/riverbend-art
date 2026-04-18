@@ -151,7 +151,7 @@ p {
     right: 0;
     z-index: 2000;
     padding: 0.7rem 1.5rem 0.7rem 0.7rem;
-    background: none;
+    background: rgba(44, 42, 38, 0.85);
     color: var(--color-white);
     pointer-events: auto;
     font-family: var(--font-serif);
@@ -160,6 +160,7 @@ p {
     letter-spacing: 0.04em;
     transition: color 0.3s ease;
     text-align: right;
+    border-bottom-left-radius: 12px;
 }
 @media (min-width: 769px) {
     .nav__brand--fixed {
