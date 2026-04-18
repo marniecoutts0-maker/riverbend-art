@@ -11,13 +11,13 @@
 }
 
 :root {
-    --color-bg: #faf9f7;
-    --color-bg-warm: #f5f3ef;
+    --color-bg: #f0ebe4;
+    --color-bg-warm: #e8e1d8;
     --color-text: #2c2a26;
-    --color-text-light: #6b6760;
-    --color-text-muted: #9a958d;
-    --color-accent: #8a7e6b;
-    --color-border: #e0dcd5;
+    --color-text-light: #5e5850;
+    --color-text-muted: #8c857b;
+    --color-accent: #7a6e5a;
+    --color-border: #d4cdc3;
     --color-white: #ffffff;
     --color-overlay: rgba(44, 42, 38, 0.55);
 
@@ -90,7 +90,7 @@ p {
     align-items: center;
     justify-content: space-between;
     padding: 0 3rem;
-    background: rgba(250, 249, 247, 0.95);
+    background: rgba(240, 235, 228, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
@@ -108,7 +108,7 @@ p {
 }
 
 .nav--scrolled {
-    background: rgba(250, 249, 247, 0.97);
+    background: rgba(240, 235, 228, 0.97);
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -655,7 +655,7 @@ p {
     position: fixed;
     inset: 0;
     z-index: 2000;
-    background: rgba(250, 249, 247, 0.97);
+    background: rgba(240, 235, 228, 0.97);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     overflow-y: auto;
@@ -818,7 +818,7 @@ p {
         align-items: center;
         justify-content: center;
         gap: 2rem;
-        background: rgba(250, 249, 247, 0.98);
+        background: rgba(240, 235, 228, 0.98);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
     }
