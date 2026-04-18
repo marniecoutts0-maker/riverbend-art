@@ -818,9 +818,9 @@ p {
         align-items: center;
         justify-content: center;
         gap: 2rem;
-        background: rgba(240, 235, 228, 0.98);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: #f0ebe4;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
     .nav__links--open {
