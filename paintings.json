@@ -142,15 +142,5 @@
         "featured": false,
         "orientation": "landscape"
     },
-    {
-        "id": "moose-majesty",
-        "title": "Moose Majesty",
-        "image": "images/IMG_20250816_130034655~2.JPG",
-        "medium": "Oil on canvas",
-        "size": "18 × 24 in.",
-        "category": "landscape-wildlife",
-        "status": "available",
-        "featured": true,
-        "orientation": "landscape"
-    }
+    
 ]
