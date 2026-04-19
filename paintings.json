@@ -39,7 +39,7 @@
         "medium": "Oil on canvas",
             "size": "11 × 14 in.",
         "category": "landscape",
-        "status": "available",
+        "status": "private-collection",
         "featured": true,
         "orientation": "portrait"
     },
@@ -138,6 +138,17 @@
         "medium": "Marker and ink on paper",
         "size": "9 × 12 in.",
         "category": "travel-art",
+        "status": "available",
+        "featured": false,
+        "orientation": "landscape"
+    },
+    {
+        "id": "moose-majesty",
+        "title": "Moose Majesty",
+        "image": "images/IMG_20250816_130034655~2.JPG",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "landscape-wildlife",
         "status": "available",
         "featured": false,
         "orientation": "landscape"
