@@ -7,7 +7,7 @@
             "size": "11 × 14 in.",
         "category": "landscape",
         "status": "private-collection",
-        "featured": true,
+        "featured": false,
         "orientation": "portrait"
     },
     {
@@ -150,7 +150,7 @@
         "size": "18 × 24 in.",
         "category": "landscape-wildlife",
         "status": "available",
-        "featured": false,
+        "featured": true,
         "orientation": "landscape"
     }
 ]
