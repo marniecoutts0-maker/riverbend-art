@@ -1,3 +1,4 @@
+[
     {
         "id": "may-flowers",
         "title": "May Flowers",
@@ -9,7 +10,6 @@
         "featured": false,
         "orientation": "landscape"
     },
-[
     {
         "id": "avalanche-gorge",
         "title": "Avalanche Gorge",
