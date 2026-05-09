@@ -1,3 +1,8 @@
+/* Target only Moose Majesty in selected works preview */
+.grid__item[data-id="moose-majesty"] .grid__image {
+    object-fit: contain !important;
+    background: #eee;
+}
 /* Dark background for gallery and contact pages */
 .dark-bg {
     background: #a6ad94;

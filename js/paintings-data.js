@@ -5,10 +5,10 @@ window.PAINTINGS_DATA = [
         "title": "Avalanche Gorge",
         "image": "images/Hero Page.jpg",
         "medium": "Oil on canvas",
-        "size": "24 × 30 in.",
+        "size": "11 × 14 in.",
         "category": "landscape",
         "status": "private-collection",
-        "featured": true,
+        "featured": false,
         "orientation": "portrait"
     },
     {
@@ -27,7 +27,7 @@ window.PAINTINGS_DATA = [
         "title": "Coastal Reckoning",
         "image": "images/Coastal Reckoning.jpg",
         "medium": "Oil on canvas",
-        "size": "30 × 40 in.",
+        "size": "48 × 60 in.",
         "category": "landscape",
         "status": "private-collection",
         "featured": true,
@@ -38,9 +38,9 @@ window.PAINTINGS_DATA = [
         "title": "Wild Goose Island",
         "image": "images/IMG_20260208_135907950 (1).JPG",
         "medium": "Oil on canvas",
-        "size": "24 × 30 in.",
+        "size": "11 × 14 in.",
         "category": "landscape",
-        "status": "available",
+        "status": "private-collection",
         "featured": true,
         "orientation": "portrait"
     },
@@ -49,7 +49,7 @@ window.PAINTINGS_DATA = [
         "title": "The Catch",
         "image": "images/IMG_20250824_123114634.JPG",
         "medium": "Oil on canvas",
-        "size": "18 × 24 in.",
+        "size": "11 × 14 in.",
         "category": "landscape",
         "status": "available",
         "featured": true,
@@ -60,7 +60,7 @@ window.PAINTINGS_DATA = [
         "title": "The Long Way Home",
         "image": "images/IMG_20260316_184424103.JPG",
         "medium": "Oil on canvas",
-        "size": "16 × 20 in.",
+        "size": "11 × 14 in.",
         "category": "landscape",
         "status": "available",
         "featured": true,
@@ -71,7 +71,7 @@ window.PAINTINGS_DATA = [
         "title": "Glacier Melt",
         "image": "images/IMG_20260201_202503122 (2).JPG",
         "medium": "Oil on canvas",
-        "size": "16 × 20 in.",
+        "size": "11 × 14 in.",
         "category": "landscape",
         "status": "available",
         "featured": false,
@@ -82,7 +82,7 @@ window.PAINTINGS_DATA = [
         "title": "Autumn Sentinel",
         "image": "images/Autumn Sentinal.jpg",
         "medium": "Oil on canvas",
-        "size": "24 × 30 in.",
+        "size": "11 × 14 in.",
         "category": "landscape",
         "status": "available",
         "featured": false,
@@ -142,6 +142,27 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": false,
         "orientation": "landscape"
+    },
+    {
+        "id": "moose-majesty",
+        "title": "Moose Majesty",
+        "image": "images/moose-majesty.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "landscape-wildlife",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "landscape"
+    },
+    {
+        "id": "emergence",
+        "title": "Emergence",
+        "image": "images/PXL_20260504_222622804.jpg",
+        "medium": "Oil on canvas",
+        "size": "12 × 24 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "landscape"
     }
-]
-;
+];

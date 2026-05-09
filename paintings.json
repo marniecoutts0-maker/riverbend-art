@@ -150,6 +150,17 @@
         "size": "18 × 24 in.",
         "category": "landscape-wildlife",
         "status": "private-collection",
+        "featured": false,
+        "orientation": "landscape"
+    },
+    {
+        "id": "emergence",
+        "title": "Emergence",
+        "image": "images/PXL_20260504_222622804.jpg",
+        "medium": "Oil on canvas",
+        "size": "12 × 24 in.",
+        "category": "landscape",
+        "status": "available",
         "featured": true,
         "orientation": "landscape"
     }
