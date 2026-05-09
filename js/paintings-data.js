@@ -164,5 +164,184 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": true,
         "orientation": "landscape"
+    },
+    {
+        "id": "may-flowers",
+        "title": "May Flowers",
+        "image": "images/PXL_20260508_134953911 (1).jpg",
+        "medium": "Oil on canvas board",
+        "size": "5 × 7 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "landscape"
+    }
+];
+// AUTO-GENERATED from paintings.json
+window.PAINTINGS_DATA = [
+    {
+        "id": "avalanche-gorge",
+        "title": "Avalanche Gorge",
+        "image": "images/Hero Page.jpg",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "portrait"
+    },
+    {
+        "id": "meadow-crossing",
+        "title": "Meadow Crossing",
+        "image": "images/IMG_20260309_220312355.JPG",
+        "medium": "Oil on canvas",
+        "size": "30 × 40 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": true,
+        "orientation": "portrait"
+    },
+    {
+        "id": "coastal-reckoning",
+        "title": "Coastal Reckoning",
+        "image": "images/Coastal Reckoning.jpg",
+        "medium": "Oil on canvas",
+        "size": "48 × 60 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": true,
+        "orientation": "portrait"
+    },
+    {
+        "id": "wild-goose-island",
+        "title": "Wild Goose Island",
+        "image": "images/IMG_20260208_135907950 (1).JPG",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": true,
+        "orientation": "portrait"
+    },
+    {
+        "id": "the-catch",
+        "title": "The Catch",
+        "image": "images/IMG_20250824_123114634.JPG",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "portrait"
+    },
+    {
+        "id": "the-long-way-home",
+        "title": "The Long Way Home",
+        "image": "images/IMG_20260316_184424103.JPG",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "portrait"
+    },
+    {
+        "id": "glacier-melt",
+        "title": "Glacier Melt",
+        "image": "images/IMG_20260201_202503122 (2).JPG",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "portrait"
+    },
+    {
+        "id": "autumn-sentinel",
+        "title": "Autumn Sentinel",
+        "image": "images/Autumn Sentinal.jpg",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "landscape"
+    },
+    {
+        "id": "winter-watch",
+        "title": "Winter Watch",
+        "image": "images/IMG_20251230_163413411 (1).JPG",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "portrait"
+    },
+    {
+        "id": "the-lookout",
+        "title": "The Lookout",
+        "image": "images/IMG_20260216_082037013.JPG",
+        "medium": "Oil on canvas",
+        "size": "16 × 20 in.",
+        "category": "pet-portraits",
+        "status": "commissioned",
+        "featured": false,
+        "orientation": "portrait"
+    },
+    {
+        "id": "pretzel",
+        "title": "Pretzel",
+        "image": "images/IMG_20260309_124039381.JPG",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "pet-portraits",
+        "status": "commissioned",
+        "featured": false,
+        "orientation": "portrait"
+    },
+    {
+        "id": "morning-curve",
+        "title": "Morning Curve",
+        "image": "images/PXL_20260329_203856551.JPG",
+        "medium": "Watercolor on paper",
+        "size": "9 × 12 in.",
+        "category": "travel-art",
+        "status": "available",
+        "featured": false,
+        "orientation": "landscape"
+    },
+    {
+        "id": "summer-path",
+        "title": "Summer Path",
+        "image": "images/PXL_20260330_145327373.JPG",
+        "medium": "Marker and ink on paper",
+        "size": "9 × 12 in.",
+        "category": "travel-art",
+        "status": "available",
+        "featured": false,
+        "orientation": "landscape"
+    },
+    {
+        "id": "moose-majesty",
+        "title": "Moose Majesty",
+        "image": "images/moose-majesty.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "landscape-wildlife",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "landscape"
+    },
+    {
+        "id": "emergence",
+        "title": "Emergence",
+        "image": "images/PXL_20260504_222622804.jpg",
+        "medium": "Oil on canvas",
+        "size": "12 × 24 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "landscape"
     }
 ];
