@@ -8,7 +8,7 @@
         "category": "landscape",
         "status": "available",
         "featured": false,
-        "orientation": "landscape"
+        "orientation": "portrait"
     },
     {
         "id": "avalanche-gorge",
@@ -162,7 +162,7 @@
         "category": "landscape-wildlife",
         "status": "private-collection",
         "featured": false,
-        "orientation": "landscape"
+        "orientation": "portrait"
     },
     {
         "id": "emergence",

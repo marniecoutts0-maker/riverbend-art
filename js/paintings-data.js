@@ -9,7 +9,7 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available",
         "featured": false,
-        "orientation": "landscape"
+        "orientation": "portrait"
     },
     {
         "id": "avalanche-gorge",
@@ -163,7 +163,7 @@ window.PAINTINGS_DATA = [
         "category": "landscape-wildlife",
         "status": "private-collection",
         "featured": false,
-        "orientation": "landscape"
+        "orientation": "portrait"
     },
     {
         "id": "emergence",
