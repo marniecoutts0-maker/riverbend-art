@@ -1,0 +1,32 @@
+================================================================================
+  NEW ARTWORK METADATA FORM
+================================================================================
+
+Fill this out when you add a new image to the Google Drive folder.
+Then copy-paste it here with:
+  "Master Agent, new artwork has been added. Here are the details: [paste below]"
+
+================================================================================
+
+Title:
+Medium:
+Size (e.g., 18 × 24 in.):
+Category (landscape / travel-art / pet-portraits / landscape-wildlife):
+Status (available / private-collection / commissioned):
+Featured (yes / no):
+Orientation (portrait / landscape):
+Image filename (e.g., PXL_20260501_160056437.MP.jpg):
+
+================================================================================
+
+EXAMPLE (for reference):
+  Title: Zip
+  Medium: Oil on canvas
+  Size: 18 × 24 in.
+  Category: pet-portraits
+  Status: private-collection
+  Featured: no
+  Orientation: portrait
+  Image filename: PXL_20260501_160056437.MP.jpg
+
+================================================================================
