@@ -3,10 +3,6 @@
     object-fit: contain !important;
     background: #eee;
 }
-/* Emergence — pin to top so the gorge opening isn't cropped */
-.grid__item[data-id="emergence"] .grid__image {
-    object-position: center top;
-}
 /* Dark background for gallery and contact pages */
 .dark-bg {
     background: #a6ad94;
