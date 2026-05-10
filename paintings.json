@@ -11,6 +11,17 @@
         "orientation": "portrait"
     },
     {
+        "id": "zip",
+        "title": "Zip",
+        "image": "images/PXL_20260501_160056437.MP.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "pet-portraits",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "portrait"
+    },
+    {
         "id": "avalanche-gorge",
         "title": "Avalanche Gorge",
         "image": "images/Hero Page.jpg",
