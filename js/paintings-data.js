@@ -34,7 +34,7 @@ window.PAINTINGS_DATA = [
         "status": "private-collection",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": true
     },
     {
         "id": "meadow-crossing",
