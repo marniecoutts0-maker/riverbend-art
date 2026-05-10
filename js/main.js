@@ -129,10 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadPaintings(function(paintings) {
 
-            // HOME PAGE — Featured Grid
+            // HOME PAGE — Full Grid
             var homeGrid = document.getElementById('homeGrid');
             if (homeGrid) {
-                paintings.filter(function(p) { return p.featured; }).forEach(function(painting) {
+                paintings.forEach(function(painting) {
                     homeGrid.appendChild(createPaintingCard(painting, false));
                 });
             }
