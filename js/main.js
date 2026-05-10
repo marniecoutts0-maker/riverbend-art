@@ -71,12 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isGallery) {
+            wrapper.setAttribute('data-id', painting.id);
             wrapper.setAttribute('data-title', painting.title);
             wrapper.setAttribute('data-medium', painting.medium);
             wrapper.setAttribute('data-size', painting.size);
             wrapper.setAttribute('data-src', painting.image);
             wrapper.setAttribute('data-status', painting.status);
             wrapper.setAttribute('data-category', painting.category);
+            wrapper.setAttribute('data-print-available', painting.printAvailable ? 'true' : 'false');
         }
 
         const orientationClass = painting.orientation === 'landscape'
@@ -153,7 +155,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         var items = galleryGrid.querySelectorAll('.grid__item');
 
                         items.forEach(function(item) {
-                            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            if (filter === 'all') {
+                                item.classList.remove('grid__item--hidden');
+                            } else if (filter === 'print-collection') {
+                                if (item.getAttribute('data-print-available') === 'true') {
+                                    item.classList.remove('grid__item--hidden');
+                                } else {
+                                    item.classList.add('grid__item--hidden');
+                                }
+                            } else if (item.getAttribute('data-category') === filter) {
                                 item.classList.remove('grid__item--hidden');
                             } else {
                                 item.classList.add('grid__item--hidden');
@@ -176,6 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         var item = e.target.closest('.grid__item[data-title]');
                         if (!item) return;
 
+                        var paintingId = item.getAttribute('data-id');
+                        var painting = paintings.find(function(p) { return p.id === paintingId; });
+
                         lightboxImage.src = item.getAttribute('data-src');
                         lightboxImage.alt = item.getAttribute('data-title');
                         lightboxTitle.textContent = item.getAttribute('data-title');
@@ -183,9 +196,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         lightboxSize.textContent = item.getAttribute('data-size');
 
                         if (lightboxStatus) {
-                            var label = statusLabels[item.getAttribute('data-status')];
-                            lightboxStatus.textContent = label || '';
+                            var label = item.getAttribute('data-print-available') === 'true'
+                                ? '' /* print label shown in panel, not here */
+                                : (statusLabels[item.getAttribute('data-status')] || '');
+                            lightboxStatus.textContent = label;
                             lightboxStatus.style.display = label ? 'block' : 'none';
+                        }
+
+                        if (window.RiverbendAnalytics && painting) {
+                            window.RiverbendAnalytics.lightboxOpen(painting.title, painting.id);
+                        }
+
+                        if (painting && painting.printAvailable && typeof PrintOrder !== 'undefined') {
+                            PrintOrder.show(painting);
+                        } else if (typeof PrintOrder !== 'undefined') {
+                            PrintOrder.hide();
                         }
 
                         lightbox.classList.add('lightbox--active');
@@ -195,6 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     var closeLightbox = function() {
                         lightbox.classList.remove('lightbox--active');
                         document.body.style.overflow = '';
+                        if (typeof PrintOrder !== 'undefined') PrintOrder.hide();
                     };
 
                     if (lightboxClose) {
@@ -211,6 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 }
+            }
+
+            // --- Cart init (gallery page only) ---
+            if (typeof Cart !== 'undefined') {
+                Cart.init();
             }
     });
 

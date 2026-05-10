@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Config + Analytics (load before body scripts) -->
+    <script src="js/config.js"></script>
+    <script src="js/analytics.js"></script>
 </head>
 <body class="dark-bg">
 
@@ -22,6 +25,16 @@
             <li><a href="about.html" class="nav__link">About</a></li>
             <li><a href="contact.html" class="nav__link">Contact</a></li>
         </ul>
+        <div class="nav__actions">
+            <button class="nav__cart-btn" id="cartToggle" aria-label="Open cart">
+                <svg class="nav__cart-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 01-8 0"/>
+                </svg>
+                <span class="nav__cart-badge" id="cartBadge" aria-label="Cart item count">0</span>
+            </button>
+        </div>
         <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
             <span></span>
             <span></span>
@@ -45,6 +58,7 @@
                 <button class="filters__btn" data-filter="landscape">Landscape &amp; Wildlife</button>
                 <button class="filters__btn" data-filter="travel-art">Travel Art</button>
                 <button class="filters__btn" data-filter="pet-portraits">Pet Portraits</button>
+                <button class="filters__btn filters__btn--prints" data-filter="print-collection">Print Collection</button>
             </div>
 
             <!-- Paintings load here from paintings.json -->
@@ -84,6 +98,9 @@
     </footer>
 
     <script src="js/paintings-data.js"></script>
+    <script src="js/order-service.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/print-order.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
