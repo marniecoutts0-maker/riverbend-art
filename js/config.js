@@ -25,7 +25,7 @@ const ANALYTICS_CONFIG = {
    ----------------------------------------------------------- */
 const PAYPAL_CONFIG = {
     CLIENT_ID:          'REPLACE_WITH_LIVE_PAYPAL_CLIENT_ID',    // Live client ID
-    SANDBOX_CLIENT_ID:  'REPLACE_WITH_SANDBOX_PAYPAL_CLIENT_ID', // Sandbox client ID
+    SANDBOX_CLIENT_ID:  'AfsfyMNu3TsYlKo05woB046ZgWtFJHMqT5r3xh8HGv7-kLNiEqZ42Z_UFbSJ4c7S0OjInFGZSnGn5UWb', // Sandbox client ID
     CURRENCY: 'USD',
     INTENT:   'capture',
     PAYPAL_SANDBOX_MODE: true   // ← Set to false only when going live
