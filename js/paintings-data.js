@@ -9,7 +9,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available",
         "featured": false,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": true
     },
     {
         "id": "zip",
@@ -20,7 +21,8 @@ window.PAINTINGS_DATA = [
         "category": "pet-portraits",
         "status": "private-collection",
         "featured": false,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "avalanche-gorge",
@@ -31,7 +33,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "private-collection",
         "featured": false,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "meadow-crossing",
@@ -42,7 +45,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "private-collection",
         "featured": true,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "coastal-reckoning",
@@ -53,7 +57,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "private-collection",
         "featured": true,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "wild-goose-island",
@@ -64,7 +69,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "private-collection",
         "featured": true,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "the-catch",
@@ -75,7 +81,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available",
         "featured": true,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "the-long-way-home",
@@ -86,7 +93,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available",
         "featured": true,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "glacier-melt",
@@ -97,7 +105,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available",
         "featured": false,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "autumn-sentinel",
@@ -108,7 +117,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available",
         "featured": false,
-        "orientation": "landscape"
+        "orientation": "landscape",
+        "printAvailable": false
     },
     {
         "id": "winter-watch",
@@ -119,7 +129,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available",
         "featured": false,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "the-lookout",
@@ -130,7 +141,8 @@ window.PAINTINGS_DATA = [
         "category": "pet-portraits",
         "status": "commissioned",
         "featured": false,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "pretzel",
@@ -141,7 +153,8 @@ window.PAINTINGS_DATA = [
         "category": "pet-portraits",
         "status": "commissioned",
         "featured": false,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": false
     },
     {
         "id": "morning-curve",
@@ -152,7 +165,8 @@ window.PAINTINGS_DATA = [
         "category": "travel-art",
         "status": "available",
         "featured": false,
-        "orientation": "landscape"
+        "orientation": "landscape",
+        "printAvailable": false
     },
     {
         "id": "summer-path",
@@ -163,7 +177,8 @@ window.PAINTINGS_DATA = [
         "category": "travel-art",
         "status": "available",
         "featured": false,
-        "orientation": "landscape"
+        "orientation": "landscape",
+        "printAvailable": false
     },
     {
         "id": "moose-majesty",
@@ -174,7 +189,8 @@ window.PAINTINGS_DATA = [
         "category": "landscape-wildlife",
         "status": "private-collection",
         "featured": false,
-        "orientation": "portrait"
+        "orientation": "portrait",
+        "printAvailable": true
     },
     {
         "id": "emergence",
@@ -185,6 +201,7 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available",
         "featured": true,
-        "orientation": "landscape"
+        "orientation": "landscape",
+        "printAvailable": true
     }
 ];
