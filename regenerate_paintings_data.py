@@ -16,6 +16,10 @@ import os
 import subprocess
 import sys
 
+from googleapiclient.discovery import build
+
+import drive_sync
+
 PAINTINGS_JSON = "paintings.json"
 PAINTINGS_DATA_JS = os.path.join("js", "paintings-data.js")
 HEADER = "// AUTO-GENERATED from paintings.json\nwindow.PAINTINGS_DATA = "
@@ -50,6 +54,20 @@ def step1_validate_json():
 
     print(f"  OK — {len(paintings)} artworks found: {[p['title'] for p in paintings]}")
     return paintings
+
+
+def step0_sync_drive_once():
+    """Sync Google Drive folder into local images/ before processing gallery data."""
+    print("\n[Step 0] Syncing images from Google Drive into local images/...")
+
+    creds = drive_sync.authenticate()
+    service = build('drive', 'v3', credentials=creds)
+    total_items, downloaded, updated = drive_sync.download_new_images(service)
+
+    print(
+        f"  OK — Drive sync complete: {total_items} image(s) in folder, "
+        f"{downloaded} downloaded, {updated} updated."
+    )
 
 
 def step2_regenerate_js(paintings):
@@ -113,6 +131,7 @@ def main():
     print("=" * 55)
 
     try:
+        step0_sync_drive_once()
         paintings = step1_validate_json()
         step2_regenerate_js(paintings)
         step3_validate_js()
