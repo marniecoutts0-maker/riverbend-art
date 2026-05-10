@@ -45,7 +45,7 @@
         "status": "private-collection",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": true
     },
     {
         "id": "coastal-reckoning",
@@ -57,7 +57,7 @@
         "status": "private-collection",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": true
     },
     {
         "id": "wild-goose-island",

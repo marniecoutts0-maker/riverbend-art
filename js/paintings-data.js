@@ -46,7 +46,7 @@ window.PAINTINGS_DATA = [
         "status": "private-collection",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": true
     },
     {
         "id": "coastal-reckoning",
@@ -58,7 +58,7 @@ window.PAINTINGS_DATA = [
         "status": "private-collection",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": true
     },
     {
         "id": "wild-goose-island",
