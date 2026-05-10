@@ -10,9 +10,10 @@ from googleapiclient.http import MediaIoBaseDownload
 from google.oauth2.credentials import Credentials
 
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
-FOLDER_ID = '15rw5yo86Pkx7I_aaJ-8UGEWn6bD9wMo5'
+FOLDER_ID = os.getenv('DRIVE_FOLDER_ID', '15rw5yo86Pkx7I_aaJ-8UGEWn6bD9wMo5')
 IMAGES_DIR = 'images'
 TOKEN_FILE = 'token.json'
+STATE_FILE = '.drive_sync_state.json'
 CHECK_INTERVAL_SECONDS = 300
 
 
@@ -29,6 +30,22 @@ def maybe_write_token_from_env():
         with open(TOKEN_FILE, 'w', encoding='utf-8') as token_file:
             json.dump(parsed, token_file)
         log('Wrote token.json from GOOGLE_OAUTH_TOKEN_JSON environment variable.')
+
+
+def load_state():
+    if not os.path.exists(STATE_FILE):
+        return {}
+    try:
+        with open(STATE_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        # If state is corrupt, start fresh rather than crash the worker.
+        return {}
+
+
+def save_state(state):
+    with open(STATE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(state, f, indent=2)
 
 
 def authenticate():
@@ -64,11 +81,31 @@ def download_new_images(service):
     if not os.path.exists(IMAGES_DIR):
         os.makedirs(IMAGES_DIR)
 
+    state = load_state()
     downloaded_count = 0
+    updated_count = 0
+
+    if items:
+        names = ', '.join(item['name'] for item in items)
+        log(f"Drive folder contents ({len(items)}): {names}")
+    else:
+        log('Drive folder contents (0): no image files found.')
+
     for item in items:
+        file_id = item['id']
+        modified = item.get('modifiedTime', '')
         local_path = os.path.join(IMAGES_DIR, item['name'])
-        if not os.path.exists(local_path):
-            log(f"Downloading {item['name']}...")
+
+        # Download if file is missing locally OR if Drive file changed since last sync.
+        previous_modified = state.get(file_id, '')
+        needs_download = (not os.path.exists(local_path)) or (modified and modified != previous_modified)
+
+        if needs_download:
+            if os.path.exists(local_path):
+                log(f"Updating changed file {item['name']}...")
+                updated_count += 1
+            else:
+                log(f"Downloading new file {item['name']}...")
             request = service.files().get_media(fileId=item['id'])
             fh = io.FileIO(local_path, 'wb')
             downloader = MediaIoBaseDownload(fh, request)
@@ -77,20 +114,30 @@ def download_new_images(service):
                 _, done = downloader.next_chunk()
             downloaded_count += 1
             log(f"Downloaded {item['name']} to {local_path}")
+            state[file_id] = modified
+        else:
+            log(f"No change for {item['name']} (already synced).")
 
-    return len(items), downloaded_count
+    # Keep state only for files still in folder.
+    current_ids = {item['id'] for item in items}
+    state = {k: v for k, v in state.items() if k in current_ids}
+    save_state(state)
+
+    return len(items), downloaded_count, updated_count
 
 
 def main():
     log('Starting Google Drive sync worker...')
+    log(f'Monitoring Drive folder ID: {FOLDER_ID}')
     creds = authenticate()
     service = build('drive', 'v3', credentials=creds)
 
     while True:
         try:
-            total_items, downloaded = download_new_images(service)
+            total_items, downloaded, updated = download_new_images(service)
             log(
-                f"Check complete: {total_items} image(s) in Drive folder, {downloaded} new file(s) downloaded. "
+                f"Check complete: {total_items} image(s) in Drive folder, {downloaded} file(s) downloaded, "
+                f"{updated} existing file(s) updated. "
                 f"Sleeping {CHECK_INTERVAL_SECONDS} seconds."
             )
         except Exception as exc:
