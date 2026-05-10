@@ -201,7 +201,7 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available",
         "featured": true,
-        "orientation": "landscape",
+        "orientation": "portrait",
         "printAvailable": true
     }
 ];
