@@ -342,8 +342,8 @@ var Cart = (function () {
         notice.innerHTML =
             '<div class="cart__confirmation-inner">' +
                 '<p class="cart__confirmation-title">Thank you, ' + buyerName + '.</p>' +
-                '<p class="cart__confirmation-text">Your print order has been received. ' +
-                    'You\'ll receive a confirmation email shortly.</p>' +
+                '<p class="cart__confirmation-text">Order received. PayPal will send your payment receipt to the email used at checkout. ' +
+                    'Riverbend Art will review your order details and begin print fulfillment shortly.</p>' +
                 '<p class="cart__confirmation-ref">Order ref: ' + orderId + '</p>' +
                 '<button class="cart__confirmation-close">Close</button>' +
             '</div>';
