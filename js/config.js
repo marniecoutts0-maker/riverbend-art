@@ -85,7 +85,11 @@ const PRINT_OPTIONS = [
 const FEATURES = {
     cart: true,              // Show cart / print ordering
     analytics: true,         // Load GA4 + Clarity
-    printCollection: true    // Show "Print Collection" filter tab
+    printCollection: true,   // Show "Print Collection" filter tab
+    paymentsLive: false      // ← Set to true when PayPal account is approved and live
+                             //   credentials are in place. Until then, a "coming soon"
+                             //   notice replaces the PayPal button so real visitors
+                             //   are never shown a non-functional sandbox checkout.
 };
 
 /* --- Debug Mode ---

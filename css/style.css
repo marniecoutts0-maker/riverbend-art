@@ -1239,6 +1239,34 @@ body.cart-open {
     margin-top: 0.5rem;
 }
 
+/* Coming-soon holding notice (shown while paymentsLive: false) */
+.cart__coming-soon {
+    padding: 1rem 0 0.25rem;
+    text-align: center;
+}
+
+.cart__coming-soon-text {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-bottom: 0.6rem;
+}
+
+.cart__coming-soon-link {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.cart__coming-soon-link:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+}
+
 /* Order confirmation notice */
 .cart__confirmation {
     position: fixed;

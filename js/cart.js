@@ -261,9 +261,25 @@ var Cart = (function () {
     /* -------------------------------------------------------
        PayPal JS SDK
        Loaded on-demand when drawer is first injected.
+       If FEATURES.paymentsLive is false, shows a coming-soon
+       notice instead — safe for real visitors during review.
        ------------------------------------------------------- */
     function initPayPal() {
         if (typeof PAYPAL_CONFIG === 'undefined') return;
+
+        /* Payments not yet live — show holding notice instead of button */
+        if (typeof FEATURES !== 'undefined' && !FEATURES.paymentsLive) {
+            var container = document.getElementById('paypalButtonContainer');
+            if (container) {
+                container.innerHTML =
+                    '<div class="cart__coming-soon">' +
+                        '<p class="cart__coming-soon-text">Print ordering opening soon.</p>' +
+                        '<a href="contact.html" class="cart__coming-soon-link">Inquire to reserve your print &rarr;</a>' +
+                    '</div>';
+            }
+            log('payments not live — showing coming-soon notice', null);
+            return;
+        }
 
         var isSandbox = PAYPAL_CONFIG.PAYPAL_SANDBOX_MODE === true;
         var clientId  = isSandbox ? PAYPAL_CONFIG.SANDBOX_CLIENT_ID : PAYPAL_CONFIG.CLIENT_ID;
