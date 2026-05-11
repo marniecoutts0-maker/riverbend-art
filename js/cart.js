@@ -319,11 +319,17 @@ var Cart = (function () {
                 shape:  'rect',
                 label:  'pay'
             },
+            onClick: function () {
+                var items = getItems();
+                var total = getTotal();
+
+                if (window.RiverbendAnalytics) {
+                    window.RiverbendAnalytics.checkoutClick(total, items);
+                    window.RiverbendAnalytics.paypalClick(total);
+                }
+            },
             createOrder: function (data, actions) {
                 var items = getItems();
-                if (window.RiverbendAnalytics) {
-                    window.RiverbendAnalytics.paypalClick(getTotal());
-                }
                 var purchaseUnit = OrderService.buildPayPalPurchaseUnit(items);
                 if (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE) {
                     console.log('[Riverbend:PayPal] createOrder — purchase_units:', purchaseUnit);
@@ -335,6 +341,19 @@ var Cart = (function () {
                     if (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE) {
                         console.log('[Riverbend:PayPal] onApprove — capture details:', details);
                     }
+                    var purchasedItems = getItems();
+                    var purchaseTotal = getTotal();
+                    var transactionId = details && details.purchase_units && details.purchase_units[0] &&
+                        details.purchase_units[0].payments && details.purchase_units[0].payments.captures &&
+                        details.purchase_units[0].payments.captures[0] &&
+                        details.purchase_units[0].payments.captures[0].id
+                        ? details.purchase_units[0].payments.captures[0].id
+                        : details.id;
+
+                    if (window.RiverbendAnalytics) {
+                        window.RiverbendAnalytics.purchase(transactionId, purchaseTotal, purchasedItems);
+                    }
+
                     var buyerName = details.payer && details.payer.name
                         ? details.payer.name.given_name
                         : 'there';

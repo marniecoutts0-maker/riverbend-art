@@ -66,6 +66,17 @@
         } catch (e) { /* analytics blocked or unavailable */ }
     }
 
+    function mapCartItems(items) {
+        return (items || []).map(function (item) {
+            return {
+                item_name: item.artworkTitle,
+                item_variant: item.printSizeLabel || item.printSize,
+                quantity: item.quantity || 1,
+                price: item.unitPrice || 0
+            };
+        });
+    }
+
     /* -------------------------------------------------------
        Named Event Helpers
        Use these throughout the codebase — never call gtag directly.
@@ -98,12 +109,27 @@
             });
         },
 
-        checkoutClick: function (cartTotal) {
-            trackEvent('begin_checkout', { value: cartTotal, currency: 'USD' });
+        checkoutClick: function (cartTotal, items) {
+            trackEvent('begin_checkout', {
+                value: cartTotal,
+                currency: 'USD',
+                affiliation: 'Riverbend Art Gallery',
+                items: mapCartItems(items)
+            });
         },
 
         paypalClick: function (cartTotal) {
             trackEvent('paypal_click', { value: cartTotal, currency: 'USD' });
+        },
+
+        purchase: function (transactionId, cartTotal, items) {
+            trackEvent('purchase', {
+                transaction_id: transactionId,
+                value: cartTotal,
+                currency: 'USD',
+                affiliation: 'Riverbend Art Gallery',
+                items: mapCartItems(items)
+            });
         },
 
         outboundClick: function (platform, url) {
