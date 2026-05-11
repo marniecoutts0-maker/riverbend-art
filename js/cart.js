@@ -21,6 +21,19 @@ var Cart = (function () {
             console.log('[Riverbend:Cart]', label, data !== undefined ? data : '');
         }
     }
+
+    /* -------------------------------------------------------
+       Safe HTML escaping — prevents XSS in innerHTML strings
+       ------------------------------------------------------- */
+    function escapeHTML(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
     /* -------------------------------------------------------
        State helpers (localStorage)
        ------------------------------------------------------- */
@@ -132,28 +145,33 @@ var Cart = (function () {
             return '<p class="cart__empty">Your cart is empty.</p>';
         }
         return items.map(function (item) {
-            var key = itemKey(item.artworkId, item.printSize);
+            var key      = escapeHTML(itemKey(item.artworkId, item.printSize));
+            var safeId   = escapeHTML(item.artworkId);
+            var safeSize = escapeHTML(item.printSize);
+            var safeTitle = escapeHTML(item.artworkTitle);
+            var safeLabel = escapeHTML(item.printSizeLabel);
+            var safeImage = escapeHTML(item.artworkImage);
             return (
                 '<div class="cart__line" data-key="' + key + '">' +
                     (item.artworkImage
-                        ? '<img class="cart__line-img" src="' + item.artworkImage + '" alt="' + item.artworkTitle + '">'
+                        ? '<img class="cart__line-img" src="' + safeImage + '" alt="' + safeTitle + '">'
                         : '') +
                     '<div class="cart__line-details">' +
-                        '<div class="cart__line-title">' + item.artworkTitle + '</div>' +
-                        '<div class="cart__line-meta">' + item.printSizeLabel + ' Fine Art Print</div>' +
+                        '<div class="cart__line-title">' + safeTitle + '</div>' +
+                        '<div class="cart__line-meta">' + safeLabel + ' Fine Art Print</div>' +
                         '<div class="cart__line-price">$' + item.unitPrice.toFixed(2) + '</div>' +
                     '</div>' +
                     '<div class="cart__line-controls">' +
                         '<select class="cart__qty-select" aria-label="Quantity" ' +
-                                'data-artwork-id="' + item.artworkId + '" ' +
-                                'data-print-size="' + item.printSize + '">' +
+                                'data-artwork-id="' + safeId + '" ' +
+                                'data-print-size="' + safeSize + '">' +
                             [1,2,3,4,5,6,7,8,9].map(function (n) {
                                 return '<option value="' + n + '"' + (n === item.quantity ? ' selected' : '') + '>' + n + '</option>';
                             }).join('') +
                         '</select>' +
                         '<button class="cart__remove" ' +
-                                'data-artwork-id="' + item.artworkId + '" ' +
-                                'data-print-size="' + item.printSize + '" ' +
+                                'data-artwork-id="' + safeId + '" ' +
+                                'data-print-size="' + safeSize + '" ' +
                                 'aria-label="Remove">&times;</button>' +
                     '</div>' +
                 '</div>'
@@ -320,16 +338,16 @@ var Cart = (function () {
                 label:  'pay'
             },
             onClick: function () {
-                var items = getItems();
-                var total = getTotal();
-
                 if (window.RiverbendAnalytics) {
-                    window.RiverbendAnalytics.checkoutClick(total, items);
-                    window.RiverbendAnalytics.paypalClick(total);
+                    window.RiverbendAnalytics.paypalClick(getTotal());
                 }
             },
             createOrder: function (data, actions) {
                 var items = getItems();
+                var total = getTotal();
+                if (window.RiverbendAnalytics) {
+                    window.RiverbendAnalytics.checkoutClick(total, items);
+                }
                 var purchaseUnit = OrderService.buildPayPalPurchaseUnit(items);
                 if (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE) {
                     console.log('[Riverbend:PayPal] createOrder — purchase_units:', purchaseUnit);
@@ -337,12 +355,15 @@ var Cart = (function () {
                 return actions.order.create({ purchase_units: [purchaseUnit] });
             },
             onApprove: function (data, actions) {
+                /* Snapshot cart before async capture — getItems()/getTotal()
+                   must be called here, not inside .then(), so that clearCart()
+                   running later cannot produce a zero-value purchase event. */
+                var purchasedItems = getItems();
+                var purchaseTotal = getTotal();
                 return actions.order.capture().then(function (details) {
                     if (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE) {
                         console.log('[Riverbend:PayPal] onApprove — capture details:', details);
                     }
-                    var purchasedItems = getItems();
-                    var purchaseTotal = getTotal();
                     var transactionId = details && details.purchase_units && details.purchase_units[0] &&
                         details.purchase_units[0].payments && details.purchase_units[0].payments.captures &&
                         details.purchase_units[0].payments.captures[0] &&
@@ -376,10 +397,10 @@ var Cart = (function () {
         notice.className = 'cart__confirmation';
         notice.innerHTML =
             '<div class="cart__confirmation-inner">' +
-                '<p class="cart__confirmation-title">Thank you, ' + buyerName + '.</p>' +
+                '<p class="cart__confirmation-title">Thank you, ' + escapeHTML(buyerName) + '.</p>' +
                 '<p class="cart__confirmation-text">Order received. PayPal will send your payment receipt to the email used at checkout. ' +
                     'Riverbend Art will review your order details and begin print fulfillment shortly.</p>' +
-                '<p class="cart__confirmation-ref">Order ref: ' + orderId + '</p>' +
+                '<p class="cart__confirmation-ref">Order ref: ' + escapeHTML(orderId) + '</p>' +
                 '<button class="cart__confirmation-close">Close</button>' +
             '</div>';
         document.body.appendChild(notice);
