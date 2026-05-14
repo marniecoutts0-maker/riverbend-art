@@ -9,7 +9,7 @@
    Clarity: https://clarity.microsoft.com
    ----------------------------------------------------------- */
 const ANALYTICS_CONFIG = {
-    GA4_MEASUREMENT_ID: 'G-K8RTW7265V',
+    GA4_MEASUREMENT_ID: 'G-K8RTW72G5V',
     CLARITY_PROJECT_ID: 'woy71wgoeo'
 };
 
