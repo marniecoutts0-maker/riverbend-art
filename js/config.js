@@ -10,7 +10,7 @@
    ----------------------------------------------------------- */
 const ANALYTICS_CONFIG = {
     GA4_MEASUREMENT_ID: 'G-K8RTW7265V',
-    CLARITY_PROJECT_ID: 'REPLACE_WITH_CLARITY_PROJECT_ID'     // e.g. 'abcde12345'
+    CLARITY_PROJECT_ID: 'woy71wgoeo'
 };
 
 /* --- PayPal ---
