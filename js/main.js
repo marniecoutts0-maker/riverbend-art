@@ -88,6 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
             ? '<div class="grid__status">' + statusLabels[painting.status] + '</div>'
             : '';
 
+        const priceHTML = (painting.price && painting.status === 'available')
+            ? '<div class="grid__price">$' + painting.price +
+              (painting.framed ? ' &nbsp;&middot;&nbsp; Framed' : '') + '</div>'
+            : '';
+
         wrapper.innerHTML =
             '<div class="grid__image-wrapper' + orientationClass + '">' +
                 '<img src="' + painting.image + '" alt="' + painting.title + '" class="grid__image" loading="lazy">' +
@@ -96,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 '<div class="grid__title">' + painting.title + '</div>' +
                 '<div class="grid__meta">' + painting.medium + '</div>' +
                 statusHTML +
+                priceHTML +
             '</div>';
 
         return wrapper;
@@ -213,6 +219,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             PrintOrder.hide();
                         }
 
+                        if (typeof OriginalBuy !== 'undefined') {
+                            if (painting && painting.price && painting.status === 'available') {
+                                OriginalBuy.show(painting);
+                            } else {
+                                OriginalBuy.hide();
+                            }
+                        }
+
                         lightbox.classList.add('lightbox--active');
                         document.body.style.overflow = 'hidden';
                     });
@@ -221,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         lightbox.classList.remove('lightbox--active');
                         document.body.style.overflow = '';
                         if (typeof PrintOrder !== 'undefined') PrintOrder.hide();
+                        if (typeof OriginalBuy !== 'undefined') OriginalBuy.hide();
                     };
 
                     if (lightboxClose) {
