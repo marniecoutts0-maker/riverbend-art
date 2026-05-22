@@ -220,7 +220,7 @@ window.PAINTINGS_DATA = [
         "id": "morning-launch-original",
         "title": "Morning Launch (Original)",
         "image": "images/Early_Morning_Lake (1).jpg",
-        "medium": "Oil on panel",
+        "medium": "Oil on canvas panel",
         "size": "9 × 12 in.",
         "category": "landscape",
         "status": "available",
