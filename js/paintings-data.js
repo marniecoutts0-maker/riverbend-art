@@ -120,7 +120,9 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": false,
         "orientation": "landscape",
-        "printAvailable": false
+        "printAvailable": false,
+        "price": 304,
+        "framed": true
     },
     {
         "id": "winter-watch",
