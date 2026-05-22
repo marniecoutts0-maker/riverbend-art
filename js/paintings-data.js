@@ -82,7 +82,9 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "price": 294,
+        "framed": true
     },
     {
         "id": "the-long-way-home",
@@ -130,7 +132,9 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "price": 494,
+        "framed": true
     },
     {
         "id": "the-lookout",
@@ -202,7 +206,9 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": true
+        "printAvailable": true,
+        "price": 236,
+        "framed": false
     },
     {
         "id": "morning-launch",
@@ -226,6 +232,8 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": true,
         "orientation": "landscape",
-        "printAvailable": false
+        "printAvailable": false,
+        "price": 100,
+        "framed": false
     }
 ];
