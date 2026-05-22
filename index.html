@@ -49,11 +49,56 @@
         </div>
     </section>
 
-    <!-- Full Gallery -->
-    <section class="section section--centered">
+    <!-- Recent Work & Upcoming Events -->
+    <section class="section section--centered section--recent">
         <div class="section__inner">
-            <div class="grid grid--home" id="homeGrid">
-                <!-- All paintings load here from paintings.json -->
+            <header class="section__header">
+                <h2 class="section__title">Recent Work &amp; Upcoming Events</h2>
+                <hr class="section__divider">
+            </header>
+
+            <div class="grid grid--home">
+
+                <!-- Event Card -->
+                <div class="event-card">
+                    <div class="event-card__image-wrapper">
+                        <img src="images/2026 FLFA Flyer.jpg" alt="Upcoming art festival exhibition flyer" class="event-card__image">
+                    </div>
+                    <div class="event-card__body">
+                        <span class="event-card__label">Upcoming Exhibition</span>
+                        <p class="event-card__text">Original paintings and a selection of art prints on display. Come see the work in person.</p>
+                    </div>
+                </div>
+
+                <!-- Morning Launch -->
+                <a href="gallery.html" class="grid__item">
+                    <div class="grid__image-wrapper grid__image-wrapper--landscape">
+                        <img src="images/Untitled_Artworklakeadjusted.jpg" alt="Morning Launch — oil on canvas panel" class="grid__image" loading="lazy">
+                    </div>
+                    <div class="grid__caption">
+                        <div class="grid__title">Morning Launch</div>
+                        <div class="grid__meta">Oil on canvas panel &nbsp;&middot;&nbsp; 9 &times; 12 in.</div>
+                        <div class="grid__status">Prints Available</div>
+                    </div>
+                </a>
+
+                <!-- Emergence -->
+                <a href="gallery.html" class="grid__item">
+                    <div class="grid__image-wrapper">
+                        <img src="images/PXL_20260504_222622804.jpg" alt="Emergence — oil on canvas" class="grid__image" loading="lazy">
+                    </div>
+                    <div class="grid__caption">
+                        <div class="grid__title">Emergence</div>
+                        <div class="grid__meta">Oil on canvas &nbsp;&middot;&nbsp; 12 &times; 24 in.</div>
+                        <div class="grid__status">Prints Available</div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- View Full Gallery CTA -->
+            <div class="home-cta">
+                <a href="gallery.html" class="home-cta__link">View Full Gallery &rarr;</a>
             </div>
         </div>
     </section>
