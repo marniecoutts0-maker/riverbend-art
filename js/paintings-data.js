@@ -208,7 +208,7 @@ window.PAINTINGS_DATA = [
         "id": "morning-launch",
         "title": "Morning Launch",
         "image": "images/Untitled_Artworklakeadjusted.jpg",
-        "medium": "Oil on panel",
+        "medium": "Oil on canvas panel",
         "size": "9 × 12 in.",
         "category": "landscape",
         "status": "available",
