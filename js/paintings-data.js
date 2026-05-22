@@ -203,5 +203,17 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": true
+    },
+    {
+        "id": "morning-launch",
+        "title": "Morning Launch",
+        "image": "images/Untitled_Artworklakeadjusted.jpg",
+        "medium": "Oil on panel",
+        "size": "9 × 12 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "landscape",
+        "printAvailable": true
     }
 ];
