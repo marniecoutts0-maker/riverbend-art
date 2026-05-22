@@ -215,5 +215,17 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "landscape",
         "printAvailable": true
+    },
+    {
+        "id": "morning-launch-original",
+        "title": "Morning Launch (Original)",
+        "image": "images/Early_Morning_Lake (1).jpg",
+        "medium": "Oil on panel",
+        "size": "9 × 12 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "landscape",
+        "printAvailable": false
     }
 ];
