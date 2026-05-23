@@ -83,7 +83,7 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "price": 294,
+        "price": 300,
         "framed": true
     },
     {
@@ -121,7 +121,7 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "landscape",
         "printAvailable": false,
-        "price": 304,
+        "price": 300,
         "framed": true
     },
     {
@@ -135,7 +135,7 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "price": 494,
+        "price": 500,
         "framed": true
     },
     {
@@ -209,7 +209,7 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": true,
-        "price": 236,
+        "price": 250,
         "framed": false
     },
     {
