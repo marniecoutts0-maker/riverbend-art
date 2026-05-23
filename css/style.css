@@ -695,6 +695,34 @@ p {
     color: var(--color-accent);
 }
 
+/* --- Sketchbook Section (About Page) --- */
+.sketchbook {
+    padding-top: 3rem;
+}
+
+.sketchbook__intro {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sketchbook__item {
+    background: var(--color-bg-warm);
+    overflow: hidden;
+}
+
+.sketchbook__item .grid__image {
+    transition: transform 0.6s ease;
+}
+
+.sketchbook__item:hover .grid__image {
+    transform: scale(1.03);
+}
+
 /* --- Contact Page --- */
 .contact {
     padding-top: calc(var(--nav-height) + 4rem);
