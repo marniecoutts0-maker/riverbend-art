@@ -1,6 +1,45 @@
 // AUTO-GENERATED from paintings.json
 window.PAINTINGS_DATA = [
     {
+        "id": "curious",
+        "title": "Curious",
+        "image": "images/PXL_20260527_174224267.NIGHT~2 (3)bearcub.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "wildlife",
+        "status": "available",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "price": 375
+    },
+    {
+        "id": "painted-shore",
+        "title": "Painted Shore",
+        "image": "images/PXL_20260516_174059562 (2)LakeMcDonaldBrightRocks.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "price": 325
+    },
+    {
+        "id": "still-water",
+        "title": "Still Water",
+        "image": "images/PXL_20260519_121453165LakeMcDonaldSubmergedRocks.jpg",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "price": 200
+    },
+    {
         "id": "wild-goose-island",
         "title": "Wild Goose Island",
         "image": "images/IMG_20260208_135907950 (1).JPG",
@@ -121,6 +160,71 @@ window.PAINTINGS_DATA = [
         "orientation": "portrait",
         "printAvailable": true,
         "price": 75
+    },
+    {
+        "id": "alpine-meadow",
+        "title": "Alpine Meadow",
+        "image": "images/PXL_20260527_175720751~2AlpineMeadow.jpg",
+        "medium": "Oil on canvas panel",
+        "size": "8 × 12 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "price": 160
+    },
+    {
+        "id": "loose-cougar",
+        "title": "Loose Cougar",
+        "image": "images/PXL_20260527_175747536~2loose cougar.jpg",
+        "medium": "Oil on canvas panel",
+        "size": "5 × 7 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "price": 100
+    },
+    {
+        "id": "painted-shore",
+        "title": "Painted Shore",
+        "image": "images/PXL_20260516_174059562 (2)LakeMcDonaldBrightRocks.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "price": 325
+    },
+    {
+        "id": "still-water",
+        "title": "Still Water",
+        "image": "images/PXL_20260519_121453165LakeMcDonaldSubmergedRocks.jpg",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "price": 200
+    },
+    {
+        "id": "curious",
+        "title": "Curious",
+        "image": "images/PXL_20260527_174224267.NIGHT~2 (3)bearcub.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "price": 375
     },
     {
         "id": "coastal-reckoning",
