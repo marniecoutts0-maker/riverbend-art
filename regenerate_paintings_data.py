@@ -19,6 +19,7 @@ import sys
 from googleapiclient.discovery import build
 
 import drive_sync
+from prepare_web_images import optimize_images_for_web
 
 PAINTINGS_JSON = "paintings.json"
 PAINTINGS_DATA_JS = os.path.join("js", "paintings-data.js")
@@ -80,6 +81,11 @@ def step2_regenerate_js(paintings):
     print(f"  OK — {PAINTINGS_DATA_JS} written.")
 
 
+def step1_5_optimize_images(paintings):
+    """Resize/compress images for web-safe display and strip metadata."""
+    optimize_images_for_web(paintings)
+
+
 def step3_validate_js():
     """Validate that paintings-data.js starts with valid JavaScript."""
     print("\n[Step 3] Validating paintings-data.js...")
@@ -133,6 +139,7 @@ def main():
     try:
         step0_sync_drive_once()
         paintings = step1_validate_json()
+        step1_5_optimize_images(paintings)
         step2_regenerate_js(paintings)
         step3_validate_js()
         step4_git_push()

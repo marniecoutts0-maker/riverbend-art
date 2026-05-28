@@ -6,6 +6,13 @@ Whenever you update paintings.json, run this script to keep js/paintings-data.js
 python regenerate_paintings_data.py
 ```
 
+This now also performs web-safe image processing on every image referenced in paintings.json:
+- Resizes to max 1600px on the long edge
+- Recompresses JPEG/WebP at quality 82
+- Strips metadata (EXIF) by re-saving
+
+Tip: keep full-resolution master files in a separate private folder outside this repo.
+
 ## Automation Options
 - **Manual:** Run the script after each paintings.json edit.
 - **Pre-commit Hook:** Add a git pre-commit hook to auto-run the script before every commit.
@@ -19,3 +26,8 @@ python regenerate_paintings_data.py
 ## Next Steps
 - To fully automate, add this script to your Render worker or a git hook.
 - Let me know if you want help with either option or want to expand the workflow with sub-agents.
+
+## Instagram Guidance
+- DPI is not the control that matters; exported pixel dimensions are what matter.
+- For feed posts, export around 1080px wide (or 1350px tall for portrait feed format).
+- Keep a separate social export folder and never upload original high-res masters.
