@@ -61,6 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'commissioned': 'Commissioned Work'
     };
 
+    const lowestPrintPrice = (typeof PRINT_OPTIONS !== 'undefined' && Array.isArray(PRINT_OPTIONS) && PRINT_OPTIONS.length)
+        ? Math.min.apply(null, PRINT_OPTIONS.map(function(opt) { return opt.price; }))
+        : null;
+
     // --- Build a single painting card ---
     function createPaintingCard(painting, isGallery) {
         const wrapper = isGallery ? document.createElement('div') : document.createElement('a');
@@ -84,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const orientationClass = painting.orientation === 'landscape'
             ? ' grid__image-wrapper--landscape' : '';
 
-        const statusHTML = statusLabels[painting.status]
+        const statusHTML = (!painting.printAvailable && statusLabels[painting.status])
             ? '<div class="grid__status">' + statusLabels[painting.status] + '</div>'
             : '';
 
@@ -92,6 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ? '<div class="grid__price">$' + painting.price +
               (painting.framed ? ' &nbsp;&middot;&nbsp; Framed' : '') + '</div>'
             : '';
+
+                const printPriceHTML = (painting.printAvailable && lowestPrintPrice !== null)
+                        ? '<div class="grid__price">Prints from $' + lowestPrintPrice + '</div>'
+                        : '';
 
         wrapper.innerHTML =
             '<div class="grid__image-wrapper' + orientationClass + '">' +
@@ -102,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 '<div class="grid__meta">' + painting.medium + '</div>' +
                 statusHTML +
                 priceHTML +
+                printPriceHTML +
             '</div>';
 
         return wrapper;
