@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Status Label Map ---
     const statusLabels = {
         'available': '',
+        'available-at-montana-fur-traders': 'Available at Montana Fur Traders',
         'private-collection': 'In Private Collection',
         'commissioned': 'Commissioned Work'
     };
