@@ -1,5 +1,19 @@
 [
     {
+        "id":  "last-light",
+        "title":  "Last Light",
+        "image":  "images/Last Light.jpg",
+        "medium":  "Oil on canvas",
+        "size":  "18 × 24 in.",
+        "category":  "landscape",
+        "status":  "available",
+        "featured":  true,
+        "orientation":  "landscape",
+        "printAvailable":  false,
+        "framed":  true,
+        "price":  495
+    },
+    {
         "id":  "curious",
         "title":  "Curious",
         "image":  "images/PXL_20260527_174224267.NIGHT~2 (3)bearcub.jpg",
@@ -9,7 +23,9 @@
         "status":  "available",
         "featured":  true,
         "orientation":  "portrait",
-        "printAvailable":  false
+        "printAvailable":  false,
+        "framed":  true,
+        "price":  495
     },
     {
         "id":  "painted-shore",
@@ -21,7 +37,9 @@
         "status":  "available",
         "featured":  true,
         "orientation":  "portrait",
-        "printAvailable":  false
+        "printAvailable":  false,
+        "framed":  true,
+        "price":  495
     },
     {
         "id":  "still-water",
@@ -33,7 +51,9 @@
         "status":  "available",
         "featured":  false,
         "orientation":  "portrait",
-        "printAvailable":  false
+        "printAvailable":  false,
+        "framed":  true,
+        "price":  310
     },
     {
         "id":  "wild-goose-island",
@@ -45,7 +65,9 @@
         "status":  "available",
         "featured":  true,
         "orientation":  "portrait",
-        "printAvailable":  false
+        "printAvailable":  false,
+        "framed":  true,
+        "price":  310
     },
     {
         "id":  "the-catch",
@@ -58,7 +80,8 @@
         "featured":  true,
         "orientation":  "portrait",
         "printAvailable":  false,
-        "framed":  true
+        "framed":  true,
+        "price":  325
     },
     {
         "id":  "the-long-way-home",
@@ -83,7 +106,8 @@
         "featured":  false,
         "orientation":  "portrait",
         "printAvailable":  false,
-        "framed":  true
+        "framed":  true,
+        "price":  495
     },
     {
         "id":  "emergence",
@@ -96,7 +120,8 @@
         "featured":  true,
         "orientation":  "portrait",
         "printAvailable":  false,
-        "framed":  false
+        "framed":  true,
+        "price":  360
     },
     {
         "id":  "autumn-sentinel",
@@ -121,7 +146,9 @@
         "status":  "available",
         "featured":  false,
         "orientation":  "portrait",
-        "printAvailable":  false
+        "printAvailable":  false,
+        "framed":  true,
+        "price":  310
     },
     {
         "id":  "morning-launch-original",
@@ -158,7 +185,9 @@
         "status":  "available",
         "featured":  false,
         "orientation":  "portrait",
-        "printAvailable":  false
+        "printAvailable":  false,
+        "framed":  true,
+        "price":  175
     },
     {
         "id":  "loose-cougar",

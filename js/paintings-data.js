@@ -1,6 +1,19 @@
 // AUTO-GENERATED from paintings.json
 window.PAINTINGS_DATA = [
     {
+        "id": "last-light",
+        "title": "Last Light",
+        "image": "images/Last Light.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "landscape",
+        "printAvailable": false,
+        "framed": true
+    },
+    {
         "id": "curious",
         "title": "Curious",
         "image": "images/PXL_20260527_174224267.NIGHT~2 (3)bearcub.jpg",
@@ -10,7 +23,8 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "framed": true
     },
     {
         "id": "painted-shore",
@@ -22,7 +36,8 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "framed": true
     },
     {
         "id": "still-water",
@@ -34,7 +49,8 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "framed": true
     },
     {
         "id": "wild-goose-island",
@@ -46,7 +62,8 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "framed": true
     },
     {
         "id": "the-catch",
@@ -97,7 +114,7 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": false
+        "framed": true
     },
     {
         "id": "autumn-sentinel",
@@ -122,7 +139,8 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "framed": true
     },
     {
         "id": "morning-launch-original",
@@ -159,7 +177,8 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "framed": true
     },
     {
         "id": "loose-cougar",
