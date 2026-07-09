@@ -399,5 +399,31 @@
         "orientation":  "portrait",
         "printAvailable":  false,
         "framed":  true
+    },
+    {
+        "id":  "wolf-in-aspen-summer",
+        "title":  "Wolf in Aspen — Summer",
+        "image":  "images/Wolf in Aspen Summer.jpg",
+        "medium":  "Oil on panel",
+        "size":  "9 × 11 in.",
+        "category":  "wildlife",
+        "status":  "available-at-montana-fur-traders",
+        "featured":  false,
+        "orientation":  "portrait",
+        "printAvailable":  false,
+        "framed":  true
+    },
+    {
+        "id":  "wolf-in-aspen-fall",
+        "title":  "Wolf in Aspen — Fall",
+        "image":  "images/Wolf in Aspen Fall.jpg",
+        "medium":  "Oil on panel",
+        "size":  "9 × 11 in.",
+        "category":  "wildlife",
+        "status":  "available-at-montana-fur-traders",
+        "featured":  false,
+        "orientation":  "portrait",
+        "printAvailable":  false,
+        "framed":  true
     }
 ]
