@@ -157,10 +157,10 @@
         "medium":  "Oil on canvas panel",
         "size":  "9 × 12 in.",
         "category":  "landscape",
-        "status":  "available",
+        "status":  "sold",
         "featured":  false,
         "orientation":  "landscape",
-        "printAvailable":  false,
+        "printAvailable":  true,
         "framed":  false
     },
     {
@@ -330,9 +330,74 @@
         "medium":  "Oil on canvas",
         "size":  "11 × 14 in.",
         "category":  "landscape",
-        "status":  "available-at-montana-fur-traders",
+        "status":  "sold",
         "featured":  false,
         "orientation":  "portrait",
         "printAvailable":  false
+    },
+    {
+        "id":  "gray-wolf",
+        "title":  "Gray Wolf",
+        "image":  "images/Gray Wolf.jpg",
+        "medium":  "Oil on canvas",
+        "size":  "11 × 14 in.",
+        "category":  "wildlife",
+        "status":  "available-at-montana-fur-traders",
+        "featured":  true,
+        "orientation":  "portrait",
+        "printAvailable":  false,
+        "framed":  true
+    },
+    {
+        "id":  "bison-in-wheat",
+        "title":  "Bison in Wheat",
+        "image":  "images/Bison in Wheat.jpg",
+        "medium":  "Oil on canvas",
+        "size":  "11 × 14 in.",
+        "category":  "wildlife",
+        "status":  "available-at-montana-fur-traders",
+        "featured":  true,
+        "orientation":  "portrait",
+        "printAvailable":  false,
+        "framed":  true
+    },
+    {
+        "id":  "the-itch",
+        "title":  "The Itch",
+        "image":  "images/The Itch.jpg",
+        "medium":  "Oil on canvas panel",
+        "size":  "9 × 12 in.",
+        "category":  "wildlife",
+        "status":  "available-at-montana-fur-traders",
+        "featured":  false,
+        "orientation":  "portrait",
+        "printAvailable":  false,
+        "framed":  true
+    },
+    {
+        "id":  "blackfeet-camp-chief-mountain",
+        "title":  "Blackfeet Camp at Chief Mountain",
+        "image":  "images/Blackfeet camp and Chief Mountain.jpg",
+        "medium":  "Oil on panel",
+        "size":  "11 × 14 in.",
+        "category":  "landscape",
+        "status":  "available-at-montana-fur-traders",
+        "featured":  false,
+        "orientation":  "landscape",
+        "printAvailable":  false,
+        "framed":  true
+    },
+    {
+        "id":  "spirit-eye",
+        "title":  "Spirit Eye",
+        "image":  "images/Spirit Eye.jpg",
+        "medium":  "Oil on canvas",
+        "size":  "8 × 10 in.",
+        "category":  "wildlife",
+        "status":  "available-at-montana-fur-traders",
+        "featured":  true,
+        "orientation":  "portrait",
+        "printAvailable":  false,
+        "framed":  true
     }
 ]
