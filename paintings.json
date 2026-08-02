@@ -425,5 +425,18 @@
         "orientation":  "portrait",
         "printAvailable":  false,
         "framed":  true
+    },
+    {
+        "id":  "athena",
+        "title":  "Athena",
+        "image":  "images/IMG_20260731_193249.jpg",
+        "medium":  "Oil on canvas",
+        "size":  "18 × 24 in.",
+        "category":  "pet-portraits",
+        "status":  "commissioned",
+        "featured":  true,
+        "orientation":  "portrait",
+        "printAvailable":  false,
+        "framed":  false
     }
 ]

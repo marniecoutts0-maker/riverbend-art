@@ -11,7 +11,8 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "landscape",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 495
     },
     {
         "id": "curious",
@@ -24,7 +25,8 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 495
     },
     {
         "id": "painted-shore",
@@ -37,7 +39,8 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 495
     },
     {
         "id": "still-water",
@@ -50,7 +53,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 310
     },
     {
         "id": "wild-goose-island",
@@ -63,7 +67,8 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 310
     },
     {
         "id": "the-catch",
@@ -76,7 +81,8 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 325
     },
     {
         "id": "the-long-way-home",
@@ -101,7 +107,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 495
     },
     {
         "id": "emergence",
@@ -114,7 +121,8 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 360
     },
     {
         "id": "autumn-sentinel",
@@ -140,7 +148,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 310
     },
     {
         "id": "morning-launch-original",
@@ -149,10 +158,10 @@ window.PAINTINGS_DATA = [
         "medium": "Oil on canvas panel",
         "size": "9 × 12 in.",
         "category": "landscape",
-        "status": "available",
+        "status": "sold",
         "featured": false,
         "orientation": "landscape",
-        "printAvailable": false,
+        "printAvailable": true,
         "framed": false
     },
     {
@@ -178,7 +187,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 175
     },
     {
         "id": "loose-cougar",
@@ -321,9 +331,113 @@ window.PAINTINGS_DATA = [
         "medium": "Oil on canvas",
         "size": "11 × 14 in.",
         "category": "landscape",
-        "status": "available-at-montana-fur-traders",
+        "status": "sold",
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false
+    },
+    {
+        "id": "gray-wolf",
+        "title": "Gray Wolf",
+        "image": "images/Gray Wolf.jpg",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "wildlife",
+        "status": "available-at-montana-fur-traders",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "framed": true
+    },
+    {
+        "id": "bison-in-wheat",
+        "title": "Bison in Wheat",
+        "image": "images/Bison in Wheat.jpg",
+        "medium": "Oil on canvas",
+        "size": "11 × 14 in.",
+        "category": "wildlife",
+        "status": "available-at-montana-fur-traders",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "framed": true
+    },
+    {
+        "id": "the-itch",
+        "title": "The Itch",
+        "image": "images/The Itch.jpg",
+        "medium": "Oil on canvas panel",
+        "size": "9 × 12 in.",
+        "category": "wildlife",
+        "status": "available-at-montana-fur-traders",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "framed": true
+    },
+    {
+        "id": "story-time-chief-mountain",
+        "title": "Story Time at Chief Mountain",
+        "image": "images/Blackfeet camp and Chief Mountain.jpg",
+        "medium": "Oil on panel",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "available-at-montana-fur-traders",
+        "featured": false,
+        "orientation": "landscape",
+        "printAvailable": false,
+        "framed": true
+    },
+    {
+        "id": "spirit-eye",
+        "title": "Spirit Eye",
+        "image": "images/Spirit Eye.jpg",
+        "medium": "Oil on canvas",
+        "size": "8 × 10 in.",
+        "category": "wildlife",
+        "status": "available-at-montana-fur-traders",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "framed": true
+    },
+    {
+        "id": "wolf-in-aspen-summer",
+        "title": "Wolf in Aspen — Summer",
+        "image": "images/Wolf in Aspen Summer.jpg",
+        "medium": "Oil on panel",
+        "size": "9 × 11 in.",
+        "category": "wildlife",
+        "status": "available-at-montana-fur-traders",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "framed": true
+    },
+    {
+        "id": "wolf-in-aspen-fall",
+        "title": "Wolf in Aspen — Fall",
+        "image": "images/Wolf in Aspen Fall.jpg",
+        "medium": "Oil on panel",
+        "size": "9 × 11 in.",
+        "category": "wildlife",
+        "status": "available-at-montana-fur-traders",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "framed": true
+    },
+    {
+        "id": "athena",
+        "title": "Athena",
+        "image": "images/IMG_20260731_193249.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "pet-portraits",
+        "status": "commissioned",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "framed": false
     }
 ];
