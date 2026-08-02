@@ -632,6 +632,75 @@ p {
 }
 
 
+/* --- Commission Section (home page) --- */
+.section--commission {
+    background: var(--color-bg-warm);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.section__inner--two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-padding);
+}
+
+.commission__image-wrap {
+    overflow: hidden;
+}
+
+.commission__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.commission__label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+}
+
+.commission__title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+}
+
+.commission__text {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+}
+
+.commission__cta {
+    display: inline-block;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 3px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.commission__cta:hover {
+    color: var(--color-text);
+    border-color: var(--color-accent);
+}
+
 
 /* --- About Page --- */
 .about {
@@ -1005,7 +1074,8 @@ p {
     }
 
     .about__layout,
-    .contact__layout {
+    .contact__layout,
+    .section__inner--two-col {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
@@ -1112,6 +1182,11 @@ p {
     .grid--gallery {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+
+    .section--commission {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
 
     .hero__content {
