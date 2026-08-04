@@ -75,7 +75,8 @@ var Cart = (function () {
                 printSize:      item.printSize,
                 printSizeLabel: item.printSizeLabel,
                 unitPrice:      item.unitPrice,
-                quantity:       item.quantity || 1
+                quantity:       item.quantity || 1,
+                lumaprints:     item.lumaprints || null
             });
             log('item added', { id: item.artworkId, size: item.printSize, price: item.unitPrice });
         }
@@ -158,7 +159,7 @@ var Cart = (function () {
                         : '') +
                     '<div class="cart__line-details">' +
                         '<div class="cart__line-title">' + safeTitle + '</div>' +
-                        '<div class="cart__line-meta">' + safeLabel + ' Fine Art Print</div>' +
+                        '<div class="cart__line-meta">' + safeLabel + '</div>' +
                         '<div class="cart__line-price">$' + item.unitPrice.toFixed(2) + '</div>' +
                     '</div>' +
                     '<div class="cart__line-controls">' +

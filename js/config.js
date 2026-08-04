@@ -31,53 +31,116 @@ const PAYPAL_CONFIG = {
     PAYPAL_SANDBOX_MODE: false   // ← Set to false only when going live
 };
 
-/* --- Print Pricing ---
-   Shipping is included in these prices (continental US).
-   Add new size objects here to extend without changing UI code.
+/* --- Print — Available Media ---
    ----------------------------------------------------------- */
-const PRINT_OPTIONS = [
-    {
-        size: '8×10',
-        label: '8×10 in.',
-        price: 45,
-        printCostEstimate: 12,
-        shippingIncluded: true,
-        shippingRegion: 'Continental US'
-    },
-    {
-        size: '11×14',
-        label: '11×14 in.',
-        price: 70,
-        printCostEstimate: 22,
-        shippingIncluded: true,
-        shippingRegion: 'Continental US'
-    },
-    {
-        size: '16×20',
-        label: '16×20 in.',
-        price: 120,
-        printCostEstimate: 38,
-        shippingIncluded: true,
-        shippingRegion: 'Continental US'
-    }
-    /* Future options can be added here:
-    {
-        size: 'canvas-16x20',
-        label: '16×20 in. Canvas',
-        price: 180,
-        printCostEstimate: 65,
-        shippingIncluded: true,
-        shippingRegion: 'Continental US'
-    },
-    {
-        size: 'framed-11x14',
-        label: '11×14 in. Framed',
-        price: 145,
-        printCostEstimate: 60,
-        shippingIncluded: true,
-        shippingRegion: 'Continental US'
-    } */
+const PRINT_MEDIA = [
+    { id: 'fine-art-paper',        label: 'Fine Art Print',        lumaprintsCategory: 103 },
+    { id: 'framed-fine-art-paper', label: 'Framed Fine Art Print', lumaprintsCategory: 105 },
+    { id: 'canvas',                label: 'Gallery Canvas',        lumaprintsCategory: 101 }
 ];
+
+/* --- Print — Available Sizes per Medium ---
+   Canvas starts at 11×14 (8×10 canvas looks awkward at gallery wrap depth).
+   ----------------------------------------------------------- */
+const PRINT_SIZES = {
+    'fine-art-paper': [
+        { id: '8x10',  label: '8 × 10 in.',  width: 8,  height: 10 },
+        { id: '11x14', label: '11 × 14 in.', width: 11, height: 14 },
+        { id: '16x20', label: '16 × 20 in.', width: 16, height: 20 }
+    ],
+    'framed-fine-art-paper': [
+        { id: '8x10',  label: '8 × 10 in.',  width: 8,  height: 10 },
+        { id: '11x14', label: '11 × 14 in.', width: 11, height: 14 },
+        { id: '16x20', label: '16 × 20 in.', width: 16, height: 20 }
+    ],
+    'canvas': [
+        { id: '11x14', label: '11 × 14 in.', width: 11, height: 14 },
+        { id: '16x20', label: '16 × 20 in.', width: 16, height: 20 },
+        { id: '18x24', label: '18 × 24 in.', width: 18, height: 24 },
+        { id: '24x30', label: '24 × 30 in.', width: 24, height: 30 }
+    ]
+};
+
+/* --- Print — Paper Types (Fine Art Paper, unframed) ---
+   lumaprintsSubcategoryId: verified from live API, August 2026.
+   priceAdj: added to base price for premium-weight papers.
+   ----------------------------------------------------------- */
+const PAPER_TYPES = [
+    { id: 'archival',   label: 'Archival Smooth Matte', lumaprintsSubcategoryId: 103001, priceAdj: 0  },
+    { id: 'hot-press',  label: 'Hot Press Matte',       lumaprintsSubcategoryId: 103002, priceAdj: 10 },
+    { id: 'cold-press', label: 'Cold Press Textured',   lumaprintsSubcategoryId: 103003, priceAdj: 10 },
+    { id: 'semi-gloss', label: 'Semi-Gloss',            lumaprintsSubcategoryId: 103005, priceAdj: 0  }
+];
+
+/* --- Print — Frame Options (Framed Fine Art Paper) ---
+   Each frame style is a distinct Lumaprints subcategory.
+   lumaprintsSubcategoryId: verified from live API, August 2026.
+   26 frame styles exist; curated to gallery-appropriate options below.
+   ----------------------------------------------------------- */
+const FRAME_OPTIONS = [
+    { id: '105005', label: '1.25 in. Black',       lumaprintsSubcategoryId: 105005 },
+    { id: '105006', label: '1.25 in. White',       lumaprintsSubcategoryId: 105006 },
+    { id: '105022', label: '1.25 in. Maple Wood',  lumaprintsSubcategoryId: 105022 },
+    { id: '105009', label: '0.875 in. Black',      lumaprintsSubcategoryId: 105009 },
+    { id: '105011', label: '0.875 in. Gold',       lumaprintsSubcategoryId: 105011 },
+    { id: '105023', label: '3 in. Gold Plein Air', lumaprintsSubcategoryId: 105023 }
+];
+
+/* --- Print — Mat Sizes ---
+   lumaprintsOptionId: verified from live API, August 2026.
+   ----------------------------------------------------------- */
+const MAT_SIZES = [
+    { id: 64, label: 'No Mat',     lumaprintsOptionId: 64 },
+    { id: 65, label: '1 inch',     lumaprintsOptionId: 65 },
+    { id: 66, label: '1.5 inches', lumaprintsOptionId: 66 },
+    { id: 67, label: '2 inches',   lumaprintsOptionId: 67 },
+    { id: 68, label: '2.5 inches', lumaprintsOptionId: 68 }
+];
+
+/* --- Print — Mat Colors ---
+   lumaprintsOptionId: verified from live API, August 2026.
+   Note: optionId 100 (Raven Black Rag) is absent from live API — excluded.
+   ----------------------------------------------------------- */
+const MAT_COLORS = [
+    { id: 96,  label: 'White',         lumaprintsOptionId: 96  },
+    { id: 99,  label: 'Antique White', lumaprintsOptionId: 99  },
+    { id: 104, label: 'Off White',     lumaprintsOptionId: 104 },
+    { id: 101, label: 'Dawn Grey',     lumaprintsOptionId: 101 },
+    { id: 98,  label: 'Smooth Black',  lumaprintsOptionId: 98  }
+];
+
+/* --- Print — Canvas Border Options ---
+   lumaprintsOptionId: verified from live API, August 2026.
+   ----------------------------------------------------------- */
+const CANVAS_BORDERS = [
+    { id: 1, label: 'Image Wrap',  lumaprintsOptionId: 1 },
+    { id: 2, label: 'Mirror Wrap', lumaprintsOptionId: 2 }
+];
+
+/* --- Print — Retail Prices (shipping included, continental US) ---
+   Fine Art Paper: base price applies to Archival and Semi-Gloss.
+                   hotPressAdj is added for Hot Press and Cold Press.
+   Framed / Canvas: single price per size regardless of frame or mat choice.
+   Edit these values to adjust your retail margins.
+   ----------------------------------------------------------- */
+const PRINT_PRICES = {
+    'fine-art-paper': {
+        '8x10':  { base: 45,  hotPressAdj: 10 },
+        '11x14': { base: 70,  hotPressAdj: 15 },
+        '16x20': { base: 120, hotPressAdj: 25 }
+    },
+    'framed-fine-art-paper': {
+        '8x10':  95,
+        '11x14': 130,
+        '16x20': 165
+    },
+    'canvas': {
+        '11x14': 95,
+        '16x20': 130,
+        '18x24': 155,
+        '24x30': 195
+    }
+};
 
 /* --- Site Feature Flags ---
    Toggle features without touching UI code.
@@ -102,11 +165,12 @@ const FEATURES = {
    ----------------------------------------------------------- */
 const DEBUG_MODE = false;   // ← Set to true while testing, false before going live
 
-/* --- Future Integration Hooks ---
-   Placeholders for future print-on-demand providers.
+/* --- Lumaprints Account ---
+   storeId: verified from live production API, August 2026.
+   apiEndpoint: set when server-side automation is built (Vercel function).
    ----------------------------------------------------------- */
 const PRINT_PROVIDER = {
-    name: 'lumaprints',          // Future: 'prodigi', 'printful', etc.
-    apiEndpoint: null,           // Set when API is ready
-    webhookSecret: null          // Set when webhook is configured
+    name:        'lumaprints',
+    storeId:     91657,
+    apiEndpoint: null
 };

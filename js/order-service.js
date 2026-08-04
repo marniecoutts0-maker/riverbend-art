@@ -52,7 +52,7 @@ var OrderService = (function () {
     function buildPayPalItems(cartItems) {
         return cartItems.map(function (item) {
             return {
-                name: item.artworkTitle + ' — Fine Art Print (' + item.printSizeLabel + ')',
+                name: item.artworkTitle + ' (' + item.printSizeLabel + ')',
                 unit_amount: {
                     currency_code: 'USD',
                     value: item.unitPrice.toFixed(2)
