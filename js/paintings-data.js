@@ -428,7 +428,7 @@ window.PAINTINGS_DATA = [
     {
         "id": "letting-go",
         "title": "Letting Go",
-        "image": "images/Cottonwood Leaf.jpg",
+        "image": "images/Letting Go.jpg",
         "medium": "Oil on canvas panel",
         "size": "11 × 14 in.",
         "category": "landscape",
