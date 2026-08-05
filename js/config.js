@@ -78,23 +78,23 @@ const PAPER_TYPES = [
    26 frame styles exist; curated to gallery-appropriate options below.
    ----------------------------------------------------------- */
 const FRAME_OPTIONS = [
-    { id: '105005', label: '1.25 in. Black',       lumaprintsSubcategoryId: 105005, priceAdj: 0  },
-    { id: '105006', label: '1.25 in. White',       lumaprintsSubcategoryId: 105006, priceAdj: 0  },
-    { id: '105022', label: '1.25 in. Maple Wood',  lumaprintsSubcategoryId: 105022, priceAdj: 0  },
-    { id: '105009', label: '0.875 in. Black',      lumaprintsSubcategoryId: 105009, priceAdj: 0  },
-    { id: '105011', label: '0.875 in. Gold',       lumaprintsSubcategoryId: 105011, priceAdj: 0  },
-    { id: '105023', label: '3 in. Gold Plein Air', lumaprintsSubcategoryId: 105023, priceAdj: 35 }
+    { id: '105005', label: '1.25 in. Black',       lumaprintsSubcategoryId: 105005, priceAdj: 0,  widthInches: 1.25,  previewColor: '#1c1c1c', previewTexture: null },
+    { id: '105006', label: '1.25 in. White',        lumaprintsSubcategoryId: 105006, priceAdj: 0,  widthInches: 1.25,  previewColor: '#f0eeeb', previewTexture: null },
+    { id: '105022', label: '1.25 in. Maple Wood',   lumaprintsSubcategoryId: 105022, priceAdj: 0,  widthInches: 1.25,  previewColor: '#c49a56', previewTexture: 'images/frames/maple.jpg' },
+    { id: '105009', label: '0.875 in. Black',       lumaprintsSubcategoryId: 105009, priceAdj: 0,  widthInches: 0.875, previewColor: '#1c1c1c', previewTexture: null },
+    { id: '105011', label: '0.875 in. Gold',        lumaprintsSubcategoryId: 105011, priceAdj: 0,  widthInches: 0.875, previewColor: '#d4a520', previewTexture: null },
+    { id: '105023', label: '3 in. Gold Plein Air',  lumaprintsSubcategoryId: 105023, priceAdj: 35, widthInches: 3.0,   previewColor: '#c49820', previewTexture: 'images/frames/plein-air-gold.jpg' }
 ];
 
 /* --- Print — Mat Sizes ---
    lumaprintsOptionId: verified from live API, August 2026.
    ----------------------------------------------------------- */
 const MAT_SIZES = [
-    { id: 64, label: 'No Mat',     lumaprintsOptionId: 64 },
-    { id: 65, label: '1 inch',     lumaprintsOptionId: 65 },
-    { id: 66, label: '1.5 inches', lumaprintsOptionId: 66 },
-    { id: 67, label: '2 inches',   lumaprintsOptionId: 67 },
-    { id: 68, label: '2.5 inches', lumaprintsOptionId: 68 }
+    { id: 64, label: 'No Mat',     lumaprintsOptionId: 64, widthInches: 0   },
+    { id: 65, label: '1 inch',     lumaprintsOptionId: 65, widthInches: 1   },
+    { id: 66, label: '1.5 inches', lumaprintsOptionId: 66, widthInches: 1.5 },
+    { id: 67, label: '2 inches',   lumaprintsOptionId: 67, widthInches: 2   },
+    { id: 68, label: '2.5 inches', lumaprintsOptionId: 68, widthInches: 2.5 }
 ];
 
 /* --- Print — Mat Colors ---
@@ -102,11 +102,11 @@ const MAT_SIZES = [
    Note: optionId 100 (Raven Black Rag) is absent from live API — excluded.
    ----------------------------------------------------------- */
 const MAT_COLORS = [
-    { id: 96,  label: 'White',         lumaprintsOptionId: 96  },
-    { id: 99,  label: 'Antique White', lumaprintsOptionId: 99  },
-    { id: 104, label: 'Off White',     lumaprintsOptionId: 104 },
-    { id: 101, label: 'Dawn Grey',     lumaprintsOptionId: 101 },
-    { id: 98,  label: 'Smooth Black',  lumaprintsOptionId: 98  }
+    { id: 96,  label: 'White',         lumaprintsOptionId: 96,  previewColor: '#f8f8f6' },
+    { id: 99,  label: 'Antique White', lumaprintsOptionId: 99,  previewColor: '#f5f0e8' },
+    { id: 104, label: 'Off White',     lumaprintsOptionId: 104, previewColor: '#ede8e0' },
+    { id: 101, label: 'Dawn Grey',     lumaprintsOptionId: 101, previewColor: '#c8c4bc' },
+    { id: 98,  label: 'Smooth Black',  lumaprintsOptionId: 98,  previewColor: '#1a1a1a' }
 ];
 
 /* --- Print — Canvas Border Options ---

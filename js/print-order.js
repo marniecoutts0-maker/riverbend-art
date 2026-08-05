@@ -8,6 +8,7 @@ var PrintOrder = (function () {
     'use strict';
 
     var currentPainting = null;
+    var _imageCache     = {};
 
     /* -------------------------------------------------------
        Panel state — mirrors current dropdown selections
@@ -158,6 +159,146 @@ var PrintOrder = (function () {
     }
 
     /* -------------------------------------------------------
+       Preview canvas — image loading and drawing
+       ------------------------------------------------------- */
+    function loadImage(src, callback) {
+        if (_imageCache[src]) {
+            callback(_imageCache[src]);
+            return;
+        }
+        var img = new Image();
+        img.onload = function () {
+            _imageCache[src] = img;
+            callback(img);
+        };
+        img.onerror = function () {
+            callback(null);
+        };
+        img.src = src;
+    }
+
+    function drawPreview(canvas, paintingImg) {
+        var medium  = state.medium;
+        var sizes   = PRINT_SIZES[medium] || [];
+        var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
+        if (!sizeObj) return;
+
+        var printW = sizeObj.width;
+        var printH = sizeObj.height;
+
+        var frameOpt    = null;
+        var matSizeOpt  = null;
+        var matColorOpt = null;
+        var frameInches = 0;
+        var matInches   = 0;
+
+        if (medium === 'framed-fine-art-paper') {
+            frameOpt    = FRAME_OPTIONS.find(function (f) { return f.id === state.frameId; });
+            matSizeOpt  = MAT_SIZES.find(function (m) { return m.id === state.matSizeId; });
+            matColorOpt = MAT_COLORS.find(function (m) { return m.id === state.matColorId; });
+            frameInches = frameOpt ? (frameOpt.widthInches || 1.25) : 1.25;
+            matInches   = matSizeOpt ? (matSizeOpt.widthInches || 0) : 0;
+        }
+
+        /* Scale so frame + mat + image all fit in 240px total width */
+        var totalInchW = printW + 2 * (matInches + frameInches);
+        var totalInchH = printH + 2 * (matInches + frameInches);
+        var scale      = 240 / totalInchW;
+
+        var imgW    = Math.round(printW * scale);
+        var imgH    = Math.round(printH * scale);
+        var matPx   = Math.round(matInches * scale);
+        var framePx = Math.round(frameInches * scale);
+        var totalW  = 240;
+        var totalH  = Math.round(totalInchH * scale);
+
+        canvas.width  = totalW;
+        canvas.height = totalH;
+
+        var ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, totalW, totalH);
+
+        /* Frame */
+        if (frameOpt && framePx > 0) {
+            ctx.fillStyle = frameOpt.previewColor || '#1c1c1c';
+            ctx.fillRect(0, 0, totalW, framePx);                                       /* top    */
+            ctx.fillRect(0, totalH - framePx, totalW, framePx);                        /* bottom */
+            ctx.fillRect(0, framePx, framePx, totalH - 2 * framePx);                   /* left   */
+            ctx.fillRect(totalW - framePx, framePx, framePx, totalH - 2 * framePx);    /* right  */
+        }
+
+        /* Mat */
+        if (matPx > 0) {
+            ctx.fillStyle = (matColorOpt && matColorOpt.previewColor) ? matColorOpt.previewColor : '#f8f8f6';
+            ctx.fillRect(framePx, framePx, totalW - 2 * framePx, totalH - 2 * framePx);
+        }
+
+        /* Painting — centered crop into print dimensions */
+        var paintX = framePx + matPx;
+        var paintY = framePx + matPx;
+
+        if (paintingImg) {
+            var srcW      = paintingImg.naturalWidth;
+            var srcH      = paintingImg.naturalHeight;
+            var dstAspect = imgW / imgH;
+            var srcAspect = srcW / srcH;
+            var sx, sy, sw, sh;
+
+            if (srcAspect > dstAspect) {
+                /* Source is wider — crop sides */
+                sh = srcH;
+                sw = Math.round(srcH * dstAspect);
+                sx = Math.round((srcW - sw) / 2);
+                sy = 0;
+            } else {
+                /* Source is taller — crop top/bottom */
+                sw = srcW;
+                sh = Math.round(srcW / dstAspect);
+                sx = 0;
+                sy = Math.round((srcH - sh) / 2);
+            }
+
+            ctx.drawImage(paintingImg, sx, sy, sw, sh, paintX, paintY, imgW, imgH);
+        } else {
+            /* Placeholder while image loads */
+            ctx.fillStyle = '#e0ddd8';
+            ctx.fillRect(paintX, paintY, imgW, imgH);
+        }
+
+        /* Fine Art Paper: thin surrounding border */
+        if (medium === 'fine-art-paper') {
+            ctx.strokeStyle = '#c8c4bc';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(0.5, 0.5, totalW - 1, totalH - 1);
+        }
+
+        /* Canvas: gallery-wrap side indicator */
+        if (medium === 'canvas') {
+            ctx.strokeStyle = '#3a3530';
+            ctx.lineWidth = 6;
+            ctx.strokeRect(3, 3, totalW - 6, totalH - 6);
+        }
+    }
+
+    function updatePreview() {
+        var canvas = document.getElementById('ppPreviewCanvas');
+        if (!canvas || !currentPainting) return;
+
+        var src    = currentPainting.image;
+        var cached = _imageCache[src] || null;
+
+        /* Draw immediately — placeholder or cached painting */
+        drawPreview(canvas, cached);
+
+        /* Load painting image if not yet cached, then redraw */
+        if (!cached) {
+            loadImage(src, function (img) {
+                drawPreview(canvas, img);
+            });
+        }
+    }
+
+    /* -------------------------------------------------------
        Build the panel HTML
        ------------------------------------------------------- */
     function buildPanel(painting) {
@@ -174,6 +315,12 @@ var PrintOrder = (function () {
                 '<div class="print-panel__label">Fine Art Print</div>' +
                 '<div class="print-panel__availability">' +
                     printAvailabilityLabel(painting.status) +
+                '</div>' +
+
+                /* Preview canvas */
+                '<div class="print-panel__preview">' +
+                    '<canvas id="ppPreviewCanvas"></canvas>' +
+                    '<p class="print-panel__preview-note">Preview — colors and proportions are approximate.</p>' +
                 '</div>' +
 
                 /* Medium */
@@ -278,6 +425,7 @@ var PrintOrder = (function () {
         info.appendChild(panel);
 
         bindPanelEvents(painting, panel);
+        updatePreview();
     }
 
     function removePanel() {
@@ -333,6 +481,7 @@ var PrintOrder = (function () {
             updateSizeOptions();
             updateVisibility();
             updatePrice();
+            updatePreview();
             if (window.RiverbendAnalytics) {
                 window.RiverbendAnalytics.printSizeSelect(state.medium + '-' + state.sizeId, calculatePrice() / state.qty);
             }
@@ -341,6 +490,7 @@ var PrintOrder = (function () {
         sizeSel.addEventListener('change', function () {
             state.sizeId = this.value;
             updatePrice();
+            updatePreview();
         });
 
         paperSel.addEventListener('change', function () {
@@ -350,6 +500,7 @@ var PrintOrder = (function () {
 
         frameSel.addEventListener('change', function () {
             state.frameId = this.value;
+            updatePreview();
         });
 
         matSizeSel.addEventListener('change', function () {
@@ -358,10 +509,12 @@ var PrintOrder = (function () {
                 state.matColorId = MAT_COLORS[0].id;
             }
             updateVisibility();
+            updatePreview();
         });
 
         matColorSel.addEventListener('change', function () {
             state.matColorId = parseInt(this.value, 10);
+            updatePreview();
         });
 
         borderSel.addEventListener('change', function () {

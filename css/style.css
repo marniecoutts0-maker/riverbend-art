@@ -1680,6 +1680,26 @@ body.cart-open {
     cursor: default;
 }
 
+.print-panel__preview {
+    margin-bottom: 1.25rem;
+    text-align: center;
+    background: #f5f3f0;
+    padding: 0.75rem 0.75rem 0.5rem;
+}
+
+.print-panel__preview canvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.print-panel__preview-note {
+    font-size: 0.70rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
 /* ============================================================
    RESPONSIVE — Cart + Print Panel
    ============================================================ */
