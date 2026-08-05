@@ -150,19 +150,6 @@ window.PAINTINGS_DATA = [
         "price": 310
     },
     {
-        "id": "morning-launch-original",
-        "title": "Morning Launch (Original)",
-        "image": "images/Early_Morning_Lake (1).jpg",
-        "medium": "Oil on canvas panel",
-        "size": "9 × 12 in.",
-        "category": "landscape",
-        "status": "sold",
-        "featured": false,
-        "orientation": "landscape",
-        "printAvailable": true,
-        "framed": false
-    },
-    {
         "id": "may-flowers",
         "title": "May Flowers",
         "image": "images/PXL_20260508_134953911 (1).jpg",
