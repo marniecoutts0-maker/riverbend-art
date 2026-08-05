@@ -651,9 +651,9 @@ p {
 .home-cta__link--prints {
     display: block;
     margin-top: 1rem;
-    font-size: 0.78rem;
-    color: var(--color-text-muted);
-    border-color: transparent;
+    font-size: 0.82rem;
+    color: var(--color-text-light);
+    border-color: var(--color-border);
 }
 
 
