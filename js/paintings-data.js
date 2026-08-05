@@ -440,7 +440,7 @@ window.PAINTINGS_DATA = [
     {
         "id": "breathe",
         "title": "Breathe",
-        "image": "images/Cottonwood Leaf Print Image.jpg",
+        "image": "images/Breathe.jpg",
         "medium": "Oil on canvas panel",
         "size": "11 × 14 in.",
         "category": "landscape",
