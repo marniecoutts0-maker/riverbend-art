@@ -631,6 +631,14 @@ p {
     border-color: var(--color-accent);
 }
 
+.home-cta__link--prints {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    border-color: transparent;
+}
+
 
 /* --- Commission Section (home page) --- */
 .section--commission {
