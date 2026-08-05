@@ -77,12 +77,10 @@ window.PAINTINGS_DATA = [
         "medium": "Oil on canvas",
         "size": "11 × 14 in.",
         "category": "landscape",
-        "status": "available",
-        "featured": true,
+        "status": "private-collection",
+        "featured": false,
         "orientation": "portrait",
-        "printAvailable": false,
-        "framed": true,
-        "price": 325
+        "printAvailable": true
     },
     {
         "id": "the-long-way-home",
@@ -439,5 +437,29 @@ window.PAINTINGS_DATA = [
         "orientation": "portrait",
         "printAvailable": false,
         "framed": false
+    },
+    {
+        "id": "letting-go",
+        "title": "Letting Go",
+        "image": "images/Cottonwood Leaf.jpg",
+        "medium": "Oil on canvas panel",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": true
+    },
+    {
+        "id": "breathe",
+        "title": "Breathe",
+        "image": "images/Cottonwood Leaf Print Image.jpg",
+        "medium": "Oil on canvas panel",
+        "size": "11 × 14 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": true
     }
 ];
