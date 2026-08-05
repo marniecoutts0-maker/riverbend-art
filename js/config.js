@@ -78,12 +78,32 @@ const PAPER_TYPES = [
    26 frame styles exist; curated to gallery-appropriate options below.
    ----------------------------------------------------------- */
 const FRAME_OPTIONS = [
-    { id: '105005', label: '1.25 in. Black',       lumaprintsSubcategoryId: 105005, priceAdj: 0,  widthInches: 1.25,  previewColor: '#1c1c1c', previewStyle: 'solid'          },
-    { id: '105006', label: '1.25 in. White',        lumaprintsSubcategoryId: 105006, priceAdj: 0,  widthInches: 1.25,  previewColor: '#f0eeeb', previewStyle: 'solid'          },
-    { id: '105022', label: '1.25 in. Maple Wood',   lumaprintsSubcategoryId: 105022, priceAdj: 0,  widthInches: 1.25,  previewColor: '#c49a56', previewStyle: 'wood'           },
-    { id: '105009', label: '0.875 in. Black',       lumaprintsSubcategoryId: 105009, priceAdj: 0,  widthInches: 0.875, previewColor: '#1c1c1c', previewStyle: 'solid'          },
-    { id: '105011', label: '0.875 in. Gold',        lumaprintsSubcategoryId: 105011, priceAdj: 0,  widthInches: 0.875, previewColor: '#d4a520', previewStyle: 'gold'           },
-    { id: '105023', label: '3 in. Gold Plein Air',  lumaprintsSubcategoryId: 105023, priceAdj: 35, widthInches: 3.0,   previewColor: '#c49820', previewStyle: 'plein-air-gold' }
+    /* Standard black / white */
+    { id: '105005', label: '1.25 in. Black',              lumaprintsSubcategoryId: 105005, priceAdj: 0,  widthInches: 1.25,   previewColor: '#1c1c1c', previewStyle: 'solid'          },
+    { id: '105006', label: '1.25 in. White',              lumaprintsSubcategoryId: 105006, priceAdj: 0,  widthInches: 1.25,   previewColor: '#f0eeeb', previewStyle: 'solid'          },
+    { id: '105009', label: '0.875 in. Black',             lumaprintsSubcategoryId: 105009, priceAdj: 0,  widthInches: 0.875,  previewColor: '#1c1c1c', previewStyle: 'solid'          },
+    /* Wood */
+    { id: '105022', label: '1.25 in. Maple',              lumaprintsSubcategoryId: 105022, priceAdj: 0,  widthInches: 1.25,   previewColor: '#c49a56', previewStyle: 'wood'           },
+    { id: '105007', label: '1.25 in. Oak',                lumaprintsSubcategoryId: 105007, priceAdj: 0,  widthInches: 1.25,   previewColor: '#b8864e', previewStyle: 'wood'           },
+    { id: '105024', label: '0.875 in. Maple',             lumaprintsSubcategoryId: 105024, priceAdj: 0,  widthInches: 0.875,  previewColor: '#c49a56', previewStyle: 'wood'           },
+    { id: '105003', label: '0.875 in. Oak',               lumaprintsSubcategoryId: 105003, priceAdj: 0,  widthInches: 0.875,  previewColor: '#b8864e', previewStyle: 'wood'           },
+    { id: '105008', label: '0.875 in. Natural Wood',      lumaprintsSubcategoryId: 105008, priceAdj: 0,  widthInches: 0.875,  previewColor: '#d4c4a8', previewStyle: 'wood'           },
+    /* Espresso / Gold */
+    { id: '105012', label: '0.875 in. Espresso',          lumaprintsSubcategoryId: 105012, priceAdj: 0,  widthInches: 0.875,  previewColor: '#231812', previewStyle: 'solid'          },
+    { id: '105011', label: '0.875 in. Gold',              lumaprintsSubcategoryId: 105011, priceAdj: 0,  widthInches: 0.875,  previewColor: '#d4a520', previewStyle: 'gold'           },
+    /* Matte */
+    { id: '105025', label: '1.625 in. Matte Black',       lumaprintsSubcategoryId: 105025, priceAdj: 0,  widthInches: 1.625,  previewColor: '#1c1c1c', previewStyle: 'solid'          },
+    { id: '105027', label: '1 in. Matte White',           lumaprintsSubcategoryId: 105027, priceAdj: 0,  widthInches: 1.0,    previewColor: '#f0eeeb', previewStyle: 'solid'          },
+    { id: '105028', label: '1 in. Matte Maple',           lumaprintsSubcategoryId: 105028, priceAdj: 0,  widthInches: 1.0,    previewColor: '#c49a56', previewStyle: 'wood'           },
+    /* Rustic / Driftwood — priceAdj: 30 */
+    { id: '105018', label: '3 in. Driftwood Gray',        lumaprintsSubcategoryId: 105018, priceAdj: 30, widthInches: 3.0,    previewColor: '#8c8882', previewStyle: 'wood'           },
+    { id: '105019', label: '3 in. Driftwood White',       lumaprintsSubcategoryId: 105019, priceAdj: 30, widthInches: 3.0,    previewColor: '#e0dcd4', previewStyle: 'wood'           },
+    /* Gallery ornate — priceAdj: 30 */
+    { id: '105013', label: '2 in. Black with Gold Liner', lumaprintsSubcategoryId: 105013, priceAdj: 30, widthInches: 2.0,    previewColor: '#1c1c1c', previewStyle: 'solid'          },
+    /* Plein Air & Copper — priceAdj: 35–45 */
+    { id: '105023', label: '3 in. Plein Air Gold',        lumaprintsSubcategoryId: 105023, priceAdj: 35, widthInches: 3.0,    previewColor: '#c49820', previewStyle: 'plein-air-gold' },
+    { id: '105020', label: '2.5 in. Plein Air Espresso',  lumaprintsSubcategoryId: 105020, priceAdj: 40, widthInches: 2.5625, previewColor: '#3d2b1f', previewStyle: 'plein-air-gold' },
+    { id: '105021', label: '3.25 in. Vintage Copper',     lumaprintsSubcategoryId: 105021, priceAdj: 45, widthInches: 3.25,   previewColor: '#a0724a', previewStyle: 'gold'           }
 ];
 
 /* --- Print — Mat Sizes ---
