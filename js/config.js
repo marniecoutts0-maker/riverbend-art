@@ -78,12 +78,12 @@ const PAPER_TYPES = [
    26 frame styles exist; curated to gallery-appropriate options below.
    ----------------------------------------------------------- */
 const FRAME_OPTIONS = [
-    { id: '105005', label: '1.25 in. Black',       lumaprintsSubcategoryId: 105005 },
-    { id: '105006', label: '1.25 in. White',       lumaprintsSubcategoryId: 105006 },
-    { id: '105022', label: '1.25 in. Maple Wood',  lumaprintsSubcategoryId: 105022 },
-    { id: '105009', label: '0.875 in. Black',      lumaprintsSubcategoryId: 105009 },
-    { id: '105011', label: '0.875 in. Gold',       lumaprintsSubcategoryId: 105011 },
-    { id: '105023', label: '3 in. Gold Plein Air', lumaprintsSubcategoryId: 105023 }
+    { id: '105005', label: '1.25 in. Black',       lumaprintsSubcategoryId: 105005, priceAdj: 0  },
+    { id: '105006', label: '1.25 in. White',       lumaprintsSubcategoryId: 105006, priceAdj: 0  },
+    { id: '105022', label: '1.25 in. Maple Wood',  lumaprintsSubcategoryId: 105022, priceAdj: 0  },
+    { id: '105009', label: '0.875 in. Black',      lumaprintsSubcategoryId: 105009, priceAdj: 0  },
+    { id: '105011', label: '0.875 in. Gold',       lumaprintsSubcategoryId: 105011, priceAdj: 0  },
+    { id: '105023', label: '3 in. Gold Plein Air', lumaprintsSubcategoryId: 105023, priceAdj: 35 }
 ];
 
 /* --- Print — Mat Sizes ---

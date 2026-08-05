@@ -50,6 +50,11 @@ var PrintOrder = (function () {
                 ? sizePrice.hotPressAdj : 0;
             return (sizePrice.base + adj) * state.qty;
         }
+        if (state.medium === 'framed-fine-art-paper') {
+            var frame    = FRAME_OPTIONS.find(function (f) { return f.id === state.frameId; });
+            var frameAdj = (frame && frame.priceAdj) ? frame.priceAdj : 0;
+            return (sizePrice + frameAdj) * state.qty;
+        }
         return sizePrice * state.qty;
     }
 
