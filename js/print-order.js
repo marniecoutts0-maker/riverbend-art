@@ -177,6 +177,74 @@ var PrintOrder = (function () {
         img.src = src;
     }
 
+    function drawWoodGrain(ctx, x, y, w, h, baseColor, horizontal) {
+        var r  = parseInt(baseColor.slice(1, 3), 16);
+        var gv = parseInt(baseColor.slice(3, 5), 16);
+        var b  = parseInt(baseColor.slice(5, 7), 16);
+        var dR = Math.max(0, r - 60);
+        var dG = Math.max(0, gv - 50);
+        var dB = Math.max(0, b - 28);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(x, y, w, h);
+        ctx.clip();
+
+        var span  = horizontal ? h : w;
+        var len   = horizontal ? w : h;
+        var count = Math.floor(span / 2.2) + 4;
+
+        for (var i = 0; i < count; i++) {
+            var t     = i / count;
+            var base  = (horizontal ? y : x) + t * span;
+            var alpha = 0.10 + (Math.sin(i * 3.7) * 0.5 + 0.5) * 0.38;
+            ctx.strokeStyle = 'rgba(' + dR + ',' + dG + ',' + dB + ',' + alpha.toFixed(2) + ')';
+            ctx.lineWidth = 0.5 + (Math.sin(i * 5.1) * 0.5 + 0.5) * 1.6;
+            ctx.beginPath();
+            if (horizontal) {
+                ctx.moveTo(x, base);
+                for (var xi = 0; xi <= len; xi += 5) {
+                    ctx.lineTo(x + xi, base + Math.sin(xi * 0.09 + i * 2.3) * 1.4 + Math.sin(xi * 0.23 + i) * 0.6);
+                }
+            } else {
+                ctx.moveTo(base, y);
+                for (var yi = 0; yi <= len; yi += 5) {
+                    ctx.lineTo(base + Math.sin(yi * 0.09 + i * 2.3) * 1.4 + Math.sin(yi * 0.23 + i) * 0.6, y + yi);
+                }
+            }
+            ctx.stroke();
+        }
+        ctx.restore();
+    }
+
+    function drawGoldBevel(ctx, x, y, w, h, isPleinAir) {
+        var grad = (w >= h)
+            ? ctx.createLinearGradient(x, y, x, y + h)
+            : ctx.createLinearGradient(x, y, x + w, y);
+
+        if (isPleinAir) {
+            /* Symmetric stepped bevel — base color shows through */
+            grad.addColorStop(0,    'rgba(0,0,0,0.35)');
+            grad.addColorStop(0.10, 'rgba(255,240,150,0.30)');
+            grad.addColorStop(0.20, 'rgba(0,0,0,0.20)');
+            grad.addColorStop(0.35, 'rgba(255,235,140,0.18)');
+            grad.addColorStop(0.50, 'rgba(0,0,0,0.04)');
+            grad.addColorStop(0.65, 'rgba(255,235,140,0.18)');
+            grad.addColorStop(0.80, 'rgba(0,0,0,0.20)');
+            grad.addColorStop(0.90, 'rgba(255,240,150,0.30)');
+            grad.addColorStop(1,    'rgba(0,0,0,0.35)');
+        } else {
+            /* Narrow gold — symmetric single bevel */
+            grad.addColorStop(0,    'rgba(0,0,0,0.30)');
+            grad.addColorStop(0.28, 'rgba(255,240,150,0.25)');
+            grad.addColorStop(0.50, 'rgba(0,0,0,0.04)');
+            grad.addColorStop(0.72, 'rgba(255,240,150,0.22)');
+            grad.addColorStop(1,    'rgba(0,0,0,0.28)');
+        }
+        ctx.fillStyle = grad;
+        ctx.fillRect(x, y, w, h);
+    }
+
     function drawPreview(canvas, paintingImg) {
         var medium  = state.medium;
         var sizes   = PRINT_SIZES[medium] || [];
@@ -218,13 +286,32 @@ var PrintOrder = (function () {
         var ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, totalW, totalH);
 
-        /* Frame */
+        /* Frame — mitered 45° corners using trapezoid clip paths */
         if (frameOpt && framePx > 0) {
-            ctx.fillStyle = frameOpt.previewColor || '#1c1c1c';
-            ctx.fillRect(0, 0, totalW, framePx);                                       /* top    */
-            ctx.fillRect(0, totalH - framePx, totalW, framePx);                        /* bottom */
-            ctx.fillRect(0, framePx, framePx, totalH - 2 * framePx);                   /* left   */
-            ctx.fillRect(totalW - framePx, framePx, framePx, totalH - 2 * framePx);    /* right  */
+            var fStyle = frameOpt.previewStyle || 'solid';
+            var fc     = frameOpt.previewColor || '#1c1c1c';
+            var W = totalW, H = totalH, fp = framePx;
+            var sections = [
+                { pts: [[0,0],[W,0],[W-fp,fp],[fp,fp]],       bx: 0,    by: 0,    bw: W,  bh: fp, hz: true  },
+                { pts: [[0,H],[W,H],[W-fp,H-fp],[fp,H-fp]],   bx: 0,    by: H-fp, bw: W,  bh: fp, hz: true  },
+                { pts: [[0,0],[fp,fp],[fp,H-fp],[0,H]],        bx: 0,    by: 0,    bw: fp, bh: H,  hz: false },
+                { pts: [[W,0],[W-fp,fp],[W-fp,H-fp],[W,H]],   bx: W-fp, by: 0,    bw: fp, bh: H,  hz: false }
+            ];
+            for (var si = 0; si < sections.length; si++) {
+                var sec = sections[si];
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(sec.pts[0][0], sec.pts[0][1]);
+                for (var k = 1; k < sec.pts.length; k++) ctx.lineTo(sec.pts[k][0], sec.pts[k][1]);
+                ctx.closePath();
+                ctx.clip();
+                ctx.fillStyle = fc;
+                ctx.fillRect(sec.bx, sec.by, sec.bw, sec.bh);
+                if (fStyle === 'wood')           drawWoodGrain(ctx, sec.bx, sec.by, sec.bw, sec.bh, fc, sec.hz);
+                else if (fStyle === 'gold')      drawGoldBevel(ctx, sec.bx, sec.by, sec.bw, sec.bh, false);
+                else if (fStyle === 'plein-air-gold') drawGoldBevel(ctx, sec.bx, sec.by, sec.bw, sec.bh, true);
+                ctx.restore();
+            }
         }
 
         /* Mat */

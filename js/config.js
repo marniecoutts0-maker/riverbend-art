@@ -78,12 +78,12 @@ const PAPER_TYPES = [
    26 frame styles exist; curated to gallery-appropriate options below.
    ----------------------------------------------------------- */
 const FRAME_OPTIONS = [
-    { id: '105005', label: '1.25 in. Black',       lumaprintsSubcategoryId: 105005, priceAdj: 0,  widthInches: 1.25,  previewColor: '#1c1c1c', previewTexture: null },
-    { id: '105006', label: '1.25 in. White',        lumaprintsSubcategoryId: 105006, priceAdj: 0,  widthInches: 1.25,  previewColor: '#f0eeeb', previewTexture: null },
-    { id: '105022', label: '1.25 in. Maple Wood',   lumaprintsSubcategoryId: 105022, priceAdj: 0,  widthInches: 1.25,  previewColor: '#c49a56', previewTexture: 'images/frames/maple.jpg' },
-    { id: '105009', label: '0.875 in. Black',       lumaprintsSubcategoryId: 105009, priceAdj: 0,  widthInches: 0.875, previewColor: '#1c1c1c', previewTexture: null },
-    { id: '105011', label: '0.875 in. Gold',        lumaprintsSubcategoryId: 105011, priceAdj: 0,  widthInches: 0.875, previewColor: '#d4a520', previewTexture: null },
-    { id: '105023', label: '3 in. Gold Plein Air',  lumaprintsSubcategoryId: 105023, priceAdj: 35, widthInches: 3.0,   previewColor: '#c49820', previewTexture: 'images/frames/plein-air-gold.jpg' }
+    { id: '105005', label: '1.25 in. Black',       lumaprintsSubcategoryId: 105005, priceAdj: 0,  widthInches: 1.25,  previewColor: '#1c1c1c', previewStyle: 'solid'          },
+    { id: '105006', label: '1.25 in. White',        lumaprintsSubcategoryId: 105006, priceAdj: 0,  widthInches: 1.25,  previewColor: '#f0eeeb', previewStyle: 'solid'          },
+    { id: '105022', label: '1.25 in. Maple Wood',   lumaprintsSubcategoryId: 105022, priceAdj: 0,  widthInches: 1.25,  previewColor: '#c49a56', previewStyle: 'wood'           },
+    { id: '105009', label: '0.875 in. Black',       lumaprintsSubcategoryId: 105009, priceAdj: 0,  widthInches: 0.875, previewColor: '#1c1c1c', previewStyle: 'solid'          },
+    { id: '105011', label: '0.875 in. Gold',        lumaprintsSubcategoryId: 105011, priceAdj: 0,  widthInches: 0.875, previewColor: '#d4a520', previewStyle: 'gold'           },
+    { id: '105023', label: '3 in. Gold Plein Air',  lumaprintsSubcategoryId: 105023, priceAdj: 35, widthInches: 3.0,   previewColor: '#c49820', previewStyle: 'plein-air-gold' }
 ];
 
 /* --- Print — Mat Sizes ---
