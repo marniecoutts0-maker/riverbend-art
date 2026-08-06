@@ -150,18 +150,6 @@ window.PAINTINGS_DATA = [
         "price": 310
     },
     {
-        "id": "may-flowers",
-        "title": "May Flowers",
-        "image": "images/PXL_20260508_134953911 (1).jpg",
-        "medium": "Oil on canvas panel",
-        "size": "5 × 7 in.",
-        "category": "landscape",
-        "status": "available",
-        "featured": false,
-        "orientation": "portrait",
-        "printAvailable": false
-    },
-    {
         "id": "alpine-meadow",
         "title": "Alpine Meadow",
         "image": "images/PXL_20260527_175720751~2AlpineMeadow.jpg",
@@ -440,7 +428,7 @@ window.PAINTINGS_DATA = [
     {
         "id": "breathe",
         "title": "Breathe",
-        "image": "images/Breathe.jpg",
+        "image": "images/Breathe 2.jpg",
         "medium": "Oil on canvas panel",
         "size": "11 × 14 in.",
         "category": "landscape",
@@ -448,5 +436,31 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": true
+    },
+    {
+        "id": "spirit-hunt",
+        "title": "Spirit Hunt",
+        "image": "images/Bison Hunt.jpg",
+        "medium": "Oil on canvas",
+        "size": "11 x 14 in.",
+        "category": "wildlife",
+        "status": "available",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": true,
+        "framed": true
+    },
+    {
+        "id": "daisies",
+        "title": "Daisies",
+        "image": "images/Daisies.jpg",
+        "medium": "Oil on canvas panel",
+        "size": "5 x 7 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": true,
+        "framed": false
     }
 ];
