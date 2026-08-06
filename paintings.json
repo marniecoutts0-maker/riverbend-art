@@ -456,7 +456,6 @@
         "medium": "Oil on canvas",
         "size": "11 x 14 in.",
         "category": "wildlife",
-        
         "status": "available",
         "featured": true,
         "orientation": "portrait",
@@ -470,7 +469,6 @@
         "medium": "Oil on canvas panel",
         "size": "5 x 7 in.",
         "category": "landscape",
-        
         "status": "available",
         "featured": false,
         "orientation": "portrait",
