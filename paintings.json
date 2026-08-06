@@ -151,7 +151,7 @@
     {
         "id":  "may-flowers",
         "title":  "May Flowers",
-        "image":  "images/PXL_20260508_134953911 (1).jpg",
+        "image":  "images/Daisies.jpg",
         "medium":  "Oil on canvas panel",
         "size":  "5 × 7 in.",
         "category":  "landscape",
@@ -456,7 +456,7 @@
         "medium": "Oil on canvas",
         "size": "11 x 14 in.",
         "category": "wildlife",
-        "price": 395,
+        
         "status": "available",
         "featured": true,
         "orientation": "portrait",
@@ -470,7 +470,7 @@
         "medium": "Oil on canvas panel",
         "size": "5 x 7 in.",
         "category": "landscape",
-        "price": 175,
+        
         "status": "available",
         "featured": false,
         "orientation": "portrait",
