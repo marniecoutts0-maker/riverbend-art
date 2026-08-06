@@ -188,6 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
 
+                // --- Auto-activate filter from URL parameter ---
+                var urlParams = new URLSearchParams(window.location.search);
+                var urlFilter = urlParams.get('filter');
+                if (urlFilter) {
+                    var targetBtn = document.querySelector('.filters__btn[data-filter="' + urlFilter + '"]');
+                    if (targetBtn) targetBtn.click();
+                }
+
                 // --- Lightbox (event delegation) ---
                 var lightbox = document.getElementById('lightbox');
                 var lightboxImage = document.getElementById('lightboxImage');
