@@ -447,7 +447,18 @@
         "featured": true,
         "orientation": "portrait",
         "printAvailable": true,
-        "framed": true
+        "framed":  true,
+        "limitedEdition": {
+            "editionSize":  10,
+            "signedCount":   5,
+            "remaining":     10,
+            "note": "Limited edition of 10 fine art prints. Five copies available hand-signed by the artist.",
+            "prices": {
+                "fine-art-paper":        { "8x10": 85,  "11x14": 125, "16x20": 195 },
+                "framed-fine-art-paper": { "8x10": 185, "11x14": 265, "16x20": 390 },
+                "canvas":                { "11x14": 185, "16x20": 265, "18x24": 310, "24x30": 390 }
+            }
+        }
     },
     {
         "id": "daisies",
