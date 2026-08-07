@@ -492,7 +492,7 @@ var PrintOrder = (function () {
 
                 /* Room visualizer */
                 '<div class="room-preview" id="ppRoomSection">' +
-                    '<div class="room-preview__label">See It On Your Wall</div>' +
+                    '<div class="room-preview__label">Room Preview</div>' +
                     '<div class="room-preview__scenes" id="ppSceneRow">' +
                         ROOM_SCENES.map(function (s, i) {
                             return '<button class="room-preview__scene-btn' + (i === 0 ? ' room-preview__scene-btn--active' : '') + '" data-scene-id="' + s.id + '" aria-label="' + s.label + '">' +
