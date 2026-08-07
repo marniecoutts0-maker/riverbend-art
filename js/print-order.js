@@ -42,6 +42,20 @@ var PrintOrder = (function () {
        Price calculation from current state
        ------------------------------------------------------- */
     function calculatePrice() {
+        /* Use LE prices when painting has limitedEdition pricing */
+        var le = currentPainting && currentPainting.limitedEdition;
+        var lePrices = le && le.prices && le.prices[state.medium];
+        if (lePrices) {
+            var leSize = lePrices[state.sizeId];
+            if (leSize === undefined || leSize === null) return 0;
+            if (state.medium === 'framed-fine-art-paper') {
+                var leFrame    = FRAME_OPTIONS.find(function (f) { return f.id === state.frameId; });
+                var leFrameAdj = (leFrame && leFrame.priceAdj) ? leFrame.priceAdj : 0;
+                return (leSize + leFrameAdj) * state.qty;
+            }
+            return leSize * state.qty;
+        }
+
         var prices = PRINT_PRICES[state.medium];
         if (!prices) return 0;
         var sizePrice = prices[state.sizeId];
@@ -470,6 +484,22 @@ var PrintOrder = (function () {
     }
     function buildPanel(painting) {
         var defaultPrice = calculatePrice();
+        var le        = painting.limitedEdition;
+        var remaining = le ? (le.remaining !== undefined ? le.remaining : le.editionSize) : null;
+        var soldOut   = le ? remaining === 0 : false;
+        var leHTML    = '';
+        if (le) {
+            var urgentCls = (!soldOut && remaining <= 3) ? ' le-notice--urgent' : '';
+            var cntText   = soldOut
+                ? 'All ' + le.editionSize + ' prints in this edition have been claimed.'
+                : remaining + ' of ' + le.editionSize + ' remaining';
+            leHTML =
+                '<div class="le-notice' + urgentCls + '">' +
+                    '<div class="le-notice__title">Limited Edition Fine Art Print</div>' +
+                    '<div class="le-notice__detail">' + le.note + '</div>' +
+                    '<div class="le-notice__counter' + ((!soldOut && remaining <= 3) ? ' le-notice__counter--urgent' : '') + '">' + cntText + '</div>' +
+                '</div>';
+        }
 
         function opts(arr, valKey, lblKey) {
             return arr.map(function (o) {
@@ -506,6 +536,8 @@ var PrintOrder = (function () {
                     '</div>' +
                     '<p class="room-preview__caption" id="ppRoomCaption"></p>' +
                 '</div>' +
+
+                leHTML +
 
                 /* Medium */
                 '<div class="print-panel__field">' +
@@ -578,7 +610,9 @@ var PrintOrder = (function () {
                     '<span class="print-panel__price" id="ppPrice">$' + defaultPrice.toFixed(2) + '</span>' +
                 '</div>' +
                 '<p class="print-panel__shipping-note">Shipping included \u00b7 Continental US</p>' +
-                '<button class="print-panel__add-btn" id="ppAddBtn">Add to Cart</button>' +
+                '<button class="print-panel__add-btn' + (soldOut ? ' print-panel__add-btn--sold-out' : '') + '" id="ppAddBtn"' + (soldOut ? ' disabled' : '') + '>' +
+                    (soldOut ? 'Sold Out' : 'Add to Cart') +
+                '</button>' +
             '</div>'
         );
     }
@@ -716,6 +750,8 @@ var PrintOrder = (function () {
         });
 
         addBtn.addEventListener('click', function () {
+            var leGuard = currentPainting && currentPainting.limitedEdition;
+            if (leGuard && leGuard.remaining === 0) return;
             var unitPrice = calculatePrice() / (state.qty || 1);
 
             Cart.addItem({

@@ -102,12 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         ? '<div class="grid__price">Prints from $' + lowestPrintPrice + '</div>'
                         : '';
 
+        const leBadgeHTML = painting.limitedEdition
+            ? '<div class="grid__le-badge">Limited Edition</div>'
+            : '';
+
         wrapper.innerHTML =
             '<div class="grid__image-wrapper' + orientationClass + '">' +
                 '<img src="' + painting.image + '" alt="' + painting.title + '" class="grid__image" loading="lazy">' +
             '</div>' +
             '<div class="grid__caption">' +
                 '<div class="grid__title">' + painting.title + '</div>' +
+                leBadgeHTML +
                 '<div class="grid__meta">' + painting.medium + '</div>' +
                 statusHTML +
                 priceHTML +

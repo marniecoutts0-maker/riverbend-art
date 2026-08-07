@@ -1804,6 +1804,69 @@ body.cart-open {
 }
 
 /* ============================================================
+   LIMITED EDITION — gallery badge + print panel notice
+   ============================================================ */
+.grid__le-badge {
+    display: inline-block;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    background: var(--color-accent);
+    padding: 0.18rem 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.le-notice {
+    background: #f5f2ec;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-accent);
+    padding: 0.75rem 0.85rem;
+    margin-bottom: 1.25rem;
+}
+
+.le-notice--urgent {
+    background: #fdf6ec;
+    border-color: #e8a04a;
+    border-left-color: #c47c1a;
+}
+
+.le-notice__title {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 0.3rem;
+}
+
+.le-notice__detail {
+    font-size: 0.82rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    margin-bottom: 0.35rem;
+}
+
+.le-notice__counter {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+.le-notice__counter--urgent {
+    color: #c47c1a;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.print-panel__add-btn--sold-out,
+.print-panel__add-btn--sold-out:hover {
+    background: var(--color-border);
+    border-color: var(--color-border);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
+
+/* ============================================================
    RESPONSIVE — Cart + Print Panel
    ============================================================ */
 @media (max-width: 768px) {
