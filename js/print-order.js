@@ -9,6 +9,7 @@ var PrintOrder = (function () {
 
     var currentPainting = null;
     var _imageCache     = {};
+    var _activeRoomScene = null;
 
     /* -------------------------------------------------------
        Panel state — mirrors current dropdown selections
@@ -386,8 +387,87 @@ var PrintOrder = (function () {
     }
 
     /* -------------------------------------------------------
-       Build the panel HTML
+       Room visualizer — caption, draw, update
        ------------------------------------------------------- */
+    function buildRoomCaption() {
+        var sizes   = PRINT_SIZES[state.medium] || [];
+        var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
+        var sizeLabel = sizeObj ? sizeObj.label : '';
+        var mediaObj  = PRINT_MEDIA.find(function (m) { return m.id === state.medium; });
+        var typeLabel = mediaObj ? mediaObj.label : '';
+        return sizeLabel + ' · ' + typeLabel + ' · approximate wall scale';
+    }
+
+    function drawRoomPreview(roomCanvas, paintingImg) {
+        var scene = _activeRoomScene;
+        if (!scene) return;
+
+        var medium  = state.medium;
+        var sizes   = PRINT_SIZES[medium] || [];
+        var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
+        if (!sizeObj) return;
+
+        var frameInches = 0, matInches = 0;
+        if (medium === 'framed-fine-art-paper') {
+            var fOpt = FRAME_OPTIONS.find(function (f) { return f.id === state.frameId; });
+            var mOpt = MAT_SIZES.find(function (m) { return m.id === state.matSizeId; });
+            frameInches = fOpt ? (fOpt.widthInches || 1.25) : 1.25;
+            matInches   = mOpt ? (mOpt.widthInches || 0)    : 0;
+        }
+
+        var totalInchW = sizeObj.width  + 2 * (matInches + frameInches);
+        var totalInchH = sizeObj.height + 2 * (matInches + frameInches);
+        var roomScale  = scene.wallMaxWidthPx / scene.wallRealWidthIn;
+        var artW = Math.min(Math.round(totalInchW * roomScale), scene.wallMaxWidthPx);
+        var artH = Math.min(Math.round(totalInchH * roomScale), scene.wallMaxHeightPx);
+        var artX = Math.round(scene.wallCenterX - artW / 2);
+        var artY = Math.round(scene.wallCenterY - artH / 2);
+
+        roomCanvas.width  = scene.imgWidth;
+        roomCanvas.height = scene.imgHeight;
+        var ctx = roomCanvas.getContext('2d');
+
+        var roomImg = _imageCache[scene.img] || null;
+        if (!roomImg) {
+            ctx.fillStyle = '#e8e4de';
+            ctx.fillRect(0, 0, scene.imgWidth, scene.imgHeight);
+            loadImage(scene.img, function () { updateRoomPreview(); });
+            return;
+        }
+        ctx.drawImage(roomImg, 0, 0);
+
+        /* Drop shadow */
+        ctx.save();
+        ctx.shadowColor = 'rgba(0,0,0,0.40)';
+        ctx.shadowBlur = 10; ctx.shadowOffsetX = 3; ctx.shadowOffsetY = 5;
+        ctx.fillStyle = 'rgba(0,0,0,0)';
+        ctx.fillRect(artX, artY, artW, artH);
+        ctx.restore();
+
+        /* Render framed print via drawPreview() on offscreen canvas, then composite */
+        var offscreen = document.createElement('canvas');
+        drawPreview(offscreen, paintingImg);
+        ctx.drawImage(offscreen, artX, artY, artW, artH);
+    }
+
+    function updateRoomPreview() {
+        var roomCanvas = document.getElementById('ppRoomCanvas');
+        var caption    = document.getElementById('ppRoomCaption');
+        if (!roomCanvas || !_activeRoomScene || !currentPainting) return;
+
+        var src    = currentPainting.image;
+        var cached = _imageCache[src] || null;
+        drawRoomPreview(roomCanvas, cached);
+        if (!cached) {
+            loadImage(src, function (img) { drawRoomPreview(roomCanvas, img); });
+        }
+        if (caption) caption.textContent = buildRoomCaption();
+    }
+
+    function updateAllPreviews() {
+        updatePreview();
+        updateRoomPreview();
+    }
     function buildPanel(painting) {
         var defaultPrice = calculatePrice();
 
@@ -408,6 +488,23 @@ var PrintOrder = (function () {
                 '<div class="print-panel__preview">' +
                     '<canvas id="ppPreviewCanvas"></canvas>' +
                     '<p class="print-panel__preview-note">Preview — colors and proportions are approximate.</p>' +
+                '</div>' +
+
+                /* Room visualizer */
+                '<div class="room-preview" id="ppRoomSection">' +
+                    '<div class="room-preview__label">See It On Your Wall</div>' +
+                    '<div class="room-preview__scenes" id="ppSceneRow">' +
+                        ROOM_SCENES.map(function (s, i) {
+                            return '<button class="room-preview__scene-btn' + (i === 0 ? ' room-preview__scene-btn--active' : '') + '" data-scene-id="' + s.id + '" aria-label="' + s.label + '">' +
+                                '<img src="' + s.thumb + '" alt="' + s.label + '" loading="lazy">' +
+                                '<span>' + s.label + '</span>' +
+                                '</button>';
+                        }).join('') +
+                    '</div>' +
+                    '<div class="room-preview__canvas-wrap">' +
+                        '<canvas id="ppRoomCanvas"></canvas>' +
+                    '</div>' +
+                    '<p class="room-preview__caption" id="ppRoomCaption"></p>' +
                 '</div>' +
 
                 /* Medium */
@@ -511,8 +608,13 @@ var PrintOrder = (function () {
         var panel = wrapper.firstChild;
         info.appendChild(panel);
 
+        _activeRoomScene = ROOM_SCENES[0];
+        ROOM_SCENES.forEach(function (scene) {
+            if (!_imageCache[scene.img]) loadImage(scene.img, function () {});
+        });
+
         bindPanelEvents(painting, panel);
-        updatePreview();
+        updateAllPreviews();
     }
 
     function removePanel() {
@@ -568,7 +670,7 @@ var PrintOrder = (function () {
             updateSizeOptions();
             updateVisibility();
             updatePrice();
-            updatePreview();
+            updateAllPreviews();
             if (window.RiverbendAnalytics) {
                 window.RiverbendAnalytics.printSizeSelect(state.medium + '-' + state.sizeId, calculatePrice() / state.qty);
             }
@@ -577,7 +679,7 @@ var PrintOrder = (function () {
         sizeSel.addEventListener('change', function () {
             state.sizeId = this.value;
             updatePrice();
-            updatePreview();
+            updateAllPreviews();
         });
 
         paperSel.addEventListener('change', function () {
@@ -587,7 +689,7 @@ var PrintOrder = (function () {
 
         frameSel.addEventListener('change', function () {
             state.frameId = this.value;
-            updatePreview();
+            updateAllPreviews();
         });
 
         matSizeSel.addEventListener('change', function () {
@@ -596,12 +698,12 @@ var PrintOrder = (function () {
                 state.matColorId = MAT_COLORS[0].id;
             }
             updateVisibility();
-            updatePreview();
+            updateAllPreviews();
         });
 
         matColorSel.addEventListener('change', function () {
             state.matColorId = parseInt(this.value, 10);
-            updatePreview();
+            updateAllPreviews();
         });
 
         borderSel.addEventListener('change', function () {
@@ -641,6 +743,18 @@ var PrintOrder = (function () {
             if (window.RiverbendAnalytics) {
                 window.RiverbendAnalytics.orderPrintClick(painting.title, painting.id);
             }
+        });
+
+        /* Scene selector buttons */
+        var sceneButtons = panel.querySelectorAll('.room-preview__scene-btn');
+        sceneButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                sceneButtons.forEach(function (b) { b.classList.remove('room-preview__scene-btn--active'); });
+                btn.classList.add('room-preview__scene-btn--active');
+                var sceneId = btn.getAttribute('data-scene-id');
+                _activeRoomScene = ROOM_SCENES.find(function (s) { return s.id === sceneId; }) || _activeRoomScene;
+                updateRoomPreview();
+            });
         });
     }
 

@@ -3,6 +3,11 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
+# Credentials — never commit these
+lumaprints_creds.txt
+token.json
+client_secret.json
+
 # Empty/broken files
 Grinel Glacier.JPG
 
@@ -13,3 +18,6 @@ Grinel Glacier.JPG
 !images/*.jpg
 !images/*.JPG
 !images/*.jpeg
+!images/**/*.jpg
+!images/**/*.JPG
+!images/**/*.jpeg

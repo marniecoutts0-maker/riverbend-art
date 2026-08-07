@@ -194,3 +194,71 @@ const PRINT_PROVIDER = {
     storeId:     91657,
     apiEndpoint: null
 };
+
+/* --- Room Visualizer Scenes ---
+   wallCenterX/Y: center of artwork placement zone in the resized image (px)
+   wallMaxWidthPx/HeightPx: maximum artwork footprint (px) — art is clamped to this
+   wallRealWidthIn: real-world inches that wallMaxWidthPx represents (sets scale)
+   ----------------------------------------------------------- */
+const ROOM_SCENES = [
+    {
+        id:              'gallery-wall',
+        label:           'Gallery',
+        thumb:           'images/Room Visualizer/gallery-wall-thumb.jpg',
+        img:             'images/Room Visualizer/gallery-wall.jpg',
+        imgWidth:        800,  imgHeight:       543,
+        wallCenterX:     400,  wallCenterY:     210,
+        wallMaxWidthPx:  640,  wallMaxHeightPx: 330,
+        wallRealWidthIn: 108
+    },
+    {
+        id:              'warm-living',
+        label:           'Living Room',
+        thumb:           'images/Room Visualizer/warm-living-thumb.jpg',
+        img:             'images/Room Visualizer/warm-living.jpg',
+        imgWidth:        800,  imgHeight:       532,
+        wallCenterX:     395,  wallCenterY:     185,
+        wallMaxWidthPx:  400,  wallMaxHeightPx: 210,
+        wallRealWidthIn: 84
+    },
+    {
+        id:              'warm-living-2',
+        label:           'Living Room 2',
+        thumb:           'images/Room Visualizer/warm-living-2-thumb.jpg',
+        img:             'images/Room Visualizer/warm-living-2.jpg',
+        imgWidth:        800,  imgHeight:       532,
+        wallCenterX:     400,  wallCenterY:     178,
+        wallMaxWidthPx:  420,  wallMaxHeightPx: 215,
+        wallRealWidthIn: 84
+    },
+    {
+        id:              'modern-neutral',
+        label:           'Modern',
+        thumb:           'images/Room Visualizer/modern-neutral-thumb.jpg',
+        img:             'images/Room Visualizer/modern-neutral.jpg',
+        imgWidth:        800,  imgHeight:       543,
+        wallCenterX:     400,  wallCenterY:     195,
+        wallMaxWidthPx:  450,  wallMaxHeightPx: 255,
+        wallRealWidthIn: 84
+    },
+    {
+        id:              'bedroom',
+        label:           'Bedroom',
+        thumb:           'images/Room Visualizer/bedroom-thumb.jpg',
+        img:             'images/Room Visualizer/bedroom.jpg',
+        imgWidth:        800,  imgHeight:       800,
+        wallCenterX:     400,  wallCenterY:     200,
+        wallMaxWidthPx:  380,  wallMaxHeightPx: 240,
+        wallRealWidthIn: 72
+    },
+    {
+        id:              'home-office',
+        label:           'Office',
+        thumb:           'images/Room Visualizer/home-office-thumb.jpg',
+        img:             'images/Room Visualizer/home-office.jpg',
+        imgWidth:        800,  imgHeight:       800,
+        wallCenterX:     415,  wallCenterY:     235,
+        wallMaxWidthPx:  490,  wallMaxHeightPx: 370,
+        wallRealWidthIn: 84
+    }
+];

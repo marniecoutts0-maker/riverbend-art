@@ -1726,6 +1726,84 @@ body.cart-open {
 }
 
 /* ============================================================
+   ROOM VISUALIZER (within print order panel)
+   ============================================================ */
+.room-preview {
+    margin-bottom: 1.25rem;
+}
+
+.room-preview__label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.6rem;
+}
+
+.room-preview__scenes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 0.6rem;
+}
+
+.room-preview__scene-btn {
+    flex: 0 0 auto;
+    background: none;
+    border: 2px solid transparent;
+    padding: 2px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    transition: border-color 0.2s;
+    border-radius: 2px;
+}
+
+.room-preview__scene-btn img {
+    width: 52px;
+    height: 36px;
+    object-fit: cover;
+    display: block;
+}
+
+.room-preview__scene-btn span {
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+}
+
+.room-preview__scene-btn--active  { border-color: var(--color-text); }
+
+.room-preview__scene-btn:hover:not(.room-preview__scene-btn--active) {
+    border-color: var(--color-border);
+}
+
+.room-preview__canvas-wrap {
+    text-align: center;
+    background: #f5f3f0;
+    padding: 0.5rem;
+}
+
+.room-preview__canvas-wrap canvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.room-preview__caption {
+    font-size: 0.70rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 0.4rem;
+    text-align: center;
+}
+
+/* ============================================================
    RESPONSIVE — Cart + Print Panel
    ============================================================ */
 @media (max-width: 768px) {
