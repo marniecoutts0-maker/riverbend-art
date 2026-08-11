@@ -475,6 +475,19 @@ window.PAINTINGS_DATA = [
         }
     },
     {
+        "id": "spirit-dancer",
+        "title": "Spirit Dancer",
+        "image": "images/Spirit Dancer.jpg",
+        "medium": "Oil on linen",
+        "size": "18 × 24 in.",
+        "category": "wildlife",
+        "status": "available-at-montana-fur-traders",
+        "featured": true,
+        "orientation": "portrait",
+        "printAvailable": false,
+        "framed": false
+    },
+    {
         "id": "daisies",
         "title": "Daisies",
         "image": "images/Daisies.jpg",
