@@ -1803,6 +1803,27 @@ body.cart-open {
     text-align: center;
 }
 
+.room-preview__zoom-row {
+    text-align: center;
+    margin-top: 0.4rem;
+}
+
+.room-preview__zoom-btn {
+    background: none;
+    border: 1px solid var(--color-border);
+    padding: 0.3rem 0.75rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.room-preview__zoom-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
 /* ============================================================
    LIMITED EDITION — gallery badge + print panel notice
    ============================================================ */

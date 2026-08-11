@@ -10,6 +10,7 @@ var PrintOrder = (function () {
     var currentPainting = null;
     var _imageCache     = {};
     var _activeRoomScene = null;
+    var _roomZoomed      = false; /* false = full room, true = close-up */
 
     /* -------------------------------------------------------
        Panel state — mirrors current dropdown selections
@@ -440,11 +441,17 @@ var PrintOrder = (function () {
         var artX = Math.round(scene.wallCenterX - artW / 2);
         var artY = Math.round(scene.wallCenterY - artH / 2);
 
-        roomCanvas.width  = scene.viewW || scene.imgWidth;
-        roomCanvas.height = scene.viewH || scene.imgHeight;
+        roomCanvas.width  = scene.imgWidth;
+        roomCanvas.height = scene.imgHeight;
         var ctx = roomCanvas.getContext('2d');
-        var vx = scene.viewX || 0;
-        var vy = scene.viewY || 0;
+        var vx = 0, vy = 0;
+
+        if (_roomZoomed && scene.viewW) {
+            roomCanvas.width  = scene.viewW;
+            roomCanvas.height = scene.viewH;
+            vx = scene.viewX;
+            vy = scene.viewY;
+        }
 
         var roomImg = _imageCache[scene.img] || null;
         if (!roomImg) {
@@ -538,6 +545,9 @@ var PrintOrder = (function () {
                     '</div>' +
                     '<div class="room-preview__canvas-wrap">' +
                         '<canvas id="ppRoomCanvas"></canvas>' +
+                    '</div>' +
+                    '<div class="room-preview__zoom-row">' +
+                        '<button class="room-preview__zoom-btn" id="ppRoomZoom" aria-label="Toggle close-up view">Close-up ↔ Full Room</button>' +
                     '</div>' +
                     '<p class="room-preview__caption" id="ppRoomCaption"></p>' +
                 '</div>' +
@@ -649,6 +659,7 @@ var PrintOrder = (function () {
 
         /* Default to living room scene for more impactful first impression */
         _activeRoomScene = ROOM_SCENES.find(function (s) { return s.id === 'warm-living'; }) || ROOM_SCENES[0];
+        _roomZoomed = false;
         ROOM_SCENES.forEach(function (scene) {
             if (!_imageCache[scene.img]) loadImage(scene.img, function () {});
         });
@@ -798,6 +809,16 @@ var PrintOrder = (function () {
                 updateRoomPreview();
             });
         });
+
+        /* Close-up / Full Room zoom toggle */
+        var zoomBtn = panel.querySelector('#ppRoomZoom');
+        if (zoomBtn) {
+            zoomBtn.addEventListener('click', function () {
+                _roomZoomed = !_roomZoomed;
+                zoomBtn.textContent = _roomZoomed ? 'Full Room ↔ Close-up' : 'Close-up ↔ Full Room';
+                updateRoomPreview();
+            });
+        }
     }
 
     /* -------------------------------------------------------
