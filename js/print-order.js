@@ -35,6 +35,9 @@ var PrintOrder = (function () {
         if (status === 'private-collection') {
             return 'Original in Private Collection · Fine Art Prints Available.';
         }
+        if (status === 'available-at-montana-fur-traders') {
+            return 'Original on exhibit at Montana Fur Traders Gallery, Martin City, MT · Fine Art Prints Available Here.';
+        }
         return 'Fine Art Prints Available.';
     }
 

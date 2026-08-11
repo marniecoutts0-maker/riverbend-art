@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Status Label Map ---
     const statusLabels = {
         'available': '',
-        'available-at-montana-fur-traders': 'Available at Montana Fur Traders',
+        'available-at-montana-fur-traders': 'On exhibit \u00b7 Montana Fur Traders Gallery, Martin City, MT',
         'private-collection': 'In Private Collection',
         'commissioned': 'Commissioned Work'
     };
