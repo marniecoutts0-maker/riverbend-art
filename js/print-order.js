@@ -172,7 +172,7 @@ var PrintOrder = (function () {
        ------------------------------------------------------- */
     function sizeOptionsHTML(medium) {
         return (PRINT_SIZES[medium] || []).map(function (s) {
-            return '<option value="' + s.id + '">' + s.label + '</option>';
+            return '<option value="' + s.id + '"' + (s.id === state.sizeId ? ' selected' : '') + '>' + s.label + '</option>';
         }).join('');
     }
 
@@ -440,31 +440,33 @@ var PrintOrder = (function () {
         var artX = Math.round(scene.wallCenterX - artW / 2);
         var artY = Math.round(scene.wallCenterY - artH / 2);
 
-        roomCanvas.width  = scene.imgWidth;
-        roomCanvas.height = scene.imgHeight;
+        roomCanvas.width  = scene.viewW || scene.imgWidth;
+        roomCanvas.height = scene.viewH || scene.imgHeight;
         var ctx = roomCanvas.getContext('2d');
+        var vx = scene.viewX || 0;
+        var vy = scene.viewY || 0;
 
         var roomImg = _imageCache[scene.img] || null;
         if (!roomImg) {
             ctx.fillStyle = '#e8e4de';
-            ctx.fillRect(0, 0, scene.imgWidth, scene.imgHeight);
+            ctx.fillRect(0, 0, roomCanvas.width, roomCanvas.height);
             loadImage(scene.img, function () { updateRoomPreview(); });
             return;
         }
-        ctx.drawImage(roomImg, 0, 0);
+        ctx.drawImage(roomImg, -vx, -vy);
 
         /* Drop shadow */
         ctx.save();
         ctx.shadowColor = 'rgba(0,0,0,0.40)';
         ctx.shadowBlur = 10; ctx.shadowOffsetX = 3; ctx.shadowOffsetY = 5;
         ctx.fillStyle = 'rgba(0,0,0,0)';
-        ctx.fillRect(artX, artY, artW, artH);
+        ctx.fillRect(artX - vx, artY - vy, artW, artH);
         ctx.restore();
 
         /* Render framed print via drawPreview() on offscreen canvas, then composite */
         var offscreen = document.createElement('canvas');
         drawPreview(offscreen, paintingImg);
-        ctx.drawImage(offscreen, artX, artY, artW, artH);
+        ctx.drawImage(offscreen, artX - vx, artY - vy, artW, artH);
     }
 
     function updateRoomPreview() {
@@ -629,7 +631,7 @@ var PrintOrder = (function () {
 
         /* Reset state to defaults each time panel opens */
         state.medium       = 'fine-art-paper';
-        state.sizeId       = '8x10';
+        state.sizeId       = '16x20';
         state.paperType    = 'archival';
         state.frameId      = '105005';
         state.matSizeId    = 64;
@@ -645,7 +647,8 @@ var PrintOrder = (function () {
         var panel = wrapper.firstChild;
         info.appendChild(panel);
 
-        _activeRoomScene = ROOM_SCENES[0];
+        /* Default to living room scene for more impactful first impression */
+        _activeRoomScene = ROOM_SCENES.find(function (s) { return s.id === 'warm-living'; }) || ROOM_SCENES[0];
         ROOM_SCENES.forEach(function (scene) {
             if (!_imageCache[scene.img]) loadImage(scene.img, function () {});
         });

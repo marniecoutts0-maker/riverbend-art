@@ -199,6 +199,7 @@ const PRINT_PROVIDER = {
    wallCenterX/Y: center of artwork placement zone in the resized image (px)
    wallMaxWidthPx/HeightPx: maximum artwork footprint (px) — art is clamped to this
    wallRealWidthIn: real-world inches that wallMaxWidthPx represents (sets scale)
+   viewX/Y/W/H: viewport crop — zooms in on wall zone for a more impactful preview
    ----------------------------------------------------------- */
 const ROOM_SCENES = [
     {
@@ -209,7 +210,8 @@ const ROOM_SCENES = [
         imgWidth:        800,  imgHeight:       543,
         wallCenterX:     400,  wallCenterY:     210,
         wallMaxWidthPx:  640,  wallMaxHeightPx: 330,
-        wallRealWidthIn: 108
+        wallRealWidthIn: 108,
+        viewX: 210, viewY:  55, viewW: 380, viewH: 390
     },
     {
         id:              'warm-living',
@@ -219,7 +221,8 @@ const ROOM_SCENES = [
         imgWidth:        800,  imgHeight:       532,
         wallCenterX:     395,  wallCenterY:     185,
         wallMaxWidthPx:  400,  wallMaxHeightPx: 210,
-        wallRealWidthIn: 84
+        wallRealWidthIn: 84,
+        viewX: 235, viewY:  50, viewW: 320, viewH: 280
     },
     {
         id:              'warm-living-2',
@@ -229,7 +232,8 @@ const ROOM_SCENES = [
         imgWidth:        800,  imgHeight:       532,
         wallCenterX:     400,  wallCenterY:     178,
         wallMaxWidthPx:  420,  wallMaxHeightPx: 215,
-        wallRealWidthIn: 84
+        wallRealWidthIn: 84,
+        viewX: 240, viewY:  45, viewW: 320, viewH: 270
     },
     {
         id:              'modern-neutral',
@@ -239,7 +243,8 @@ const ROOM_SCENES = [
         imgWidth:        800,  imgHeight:       543,
         wallCenterX:     400,  wallCenterY:     195,
         wallMaxWidthPx:  450,  wallMaxHeightPx: 255,
-        wallRealWidthIn: 84
+        wallRealWidthIn: 84,
+        viewX: 230, viewY:  50, viewW: 340, viewH: 300
     },
     {
         id:              'bedroom',
@@ -249,7 +254,8 @@ const ROOM_SCENES = [
         imgWidth:        800,  imgHeight:       800,
         wallCenterX:     400,  wallCenterY:     200,
         wallMaxWidthPx:  380,  wallMaxHeightPx: 240,
-        wallRealWidthIn: 72
+        wallRealWidthIn: 72,
+        viewX: 250, viewY:  30, viewW: 300, viewH: 390
     },
     {
         id:              'home-office',
@@ -259,6 +265,7 @@ const ROOM_SCENES = [
         imgWidth:        800,  imgHeight:       800,
         wallCenterX:     415,  wallCenterY:     235,
         wallMaxWidthPx:  490,  wallMaxHeightPx: 370,
-        wallRealWidthIn: 84
+        wallRealWidthIn: 84,
+        viewX: 250, viewY:  60, viewW: 330, viewH: 380
     }
 ];
