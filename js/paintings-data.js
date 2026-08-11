@@ -304,7 +304,7 @@ window.PAINTINGS_DATA = [
         "medium": "Oil on canvas",
         "size": "11 × 14 in.",
         "category": "landscape",
-        "status": "sold",
+        "status": "private-collection",
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false
@@ -444,7 +444,7 @@ window.PAINTINGS_DATA = [
         "medium": "Oil on canvas",
         "size": "11 x 14 in.",
         "category": "wildlife",
-        "status": "available",
+        "status": "private-collection",
         "featured": true,
         "orientation": "portrait",
         "printAvailable": true,
