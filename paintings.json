@@ -11,7 +11,8 @@
         "orientation": "landscape",
         "printAvailable": false,
         "framed": true,
-        "price": 495
+        "price": 495,
+        "series": "glacier-glow"
     },
     {
         "id": "curious",
@@ -25,7 +26,8 @@
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 495
+        "price": 495,
+        "series": "glacier-glow"
     },
     {
         "id": "painted-shore",
@@ -39,7 +41,8 @@
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 495
+        "price": 495,
+        "series": "glacier-glow"
     },
     {
         "id": "still-water",
@@ -67,7 +70,8 @@
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 310
+        "price": 310,
+        "series": "glacier-glow"
     },
     {
         "id": "the-catch",
@@ -105,7 +109,8 @@
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 495
+        "price": 495,
+        "series": "glacier-glow"
     },
     {
         "id": "emergence",
@@ -119,7 +124,8 @@
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 360
+        "price": 360,
+        "series": "glacier-glow"
     },
     {
         "id": "autumn-sentinel",
@@ -146,7 +152,8 @@
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 310
+        "price": 310,
+        "series": "glacier-glow"
     },
     {
         "id": "alpine-meadow",
@@ -160,7 +167,8 @@
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 175
+        "price": 150,
+        "series": "glacier-glow"
     },
     {
         "id": "loose-cougar",
@@ -497,6 +505,7 @@
         "featured": false,
         "orientation": "portrait",
         "printAvailable": true,
-        "framed": false
+        "framed": false,
+        "price": 85
     }
 ]

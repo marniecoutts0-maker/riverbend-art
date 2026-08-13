@@ -12,7 +12,8 @@ window.PAINTINGS_DATA = [
         "orientation": "landscape",
         "printAvailable": false,
         "framed": true,
-        "price": 495
+        "price": 495,
+        "series": "glacier-glow"
     },
     {
         "id": "curious",
@@ -26,7 +27,8 @@ window.PAINTINGS_DATA = [
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 495
+        "price": 495,
+        "series": "glacier-glow"
     },
     {
         "id": "painted-shore",
@@ -40,7 +42,8 @@ window.PAINTINGS_DATA = [
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 495
+        "price": 495,
+        "series": "glacier-glow"
     },
     {
         "id": "still-water",
@@ -68,7 +71,8 @@ window.PAINTINGS_DATA = [
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 310
+        "price": 310,
+        "series": "glacier-glow"
     },
     {
         "id": "the-catch",
@@ -106,7 +110,8 @@ window.PAINTINGS_DATA = [
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 495
+        "price": 495,
+        "series": "glacier-glow"
     },
     {
         "id": "emergence",
@@ -120,7 +125,8 @@ window.PAINTINGS_DATA = [
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 360
+        "price": 360,
+        "series": "glacier-glow"
     },
     {
         "id": "autumn-sentinel",
@@ -147,7 +153,8 @@ window.PAINTINGS_DATA = [
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 310
+        "price": 310,
+        "series": "glacier-glow"
     },
     {
         "id": "alpine-meadow",
@@ -161,7 +168,8 @@ window.PAINTINGS_DATA = [
         "orientation": "portrait",
         "printAvailable": false,
         "framed": true,
-        "price": 175
+        "price": 150,
+        "series": "glacier-glow"
     },
     {
         "id": "loose-cougar",
@@ -498,6 +506,7 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": true,
-        "framed": false
+        "framed": false,
+        "price": 85
     }
 ];
