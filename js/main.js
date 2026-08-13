@@ -86,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             wrapper.setAttribute('data-print-available', painting.printAvailable ? 'true' : 'false');
         }
 
+        wrapper.setAttribute('data-series', painting.series || '');
+
         const orientationClass = painting.orientation === 'landscape'
             ? ' grid__image-wrapper--landscape' : '';
 
@@ -180,6 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 item.classList.remove('grid__item--hidden');
                             } else if (filter === 'print-collection') {
                                 if (item.getAttribute('data-print-available') === 'true') {
+                                    item.classList.remove('grid__item--hidden');
+                                } else {
+                                    item.classList.add('grid__item--hidden');
+                                }
+                            } else if (filter === 'glacier-glow') {
+                                if (item.getAttribute('data-series') === 'glacier-glow') {
                                     item.classList.remove('grid__item--hidden');
                                 } else {
                                     item.classList.add('grid__item--hidden');
