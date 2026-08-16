@@ -31,6 +31,30 @@ window.PAINTINGS_DATA = [
         "series": "glacier-glow"
     },
     {
+        "id": "moose-majesty",
+        "title": "Moose Majesty",
+        "image": "images/moose-majesty.jpg",
+        "medium": "Oil on canvas",
+        "size": "18 × 24 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": true
+    },
+    {
+        "id": "morning-launch",
+        "title": "Morning Launch",
+        "image": "images/Untitled_Artworklakeadjusted.jpg",
+        "medium": "Oil on canvas panel",
+        "size": "9 × 12 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "landscape",
+        "printAvailable": true
+    },
+    {
         "id": "painted-shore",
         "title": "Painted Shore",
         "image": "images/PXL_20260516_174059562 (2)LakeMcDonaldBrightRocks.jpg",
@@ -217,30 +241,6 @@ window.PAINTINGS_DATA = [
         "status": "private-collection",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": true
-    },
-    {
-        "id": "moose-majesty",
-        "title": "Moose Majesty",
-        "image": "images/moose-majesty.jpg",
-        "medium": "Oil on canvas",
-        "size": "18 × 24 in.",
-        "category": "landscape",
-        "status": "private-collection",
-        "featured": false,
-        "orientation": "portrait",
-        "printAvailable": true
-    },
-    {
-        "id": "morning-launch",
-        "title": "Morning Launch",
-        "image": "images/Untitled_Artworklakeadjusted.jpg",
-        "medium": "Oil on canvas panel",
-        "size": "9 × 12 in.",
-        "category": "landscape",
-        "status": "private-collection",
-        "featured": false,
-        "orientation": "landscape",
         "printAvailable": true
     },
     {
