@@ -172,9 +172,18 @@ var PrintOrder = (function () {
        HTML helpers — option lists
        ------------------------------------------------------- */
     function sizeOptionsHTML(medium) {
-        return (PRINT_SIZES[medium] || []).map(function (s) {
+        var sizes     = PRINT_SIZES[medium] || [];
+        var portrait  = sizes.filter(function (s) { return !s.landscape; });
+        var landscape = sizes.filter(function (s) { return  s.landscape; });
+
+        function makeOpt(s) {
             return '<option value="' + s.id + '"' + (s.id === state.sizeId ? ' selected' : '') + '>' + s.label + '</option>';
-        }).join('');
+        }
+
+        if (!landscape.length) return portrait.map(makeOpt).join('');
+
+        return '<optgroup label="Portrait">'  + portrait.map(makeOpt).join('')  + '</optgroup>' +
+               '<optgroup label="Landscape">' + landscape.map(makeOpt).join('') + '</optgroup>';
     }
 
     /* -------------------------------------------------------
@@ -639,9 +648,10 @@ var PrintOrder = (function () {
         removePanel();
         currentPainting = painting;
 
-        /* Reset state to defaults each time panel opens */
+        /* Default size based on painting orientation */
+        var isLandscape = painting.orientation === 'landscape';
         state.medium       = 'fine-art-paper';
-        state.sizeId       = '16x20';
+        state.sizeId       = isLandscape ? '20x16' : '16x20';
         state.paperType    = 'archival';
         state.frameId      = '105005';
         state.matSizeId    = 64;
@@ -705,11 +715,16 @@ var PrintOrder = (function () {
         }
 
         function updateSizeOptions() {
+            var isLandscape = currentPainting && currentPainting.orientation === 'landscape';
+            sizeSel.innerHTML = sizeOptionsHTML(state.medium);
+            /* Pick orientation-appropriate default when medium changes */
             var sizes = PRINT_SIZES[state.medium] || [];
-            sizeSel.innerHTML = sizes.map(function (s) {
-                return '<option value="' + s.id + '">' + s.label + '</option>';
-            }).join('');
-            state.sizeId = sizes.length ? sizes[0].id : '';
+            var preferred = sizes.find(function (s) {
+                return isLandscape ? (s.landscape && s.id === '20x16' || s.id === '24x18')
+                                   : (!s.landscape && (s.id === '16x20' || s.id === '18x24'));
+            }) || sizes.find(function (s) { return isLandscape ? s.landscape : !s.landscape; });
+            state.sizeId = preferred ? preferred.id : (sizes[0] ? sizes[0].id : '');
+            sizeSel.value = state.sizeId;
         }
 
         function updatePrice() {

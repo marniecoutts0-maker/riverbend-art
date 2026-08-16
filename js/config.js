@@ -40,24 +40,35 @@ const PRINT_MEDIA = [
 ];
 
 /* --- Print — Available Sizes per Medium ---
+   landscape: true marks sizes for landscape-oriented paintings.
    Canvas starts at 11×14 (8×10 canvas looks awkward at gallery wrap depth).
    ----------------------------------------------------------- */
 const PRINT_SIZES = {
     'fine-art-paper': [
         { id: '8x10',  label: '8 × 10 in.',  width: 8,  height: 10 },
         { id: '11x14', label: '11 × 14 in.', width: 11, height: 14 },
-        { id: '16x20', label: '16 × 20 in.', width: 16, height: 20 }
+        { id: '16x20', label: '16 × 20 in.', width: 16, height: 20 },
+        { id: '10x8',  label: '10 × 8 in.',  width: 10, height: 8,  landscape: true },
+        { id: '14x11', label: '14 × 11 in.', width: 14, height: 11, landscape: true },
+        { id: '20x16', label: '20 × 16 in.', width: 20, height: 16, landscape: true }
     ],
     'framed-fine-art-paper': [
         { id: '8x10',  label: '8 × 10 in.',  width: 8,  height: 10 },
         { id: '11x14', label: '11 × 14 in.', width: 11, height: 14 },
-        { id: '16x20', label: '16 × 20 in.', width: 16, height: 20 }
+        { id: '16x20', label: '16 × 20 in.', width: 16, height: 20 },
+        { id: '10x8',  label: '10 × 8 in.',  width: 10, height: 8,  landscape: true },
+        { id: '14x11', label: '14 × 11 in.', width: 14, height: 11, landscape: true },
+        { id: '20x16', label: '20 × 16 in.', width: 20, height: 16, landscape: true }
     ],
     'canvas': [
         { id: '11x14', label: '11 × 14 in.', width: 11, height: 14 },
         { id: '16x20', label: '16 × 20 in.', width: 16, height: 20 },
         { id: '18x24', label: '18 × 24 in.', width: 18, height: 24 },
-        { id: '24x30', label: '24 × 30 in.', width: 24, height: 30 }
+        { id: '24x30', label: '24 × 30 in.', width: 24, height: 30 },
+        { id: '14x11', label: '14 × 11 in.', width: 14, height: 11, landscape: true },
+        { id: '20x16', label: '20 × 16 in.', width: 20, height: 16, landscape: true },
+        { id: '24x18', label: '24 × 18 in.', width: 24, height: 18, landscape: true },
+        { id: '30x24', label: '30 × 24 in.', width: 30, height: 24, landscape: true }
     ]
 };
 
@@ -147,18 +158,28 @@ const PRINT_PRICES = {
     'fine-art-paper': {
         '8x10':  { base: 45,  hotPressAdj: 10 },
         '11x14': { base: 70,  hotPressAdj: 15 },
-        '16x20': { base: 120, hotPressAdj: 25 }
+        '16x20': { base: 120, hotPressAdj: 25 },
+        '10x8':  { base: 45,  hotPressAdj: 10 },
+        '14x11': { base: 70,  hotPressAdj: 15 },
+        '20x16': { base: 120, hotPressAdj: 25 }
     },
     'framed-fine-art-paper': {
         '8x10':  95,
         '11x14': 130,
-        '16x20': 165
+        '16x20': 165,
+        '10x8':  95,
+        '14x11': 130,
+        '20x16': 165
     },
     'canvas': {
         '11x14': 95,
         '16x20': 130,
         '18x24': 155,
-        '24x30': 195
+        '24x30': 195,
+        '14x11': 95,
+        '20x16': 130,
+        '24x18': 155,
+        '30x24': 195
     }
 };
 
