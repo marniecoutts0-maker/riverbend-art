@@ -1062,6 +1062,13 @@ p {
     justify-content: center;
 }
 
+@media (max-width: 1024px) {
+    .lightbox--active {
+        align-items: flex-start; /* prevent top-overflow on mobile */
+        padding-top: 1rem;
+    }
+}
+
 .lightbox__inner {
     display: grid;
     grid-template-columns: 1fr 380px;

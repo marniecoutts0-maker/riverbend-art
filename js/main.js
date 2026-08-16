@@ -229,6 +229,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (targetBtn) targetBtn.click();
                 }
 
+                // --- Auto-open specific painting via ?open= parameter ---
+                var openId = urlParams.get('open');
+                if (openId) {
+                    setTimeout(function () {
+                        var item = galleryGrid.querySelector('[data-id="' + openId + '"]');
+                        if (item) item.click();
+                    }, 150);
+                }
+
                 // --- Lightbox (event delegation) ---
                 var lightbox = document.getElementById('lightbox');
                 var lightboxImage = document.getElementById('lightboxImage');
