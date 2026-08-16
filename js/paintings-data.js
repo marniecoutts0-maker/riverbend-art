@@ -365,7 +365,7 @@ window.PAINTINGS_DATA = [
         "category": "landscape",
         "status": "available-at-montana-fur-traders",
         "featured": false,
-        "orientation": "landscape",
+        "orientation": "portrait",
         "printAvailable": false,
         "framed": true
     },
