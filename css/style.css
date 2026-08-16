@@ -433,6 +433,17 @@ p {
     letter-spacing: 0.01em;
 }
 
+.grid__cta {
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    margin-top: 0.3rem;
+}
+
+.grid__item:hover .grid__cta {
+    text-decoration: underline;
+}
+
 /* --- Original Painting Buy Panel (lightbox) --- */
 .orig-panel {
     margin-top: 1.5rem;
@@ -657,6 +668,13 @@ p {
     font-size: 0.82rem;
     color: var(--color-text-light);
     border-color: var(--color-border);
+}
+
+.home-cta__payment-note {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.03em;
+    margin-top: 0.75rem;
 }
 
 /* --- Glacier Glow Series (home page) --- */

@@ -93,16 +93,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const statusHTML = (!painting.printAvailable && statusLabels[painting.status])
             ? '<div class="grid__status">' + statusLabels[painting.status] + '</div>'
-            : '';
+            : (painting.printAvailable && painting.status === 'available-at-montana-fur-traders')
+                ? '<div class="grid__status">' + statusLabels['available-at-montana-fur-traders'] + '</div>'
+                : '';
 
         const priceHTML = (painting.price && painting.status === 'available')
             ? '<div class="grid__price">$' + painting.price +
               (painting.framed ? ' &nbsp;&middot;&nbsp; Framed' : '') + '</div>'
             : '';
 
-                const printPriceHTML = (painting.printAvailable && lowestPrintPrice !== null)
-                        ? '<div class="grid__price">Prints from $' + lowestPrintPrice + '</div>'
-                        : '';
+        /* Compute lowest print price from config — falls back to base 8x10 rate */
+        const printMin = (painting.limitedEdition && painting.limitedEdition.prices &&
+                          painting.limitedEdition.prices['fine-art-paper'])
+            ? Math.min.apply(null, Object.values(painting.limitedEdition.prices['fine-art-paper']))
+            : (typeof PRINT_PRICES !== 'undefined' && PRINT_PRICES['fine-art-paper'] && PRINT_PRICES['fine-art-paper']['8x10'])
+                ? PRINT_PRICES['fine-art-paper']['8x10'].base
+                : 45;
+
+        const printPriceHTML = painting.printAvailable
+            ? '<div class="grid__price">Fine Art Prints &nbsp;&middot;&nbsp; From $' + printMin + '</div>'
+            : '';
+
+        const printCtaHTML = painting.printAvailable
+            ? '<div class="grid__cta">Configure size &amp; preview in a room &rarr;</div>'
+            : '';
+
+        const origCtaHTML = (!painting.printAvailable && painting.price && painting.status === 'available')
+            ? '<div class="grid__cta">View details &amp; purchase &rarr;</div>'
+            : '';
 
         const leBadgeHTML = painting.limitedEdition
             ? '<div class="grid__le-badge">Limited Edition</div>'
@@ -119,6 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusHTML +
                 priceHTML +
                 printPriceHTML +
+                printCtaHTML +
+                origCtaHTML +
             '</div>';
 
         return wrapper;
