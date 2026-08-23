@@ -402,7 +402,7 @@ window.PAINTINGS_DATA = [
         "medium": "Oil on panel",
         "size": "9 × 11 in.",
         "category": "wildlife",
-        "status": "available-at-montana-fur-traders",
+        "status": "private-collection",
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
@@ -508,5 +508,18 @@ window.PAINTINGS_DATA = [
         "printAvailable": true,
         "framed": false,
         "price": 85
+    },
+    {
+        "id": "black-wolf",
+        "title": "Black Wolf",
+        "image": "images/Black Wolf .jpg",
+        "medium": "Oil on canvas",
+        "size": "11 x 14 in.",
+        "category": "wildlife",
+        "status": "available-at-montana-fur-traders",
+        "featured": false,
+        "orientation": "landscape",
+        "printAvailable": false,
+        "framed": true
     }
 ];
