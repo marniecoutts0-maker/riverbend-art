@@ -956,10 +956,6 @@ p {
 }
 
 /* --- Contact Page --- */
-.contact {
-    padding-top: calc(var(--nav-height) + 4rem);
-}
-
 .contact__layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1250,7 +1246,8 @@ p {
 /* --- Collector Email Signup --- */
 .collector-signup {
     background: var(--color-bg-warm);
-    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding-top: calc(var(--nav-height) + 4rem);
 }
 
 .collector-signup__inner {
