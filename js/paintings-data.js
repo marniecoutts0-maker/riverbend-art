@@ -196,6 +196,21 @@ window.PAINTINGS_DATA = [
         "series": "glacier-glow"
     },
     {
+        "id": "grinnel-glacier",
+        "title": "Grinnel Glacier",
+        "image": "images/Grinnel Glacier.jpg",
+        "medium": "Oil on linen",
+        "size": "18 × 24 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": true,
+        "orientation": "landscape",
+        "printAvailable": false,
+        "framed": true,
+        "price": 495,
+        "series": "glacier-glow"
+    },
+    {
         "id": "loose-cougar",
         "title": "Loose Cougar",
         "image": "images/PXL_20260527_175747536~2loose cougar.jpg",
