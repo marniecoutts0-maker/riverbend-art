@@ -342,4 +342,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Collector Email Signup (Buttondown) ---
+    const collectorForm = document.getElementById('collector-signup-form');
+
+    if (collectorForm) {
+        const collectorEmail = document.getElementById('bd-email');
+        const collectorError = document.getElementById('collector-signup-error');
+        const collectorSuccess = document.getElementById('collector-signup-success');
+        const collectorFrame = document.getElementById('collector-signup-frame');
+        const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        let submitted = false;
+
+        collectorForm.addEventListener('submit', (e) => {
+            const value = collectorEmail.value.trim();
+
+            if (!isValidEmail(value)) {
+                e.preventDefault();
+                collectorError.hidden = false;
+                collectorEmail.classList.add('collector-signup__input--invalid');
+                return;
+            }
+
+            collectorError.hidden = true;
+            collectorEmail.classList.remove('collector-signup__input--invalid');
+            submitted = true;
+        });
+
+        collectorEmail.addEventListener('input', () => {
+            collectorError.hidden = true;
+            collectorEmail.classList.remove('collector-signup__input--invalid');
+        });
+
+        // The form posts to the hidden iframe so the page never navigates away.
+        collectorFrame.addEventListener('load', () => {
+            if (!submitted) return;
+            collectorForm.hidden = true;
+            collectorSuccess.hidden = false;
+        });
+    }
+
 });
