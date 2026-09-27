@@ -202,10 +202,10 @@ window.PAINTINGS_DATA = [
         "medium": "Oil on linen",
         "size": "18 × 24 in.",
         "category": "landscape",
-        "status": "available",
+        "status": "private-collection",
         "featured": true,
         "orientation": "landscape",
-        "printAvailable": false,
+        "printAvailable": true,
         "framed": true,
         "price": 495,
         "series": "glacier-glow"
