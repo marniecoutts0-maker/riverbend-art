@@ -536,5 +536,18 @@ window.PAINTINGS_DATA = [
         "orientation": "landscape",
         "printAvailable": false,
         "framed": true
+    },
+    {
+        "id": "a-path-on-our-journey",
+        "title": "A Path on Our Journey",
+        "image": "images/A Path On Our Journey.jpg",
+        "medium": "Oil on linen",
+        "size": "18 × 24 in.",
+        "category": "landscape",
+        "status": "commissioned",
+        "featured": true,
+        "orientation": "landscape",
+        "printAvailable": false,
+        "framed": false
     }
 ];
