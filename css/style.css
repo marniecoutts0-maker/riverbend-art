@@ -793,6 +793,51 @@ p {
     border-color: var(--color-accent);
 }
 
+.commission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-padding);
+}
+
+.commission-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.commission-item .commission__image-wrap {
+    margin-bottom: 1.5rem;
+}
+
+.commission__quote {
+    margin: 1.5rem 0 0;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--color-accent);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.75;
+}
+
+.commission__quote-cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text);
+}
+
+.commission__cta-wrap {
+    text-align: center;
+    margin-top: 3rem;
+}
+
 
 /* --- About Page --- */
 .about {
@@ -1390,7 +1435,8 @@ p {
 
     .about__layout,
     .contact__layout,
-    .section__inner--two-col {
+    .section__inner--two-col,
+    .commission-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
