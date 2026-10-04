@@ -31,7 +31,7 @@ var PrintOrder = (function () {
        ------------------------------------------------------- */
     function printAvailabilityLabel(status) {
         if (status === 'available') {
-            return 'Original inquiry available · Fine Art Prints Available.';
+            return 'Original Painting Available · Fine Art Prints Available.';
         }
         if (status === 'private-collection') {
             return 'Original in Private Collection · Fine Art Prints Available.';
