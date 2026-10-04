@@ -6,6 +6,10 @@ Fill this out when you add a new image to the Google Drive folder.
 Then copy-paste it here with:
   "Master Agent, new artwork has been added. Here are the details: [paste below]"
 
+NOTE: Size (e.g. "24 × 18 in.") must be written Height x Width (fine-art/gallery
+convention), not Width x Height. For a portrait piece taller than it is wide, the
+larger number comes first; for landscape, the larger number comes second.
+
 ================================================================================
 
 Title:
