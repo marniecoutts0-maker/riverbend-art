@@ -49,6 +49,8 @@
         clearError();
         submitted = true;
         submitBtn.textContent = 'Subscribing…';
+        // GA4 attempt count — sanity-check signal against actual Buttondown subscriber growth.
+        if (window.RiverbendAnalytics) window.RiverbendAnalytics.emailSignupSubmit();
         // No preventDefault: let the browser submit natively into the hidden iframe.
     });
 
