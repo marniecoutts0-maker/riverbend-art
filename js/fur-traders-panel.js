@@ -8,8 +8,8 @@
 var FurTradersPanel = (function () {
     'use strict';
 
-    var GALLERY_PHONE = '(406) 871-2927';
-    var GALLERY_PHONE_TEL = '+14068712927';
+    var GALLERY_PHONE = '(406) 387-5816';
+    var GALLERY_PHONE_TEL = '+14063875816';
     var GALLERY_EMAIL = 'montanafurtrading@gmail.com';
 
     function escapeHTML(str) {
