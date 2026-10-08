@@ -117,10 +117,11 @@ window.PAINTINGS_DATA = [
         "medium": "Oil on canvas",
         "size": "14 × 11 in.",
         "category": "landscape",
-        "status": "available-at-montana-fur-traders",
+        "status": "private-collection",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "sold": true
     },
     {
         "id": "winter-watch",
@@ -163,7 +164,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "landscape",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 498
     },
     {
         "id": "glacier-melt",
@@ -208,7 +210,8 @@ window.PAINTINGS_DATA = [
         "printAvailable": true,
         "framed": true,
         "price": 495,
-        "series": "glacier-glow"
+        "series": "glacier-glow",
+        "sold": true
     },
     {
         "id": "loose-cougar",
@@ -220,7 +223,8 @@ window.PAINTINGS_DATA = [
         "status": "available-at-montana-fur-traders",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "price": 199
     },
     {
         "id": "coastal-reckoning",
@@ -305,7 +309,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 369
     },
     {
         "id": "great-northern",
@@ -318,7 +323,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 298
     },
     {
         "id": "moose-river",
@@ -330,7 +336,8 @@ window.PAINTINGS_DATA = [
         "status": "private-collection",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "sold": true
     },
     {
         "id": "gray-wolf",
@@ -343,7 +350,8 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 279
     },
     {
         "id": "bison-in-wheat",
@@ -356,7 +364,9 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 259,
+        "altTitle": "Easy Summer Day"
     },
     {
         "id": "the-itch",
@@ -369,7 +379,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 279
     },
     {
         "id": "story-time-chief-mountain",
@@ -382,7 +393,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 495
     },
     {
         "id": "spirit-eye",
@@ -395,7 +407,8 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 279
     },
     {
         "id": "wolf-in-aspen-summer",
@@ -408,7 +421,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 279
     },
     {
         "id": "wolf-in-aspen-fall",
@@ -421,7 +435,8 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "sold": true
     },
     {
         "id": "athena",
@@ -508,7 +523,8 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": false
+        "framed": false,
+        "price": 649
     },
     {
         "id": "daisies",
@@ -535,7 +551,9 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "landscape",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 495,
+        "altTitle": "Shadow Hunter"
     },
     {
         "id": "a-path-on-our-journey",

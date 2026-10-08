@@ -116,10 +116,11 @@
         "medium": "Oil on canvas",
         "size": "14 × 11 in.",
         "category": "landscape",
-        "status": "available-at-montana-fur-traders",
+        "status": "private-collection",
         "featured": true,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "sold": true
     },
     {
         "id": "winter-watch",
@@ -162,7 +163,8 @@
         "featured": false,
         "orientation": "landscape",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 498
     },
     {
         "id": "glacier-melt",
@@ -207,7 +209,8 @@
         "printAvailable": true,
         "framed": true,
         "price": 495,
-        "series": "glacier-glow"
+        "series": "glacier-glow",
+        "sold": true
     },
     {
         "id": "loose-cougar",
@@ -219,7 +222,8 @@
         "status": "available-at-montana-fur-traders",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "price": 199
     },
     {
         "id": "coastal-reckoning",
@@ -304,7 +308,8 @@
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 369
     },
     {
         "id": "great-northern",
@@ -317,7 +322,8 @@
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 298
     },
     {
         "id": "moose-river",
@@ -329,7 +335,8 @@
         "status": "private-collection",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": false
+        "printAvailable": false,
+        "sold": true
     },
     {
         "id": "gray-wolf",
@@ -342,7 +349,8 @@
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 279
     },
     {
         "id": "bison-in-wheat",
@@ -355,7 +363,9 @@
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 259,
+        "altTitle": "Easy Summer Day"
     },
     {
         "id": "the-itch",
@@ -368,7 +378,8 @@
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 279
     },
     {
         "id": "story-time-chief-mountain",
@@ -381,7 +392,8 @@
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 495
     },
     {
         "id": "spirit-eye",
@@ -394,7 +406,8 @@
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 279
     },
     {
         "id": "wolf-in-aspen-summer",
@@ -407,7 +420,8 @@
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 279
     },
     {
         "id": "wolf-in-aspen-fall",
@@ -420,7 +434,8 @@
         "featured": false,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "sold": true
     },
     {
         "id": "athena",
@@ -507,7 +522,8 @@
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": false
+        "framed": false,
+        "price": 649
     },
     {
         "id": "daisies",
@@ -534,7 +550,9 @@
         "featured": false,
         "orientation": "landscape",
         "printAvailable": false,
-        "framed": true
+        "framed": true,
+        "price": 495,
+        "altTitle": "Shadow Hunter"
     },
     {
         "id": "a-path-on-our-journey",

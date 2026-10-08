@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? '<div class="grid__status">' + statusLabels['available-at-montana-fur-traders'] + '</div>'
                 : '';
 
-        const priceHTML = (painting.price && painting.status === 'available')
+        const priceHTML = (painting.price && (painting.status === 'available' || painting.status === 'available-at-montana-fur-traders'))
             ? '<div class="grid__price">$' + painting.price +
               (painting.framed ? ' &nbsp;&middot;&nbsp; Framed' : '') + '</div>'
             : '';
@@ -118,12 +118,17 @@ document.addEventListener('DOMContentLoaded', () => {
             ? '<div class="grid__cta">Configure size &amp; preview in a room &rarr;</div>'
             : '';
 
-        const origCtaHTML = (!painting.printAvailable && painting.price && painting.status === 'available')
+        const origCtaHTML = (!painting.printAvailable && painting.price &&
+            (painting.status === 'available' || painting.status === 'available-at-montana-fur-traders'))
             ? '<div class="grid__cta">View details &amp; purchase &rarr;</div>'
             : '';
 
         const leBadgeHTML = painting.limitedEdition
             ? '<div class="grid__le-badge">Limited Edition</div>'
+            : '';
+
+        const soldBadgeHTML = painting.sold
+            ? '<div class="grid__sold-badge">Sold</div>'
             : '';
 
         wrapper.innerHTML =
@@ -133,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '<div class="grid__caption">' +
                 '<div class="grid__title">' + painting.title + '</div>' +
                 leBadgeHTML +
+                soldBadgeHTML +
                 '<div class="grid__meta">' + painting.medium + '</div>' +
                 statusHTML +
                 priceHTML +
@@ -287,6 +293,18 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
 
+                        if (typeof FurTradersPanel !== 'undefined') {
+                            if (painting && painting.price && painting.status === 'available-at-montana-fur-traders') {
+                                FurTradersPanel.show(painting);
+                            } else {
+                                FurTradersPanel.hide();
+                            }
+                        }
+
+                        if (typeof RoomWidget !== 'undefined') {
+                            RoomWidget.show(painting);
+                        }
+
                         lightbox.classList.add('lightbox--active');
                         document.body.style.overflow = 'hidden';
                     });
@@ -296,6 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.body.style.overflow = '';
                         if (typeof PrintOrder !== 'undefined') PrintOrder.hide();
                         if (typeof OriginalBuy !== 'undefined') OriginalBuy.hide();
+                        if (typeof FurTradersPanel !== 'undefined') FurTradersPanel.hide();
+                        if (typeof RoomWidget !== 'undefined') RoomWidget.hide();
                     };
 
                     if (lightboxClose) {
