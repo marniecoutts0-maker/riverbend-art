@@ -204,13 +204,50 @@
             <p class="collector-signup__body">Join the collector list for a one-week private preview of every new painting &mdash; before it's shown anywhere else.</p>
 
             <div class="collector-signup__embed">
+                <p class="collector-signup__listname">Riverbend First Look</p>
+                <form
+                    class="collector-signup__form"
+                    id="collectorSignupForm"
+                    novalidate
+                    method="POST"
+                    action="https://buttondown.com/api/emails/embed-subscribe/riverbendart"
+                    target="collectorSignupTarget"
+                >
+                    <div class="collector-signup__field">
+                        <label for="collectorSignupEmail" class="visually-hidden">Email address</label>
+                        <input
+                            type="email"
+                            id="collectorSignupEmail"
+                            name="email"
+                            class="collector-signup__input"
+                            placeholder="your@email.com"
+                            autocomplete="email"
+                            inputmode="email"
+                            autocapitalize="off"
+                            autocorrect="off"
+                            spellcheck="false"
+                            aria-describedby="collectorSignupError"
+                            required
+                        >
+                        <button type="submit" class="collector-signup__submit" id="collectorSignupSubmit">Subscribe</button>
+                    </div>
+                    <p class="collector-signup__error" id="collectorSignupError" role="alert" hidden></p>
+                </form>
+                <div class="collector-signup__success" id="collectorSignupSuccess" hidden>
+                    <p>You're on the list &mdash; watch your inbox for your first private preview.</p>
+                </div>
+                <!-- Buttondown submission target: keeps the real form POST off-screen, no visible navigation -->
                 <iframe
-                    scrolling="no"
-                    style="width:100%;height:220px;border:1px #ccc solid"
-                    src="https://buttondown.com/riverbendart?as_embed=true"
+                    name="collectorSignupTarget"
+                    id="collectorSignupTarget"
+                    class="visually-hidden"
+                    title="Subscription submission"
+                    aria-hidden="true"
+                    tabindex="-1"
                 ></iframe>
             </div>
             <p class="collector-signup__fineprint">One or two emails a month: new work, studio news, first dibs on originals. No spam, unsubscribe anytime.</p>
+            <p class="collector-signup__fineprint">Prefer email? Write me directly at <a href="mailto:marnie@riverbendartgallery.com">marnie@riverbendartgallery.com</a>.</p>
         </div>
     </section>
 
@@ -275,5 +312,6 @@
 
     <script src="js/paintings-data.js"></script>
     <script src="js/main.js?v=20260606a"></script>
+    <script src="js/collector-signup.js?v=20261007a"></script>
 </body>
 </html>
