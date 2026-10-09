@@ -395,55 +395,91 @@ var PrintOrder = (function () {
         }
     }
 
-    function updatePreview() {
-        var canvas = document.getElementById('ppPreviewCanvas');
-        if (!canvas || !currentPainting) return;
-
-        var src    = currentPainting.image;
-        var cached = _imageCache[src] || null;
-
-        /* Draw immediately — placeholder or cached painting */
-        drawPreview(canvas, cached);
-
-        /* Load painting image if not yet cached, then redraw */
-        if (!cached) {
-            loadImage(src, function (img) {
-                drawPreview(canvas, img);
-            });
-        }
-    }
-
     /* -------------------------------------------------------
        Room visualizer — caption, draw, update
        ------------------------------------------------------- */
+    function getArtInchDimensions() {
+        if (currentPainting && currentPainting.printAvailable) {
+            var sizes   = PRINT_SIZES[state.medium] || [];
+            var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
+            if (!sizeObj) return null;
+
+            var frameInches = 0, matInches = 0;
+            if (state.medium === 'framed-fine-art-paper') {
+                var fOpt = FRAME_OPTIONS.find(function (f) { return f.id === state.frameId; });
+                var mOpt = MAT_SIZES.find(function (m) { return m.id === state.matSizeId; });
+                frameInches = fOpt ? (fOpt.widthInches || 1.25) : 1.25;
+                matInches   = mOpt ? (mOpt.widthInches || 0)    : 0;
+            }
+            return { width: sizeObj.width, height: sizeObj.height, frameInches: frameInches, matInches: matInches };
+        }
+
+        /* Original artwork — use its own physical size (no print-size selector exists for these) */
+        if (!currentPainting || !currentPainting.size) return null;
+        var nums = String(currentPainting.size).match(/(\d+(\.\d+)?)/g);
+        if (!nums || nums.length < 2) return null;
+        /* paintings.json sizes are written "H x W in." — first number is height */
+        var h = parseFloat(nums[0]);
+        var w = parseFloat(nums[1]);
+        return { width: w, height: h, frameInches: currentPainting.framed ? 1 : 0, matInches: 0 };
+    }
+
+    function drawOriginalIntoRoom(ctx, artX, artY, artW, artH, paintingImg, framed) {
+        if (!paintingImg) {
+            ctx.fillStyle = '#e0ddd8';
+            ctx.fillRect(artX, artY, artW, artH);
+            return;
+        }
+
+        if (framed) {
+            var borderPx = Math.round(Math.min(artW, artH) * 0.035);
+            ctx.fillStyle = '#2a2622';
+            ctx.fillRect(artX - borderPx, artY - borderPx, artW + 2 * borderPx, artH + 2 * borderPx);
+        }
+
+        var srcW = paintingImg.naturalWidth;
+        var srcH = paintingImg.naturalHeight;
+        var dstAspect = artW / artH;
+        var srcAspect = srcW / srcH;
+        var sx, sy, sw, sh;
+
+        if (srcAspect > dstAspect) {
+            sh = srcH;
+            sw = Math.round(srcH * dstAspect);
+            sx = Math.round((srcW - sw) / 2);
+            sy = 0;
+        } else {
+            sw = srcW;
+            sh = Math.round(srcW / dstAspect);
+            sx = 0;
+            sy = Math.round((srcH - sh) / 2);
+        }
+
+        ctx.drawImage(paintingImg, sx, sy, sw, sh, artX, artY, artW, artH);
+    }
+
     function buildRoomCaption() {
-        var sizes   = PRINT_SIZES[state.medium] || [];
-        var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
-        var sizeLabel = sizeObj ? sizeObj.label : '';
-        var mediaObj  = PRINT_MEDIA.find(function (m) { return m.id === state.medium; });
-        var typeLabel = mediaObj ? mediaObj.label : '';
-        return sizeLabel + ' · ' + typeLabel + ' · approximate wall scale';
+        if (currentPainting && currentPainting.printAvailable) {
+            var sizes   = PRINT_SIZES[state.medium] || [];
+            var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
+            var sizeLabel = sizeObj ? sizeObj.label : '';
+            var mediaObj  = PRINT_MEDIA.find(function (m) { return m.id === state.medium; });
+            var typeLabel = mediaObj ? mediaObj.label : '';
+            return sizeLabel + ' \u00b7 ' + typeLabel + ' \u00b7 approximate wall scale';
+        }
+        var sizeLabel = currentPainting ? currentPainting.size : '';
+        return sizeLabel + ' \u00b7 Original Painting \u00b7 approximate wall scale';
     }
 
     function drawRoomPreview(roomCanvas, paintingImg) {
         var scene = _activeRoomScene;
         if (!scene) return;
 
-        var medium  = state.medium;
-        var sizes   = PRINT_SIZES[medium] || [];
-        var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
-        if (!sizeObj) return;
+        var dims = getArtInchDimensions();
+        if (!dims) return;
 
-        var frameInches = 0, matInches = 0;
-        if (medium === 'framed-fine-art-paper') {
-            var fOpt = FRAME_OPTIONS.find(function (f) { return f.id === state.frameId; });
-            var mOpt = MAT_SIZES.find(function (m) { return m.id === state.matSizeId; });
-            frameInches = fOpt ? (fOpt.widthInches || 1.25) : 1.25;
-            matInches   = mOpt ? (mOpt.widthInches || 0)    : 0;
-        }
-
-        var totalInchW = sizeObj.width  + 2 * (matInches + frameInches);
-        var totalInchH = sizeObj.height + 2 * (matInches + frameInches);
+        var totalInchW = dims.width  + 2 * (dims.matInches + dims.frameInches);
+        var totalInchH = dims.height + 2 * (dims.matInches + dims.frameInches);
         var roomScale  = scene.wallMaxWidthPx / scene.wallRealWidthIn;
         var artW = Math.min(Math.round(totalInchW * roomScale), scene.wallMaxWidthPx);
         var artH = Math.min(Math.round(totalInchH * roomScale), scene.wallMaxHeightPx);
@@ -479,10 +515,14 @@ var PrintOrder = (function () {
         ctx.fillRect(artX - vx, artY - vy, artW, artH);
         ctx.restore();
 
-        /* Render framed print via drawPreview() on offscreen canvas, then composite */
-        var offscreen = document.createElement('canvas');
-        drawPreview(offscreen, paintingImg);
-        ctx.drawImage(offscreen, artX - vx, artY - vy, artW, artH);
+        if (currentPainting && currentPainting.printAvailable) {
+            /* Render framed print via drawPreview() on offscreen canvas, then composite */
+            var offscreen = document.createElement('canvas');
+            drawPreview(offscreen, paintingImg);
+            ctx.drawImage(offscreen, artX - vx, artY - vy, artW, artH);
+        } else {
+            drawOriginalIntoRoom(ctx, artX - vx, artY - vy, artW, artH, paintingImg, !!currentPainting.framed);
+        }
     }
 
     function updateRoomPreview() {
@@ -500,7 +540,6 @@ var PrintOrder = (function () {
     }
 
     function updateAllPreviews() {
-        updatePreview();
         updateRoomPreview();
     }
     function buildPanel(painting) {
@@ -533,12 +572,6 @@ var PrintOrder = (function () {
                 '<div class="print-panel__label">Fine Art Print</div>' +
                 '<div class="print-panel__availability">' +
                     printAvailabilityLabel(painting.status) +
-                '</div>' +
-
-                /* Preview canvas */
-                '<div class="print-panel__preview">' +
-                    '<canvas id="ppPreviewCanvas"></canvas>' +
-                    '<p class="print-panel__preview-note">Preview — colors and proportions are approximate.</p>' +
                 '</div>' +
 
                 /* Room visualizer */
