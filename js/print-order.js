@@ -8,9 +8,6 @@ var PrintOrder = (function () {
     'use strict';
 
     var currentPainting = null;
-    var _imageCache     = {};
-    var _activeRoomScene = null;
-    var _roomZoomed      = false; /* false = full room, true = close-up */
 
     /* -------------------------------------------------------
        Panel state — mirrors current dropdown selections
@@ -186,25 +183,6 @@ var PrintOrder = (function () {
                '<optgroup label="Landscape">' + landscape.map(makeOpt).join('') + '</optgroup>';
     }
 
-    /* -------------------------------------------------------
-       Preview canvas — image loading and drawing
-       ------------------------------------------------------- */
-    function loadImage(src, callback) {
-        if (_imageCache[src]) {
-            callback(_imageCache[src]);
-            return;
-        }
-        var img = new Image();
-        img.onload = function () {
-            _imageCache[src] = img;
-            callback(img);
-        };
-        img.onerror = function () {
-            callback(null);
-        };
-        img.src = src;
-    }
-
     function drawWoodGrain(ctx, x, y, w, h, baseColor, horizontal) {
         var r  = parseInt(baseColor.slice(1, 3), 16);
         var gv = parseInt(baseColor.slice(3, 5), 16);
@@ -273,275 +251,6 @@ var PrintOrder = (function () {
         ctx.fillRect(x, y, w, h);
     }
 
-    function drawPreview(canvas, paintingImg) {
-        var medium  = state.medium;
-        var sizes   = PRINT_SIZES[medium] || [];
-        var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
-        if (!sizeObj) return;
-
-        var printW = sizeObj.width;
-        var printH = sizeObj.height;
-
-        var frameOpt    = null;
-        var matSizeOpt  = null;
-        var matColorOpt = null;
-        var frameInches = 0;
-        var matInches   = 0;
-
-        if (medium === 'framed-fine-art-paper') {
-            frameOpt    = FRAME_OPTIONS.find(function (f) { return f.id === state.frameId; });
-            matSizeOpt  = MAT_SIZES.find(function (m) { return m.id === state.matSizeId; });
-            matColorOpt = MAT_COLORS.find(function (m) { return m.id === state.matColorId; });
-            frameInches = frameOpt ? (frameOpt.widthInches || 1.25) : 1.25;
-            matInches   = matSizeOpt ? (matSizeOpt.widthInches || 0) : 0;
-        }
-
-        /* Scale so frame + mat + image all fit in 240px total width */
-        var totalInchW = printW + 2 * (matInches + frameInches);
-        var totalInchH = printH + 2 * (matInches + frameInches);
-        var scale      = 240 / totalInchW;
-
-        var imgW    = Math.round(printW * scale);
-        var imgH    = Math.round(printH * scale);
-        var matPx   = Math.round(matInches * scale);
-        var framePx = Math.round(frameInches * scale);
-        var totalW  = 240;
-        var totalH  = Math.round(totalInchH * scale);
-
-        canvas.width  = totalW;
-        canvas.height = totalH;
-
-        var ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, totalW, totalH);
-
-        /* Frame — mitered 45° corners using trapezoid clip paths */
-        if (frameOpt && framePx > 0) {
-            var fStyle = frameOpt.previewStyle || 'solid';
-            var fc     = frameOpt.previewColor || '#1c1c1c';
-            var W = totalW, H = totalH, fp = framePx;
-            var sections = [
-                { pts: [[0,0],[W,0],[W-fp,fp],[fp,fp]],       bx: 0,    by: 0,    bw: W,  bh: fp, hz: true  },
-                { pts: [[0,H],[W,H],[W-fp,H-fp],[fp,H-fp]],   bx: 0,    by: H-fp, bw: W,  bh: fp, hz: true  },
-                { pts: [[0,0],[fp,fp],[fp,H-fp],[0,H]],        bx: 0,    by: 0,    bw: fp, bh: H,  hz: false },
-                { pts: [[W,0],[W-fp,fp],[W-fp,H-fp],[W,H]],   bx: W-fp, by: 0,    bw: fp, bh: H,  hz: false }
-            ];
-            for (var si = 0; si < sections.length; si++) {
-                var sec = sections[si];
-                ctx.save();
-                ctx.beginPath();
-                ctx.moveTo(sec.pts[0][0], sec.pts[0][1]);
-                for (var k = 1; k < sec.pts.length; k++) ctx.lineTo(sec.pts[k][0], sec.pts[k][1]);
-                ctx.closePath();
-                ctx.clip();
-                ctx.fillStyle = fc;
-                ctx.fillRect(sec.bx, sec.by, sec.bw, sec.bh);
-                if (fStyle === 'wood')           drawWoodGrain(ctx, sec.bx, sec.by, sec.bw, sec.bh, fc, sec.hz);
-                else if (fStyle === 'gold')      drawGoldBevel(ctx, sec.bx, sec.by, sec.bw, sec.bh, false);
-                else if (fStyle === 'plein-air-gold') drawGoldBevel(ctx, sec.bx, sec.by, sec.bw, sec.bh, true);
-                ctx.restore();
-            }
-        }
-
-        /* Mat */
-        if (matPx > 0) {
-            ctx.fillStyle = (matColorOpt && matColorOpt.previewColor) ? matColorOpt.previewColor : '#f8f8f6';
-            ctx.fillRect(framePx, framePx, totalW - 2 * framePx, totalH - 2 * framePx);
-        }
-
-        /* Painting — centered crop into print dimensions */
-        var paintX = framePx + matPx;
-        var paintY = framePx + matPx;
-
-        if (paintingImg) {
-            var srcW      = paintingImg.naturalWidth;
-            var srcH      = paintingImg.naturalHeight;
-            var dstAspect = imgW / imgH;
-            var srcAspect = srcW / srcH;
-            var sx, sy, sw, sh;
-
-            if (srcAspect > dstAspect) {
-                /* Source is wider — crop sides */
-                sh = srcH;
-                sw = Math.round(srcH * dstAspect);
-                sx = Math.round((srcW - sw) / 2);
-                sy = 0;
-            } else {
-                /* Source is taller — crop top/bottom */
-                sw = srcW;
-                sh = Math.round(srcW / dstAspect);
-                sx = 0;
-                sy = Math.round((srcH - sh) / 2);
-            }
-
-            ctx.drawImage(paintingImg, sx, sy, sw, sh, paintX, paintY, imgW, imgH);
-        } else {
-            /* Placeholder while image loads */
-            ctx.fillStyle = '#e0ddd8';
-            ctx.fillRect(paintX, paintY, imgW, imgH);
-        }
-
-        /* Fine Art Paper: thin surrounding border */
-        if (medium === 'fine-art-paper') {
-            ctx.strokeStyle = '#c8c4bc';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(0.5, 0.5, totalW - 1, totalH - 1);
-        }
-
-        /* Canvas: gallery-wrap side indicator */
-        if (medium === 'canvas') {
-            ctx.strokeStyle = '#3a3530';
-            ctx.lineWidth = 6;
-            ctx.strokeRect(3, 3, totalW - 6, totalH - 6);
-        }
-    }
-
-    /* -------------------------------------------------------
-       Room visualizer — caption, draw, update
-       ------------------------------------------------------- */
-    function getArtInchDimensions() {
-        if (currentPainting && currentPainting.printAvailable) {
-            var sizes   = PRINT_SIZES[state.medium] || [];
-            var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
-            if (!sizeObj) return null;
-
-            var frameInches = 0, matInches = 0;
-            if (state.medium === 'framed-fine-art-paper') {
-                var fOpt = FRAME_OPTIONS.find(function (f) { return f.id === state.frameId; });
-                var mOpt = MAT_SIZES.find(function (m) { return m.id === state.matSizeId; });
-                frameInches = fOpt ? (fOpt.widthInches || 1.25) : 1.25;
-                matInches   = mOpt ? (mOpt.widthInches || 0)    : 0;
-            }
-            return { width: sizeObj.width, height: sizeObj.height, frameInches: frameInches, matInches: matInches };
-        }
-
-        /* Original artwork — use its own physical size (no print-size selector exists for these) */
-        if (!currentPainting || !currentPainting.size) return null;
-        var nums = String(currentPainting.size).match(/(\d+(\.\d+)?)/g);
-        if (!nums || nums.length < 2) return null;
-        /* paintings.json sizes are written "H x W in." — first number is height */
-        var h = parseFloat(nums[0]);
-        var w = parseFloat(nums[1]);
-        return { width: w, height: h, frameInches: currentPainting.framed ? 1 : 0, matInches: 0 };
-    }
-
-    function drawOriginalIntoRoom(ctx, artX, artY, artW, artH, paintingImg, framed) {
-        if (!paintingImg) {
-            ctx.fillStyle = '#e0ddd8';
-            ctx.fillRect(artX, artY, artW, artH);
-            return;
-        }
-
-        if (framed) {
-            var borderPx = Math.round(Math.min(artW, artH) * 0.035);
-            ctx.fillStyle = '#2a2622';
-            ctx.fillRect(artX - borderPx, artY - borderPx, artW + 2 * borderPx, artH + 2 * borderPx);
-        }
-
-        var srcW = paintingImg.naturalWidth;
-        var srcH = paintingImg.naturalHeight;
-        var dstAspect = artW / artH;
-        var srcAspect = srcW / srcH;
-        var sx, sy, sw, sh;
-
-        if (srcAspect > dstAspect) {
-            sh = srcH;
-            sw = Math.round(srcH * dstAspect);
-            sx = Math.round((srcW - sw) / 2);
-            sy = 0;
-        } else {
-            sw = srcW;
-            sh = Math.round(srcW / dstAspect);
-            sx = 0;
-            sy = Math.round((srcH - sh) / 2);
-        }
-
-        ctx.drawImage(paintingImg, sx, sy, sw, sh, artX, artY, artW, artH);
-    }
-
-    function buildRoomCaption() {
-        if (currentPainting && currentPainting.printAvailable) {
-            var sizes   = PRINT_SIZES[state.medium] || [];
-            var sizeObj = sizes.find(function (s) { return s.id === state.sizeId; });
-            var sizeLabel = sizeObj ? sizeObj.label : '';
-            var mediaObj  = PRINT_MEDIA.find(function (m) { return m.id === state.medium; });
-            var typeLabel = mediaObj ? mediaObj.label : '';
-            return sizeLabel + ' \u00b7 ' + typeLabel + ' \u00b7 approximate wall scale';
-        }
-        var sizeLabel = currentPainting ? currentPainting.size : '';
-        return sizeLabel + ' \u00b7 Original Painting \u00b7 approximate wall scale';
-    }
-
-    function drawRoomPreview(roomCanvas, paintingImg) {
-        var scene = _activeRoomScene;
-        if (!scene) return;
-
-        var dims = getArtInchDimensions();
-        if (!dims) return;
-
-        var totalInchW = dims.width  + 2 * (dims.matInches + dims.frameInches);
-        var totalInchH = dims.height + 2 * (dims.matInches + dims.frameInches);
-        var roomScale  = scene.wallMaxWidthPx / scene.wallRealWidthIn;
-        var artW = Math.min(Math.round(totalInchW * roomScale), scene.wallMaxWidthPx);
-        var artH = Math.min(Math.round(totalInchH * roomScale), scene.wallMaxHeightPx);
-        var artX = Math.round(scene.wallCenterX - artW / 2);
-        var artY = Math.round(scene.wallCenterY - artH / 2);
-
-        roomCanvas.width  = scene.imgWidth;
-        roomCanvas.height = scene.imgHeight;
-        var ctx = roomCanvas.getContext('2d');
-        var vx = 0, vy = 0;
-
-        if (_roomZoomed && scene.viewW) {
-            roomCanvas.width  = scene.viewW;
-            roomCanvas.height = scene.viewH;
-            vx = scene.viewX;
-            vy = scene.viewY;
-        }
-
-        var roomImg = _imageCache[scene.img] || null;
-        if (!roomImg) {
-            ctx.fillStyle = '#e8e4de';
-            ctx.fillRect(0, 0, roomCanvas.width, roomCanvas.height);
-            loadImage(scene.img, function () { updateRoomPreview(); });
-            return;
-        }
-        ctx.drawImage(roomImg, -vx, -vy);
-
-        /* Drop shadow */
-        ctx.save();
-        ctx.shadowColor = 'rgba(0,0,0,0.40)';
-        ctx.shadowBlur = 10; ctx.shadowOffsetX = 3; ctx.shadowOffsetY = 5;
-        ctx.fillStyle = 'rgba(0,0,0,0)';
-        ctx.fillRect(artX - vx, artY - vy, artW, artH);
-        ctx.restore();
-
-        if (currentPainting && currentPainting.printAvailable) {
-            /* Render framed print via drawPreview() on offscreen canvas, then composite */
-            var offscreen = document.createElement('canvas');
-            drawPreview(offscreen, paintingImg);
-            ctx.drawImage(offscreen, artX - vx, artY - vy, artW, artH);
-        } else {
-            drawOriginalIntoRoom(ctx, artX - vx, artY - vy, artW, artH, paintingImg, !!currentPainting.framed);
-        }
-    }
-
-    function updateRoomPreview() {
-        var roomCanvas = document.getElementById('ppRoomCanvas');
-        var caption    = document.getElementById('ppRoomCaption');
-        if (!roomCanvas || !_activeRoomScene || !currentPainting) return;
-
-        var src    = currentPainting.image;
-        var cached = _imageCache[src] || null;
-        drawRoomPreview(roomCanvas, cached);
-        if (!cached) {
-            loadImage(src, function (img) { drawRoomPreview(roomCanvas, img); });
-        }
-        if (caption) caption.textContent = buildRoomCaption();
-    }
-
-    function updateAllPreviews() {
-        updateRoomPreview();
-    }
     function buildPanel(painting) {
         var defaultPrice = calculatePrice();
         var le        = painting.limitedEdition;
@@ -572,26 +281,6 @@ var PrintOrder = (function () {
                 '<div class="print-panel__label">Fine Art Print</div>' +
                 '<div class="print-panel__availability">' +
                     printAvailabilityLabel(painting.status) +
-                '</div>' +
-
-                /* Room visualizer */
-                '<div class="room-preview" id="ppRoomSection">' +
-                    '<div class="room-preview__label">Room Preview</div>' +
-                    '<div class="room-preview__scenes" id="ppSceneRow">' +
-                        ROOM_SCENES.map(function (s, i) {
-                            return '<button class="room-preview__scene-btn' + (i === 0 ? ' room-preview__scene-btn--active' : '') + '" data-scene-id="' + s.id + '" aria-label="' + s.label + '">' +
-                                '<img src="' + s.thumb + '" alt="' + s.label + '" loading="lazy">' +
-                                '<span>' + s.label + '</span>' +
-                                '</button>';
-                        }).join('') +
-                    '</div>' +
-                    '<div class="room-preview__canvas-wrap">' +
-                        '<canvas id="ppRoomCanvas"></canvas>' +
-                    '</div>' +
-                    '<div class="room-preview__zoom-row">' +
-                        '<button class="room-preview__zoom-btn" id="ppRoomZoom" aria-label="Toggle close-up view">Close-up ↔ Full Room</button>' +
-                    '</div>' +
-                    '<p class="room-preview__caption" id="ppRoomCaption"></p>' +
                 '</div>' +
 
                 leHTML +
@@ -700,15 +389,7 @@ var PrintOrder = (function () {
         var panel = wrapper.firstChild;
         info.appendChild(panel);
 
-        /* Default to living room scene for more impactful first impression */
-        _activeRoomScene = ROOM_SCENES.find(function (s) { return s.id === 'warm-living'; }) || ROOM_SCENES[0];
-        _roomZoomed = false;
-        ROOM_SCENES.forEach(function (scene) {
-            if (!_imageCache[scene.img]) loadImage(scene.img, function () {});
-        });
-
         bindPanelEvents(painting, panel);
-        updateAllPreviews();
     }
 
     function removePanel() {
@@ -769,7 +450,6 @@ var PrintOrder = (function () {
             updateSizeOptions();
             updateVisibility();
             updatePrice();
-            updateAllPreviews();
             if (window.RiverbendAnalytics) {
                 window.RiverbendAnalytics.printSizeSelect(state.medium + '-' + state.sizeId, calculatePrice() / state.qty);
             }
@@ -778,7 +458,6 @@ var PrintOrder = (function () {
         sizeSel.addEventListener('change', function () {
             state.sizeId = this.value;
             updatePrice();
-            updateAllPreviews();
         });
 
         paperSel.addEventListener('change', function () {
@@ -788,7 +467,6 @@ var PrintOrder = (function () {
 
         frameSel.addEventListener('change', function () {
             state.frameId = this.value;
-            updateAllPreviews();
         });
 
         matSizeSel.addEventListener('change', function () {
@@ -797,12 +475,10 @@ var PrintOrder = (function () {
                 state.matColorId = MAT_COLORS[0].id;
             }
             updateVisibility();
-            updateAllPreviews();
         });
 
         matColorSel.addEventListener('change', function () {
             state.matColorId = parseInt(this.value, 10);
-            updateAllPreviews();
         });
 
         borderSel.addEventListener('change', function () {
@@ -845,28 +521,6 @@ var PrintOrder = (function () {
                 window.RiverbendAnalytics.orderPrintClick(painting.title, painting.id);
             }
         });
-
-        /* Scene selector buttons */
-        var sceneButtons = panel.querySelectorAll('.room-preview__scene-btn');
-        sceneButtons.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                sceneButtons.forEach(function (b) { b.classList.remove('room-preview__scene-btn--active'); });
-                btn.classList.add('room-preview__scene-btn--active');
-                var sceneId = btn.getAttribute('data-scene-id');
-                _activeRoomScene = ROOM_SCENES.find(function (s) { return s.id === sceneId; }) || _activeRoomScene;
-                updateRoomPreview();
-            });
-        });
-
-        /* Close-up / Full Room zoom toggle */
-        var zoomBtn = panel.querySelector('#ppRoomZoom');
-        if (zoomBtn) {
-            zoomBtn.addEventListener('click', function () {
-                _roomZoomed = !_roomZoomed;
-                zoomBtn.textContent = _roomZoomed ? 'Full Room ↔ Close-up' : 'Close-up ↔ Full Room';
-                updateRoomPreview();
-            });
-        }
     }
 
     /* -------------------------------------------------------
