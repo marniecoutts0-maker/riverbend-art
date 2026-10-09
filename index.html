@@ -34,12 +34,24 @@
 
     <!-- Hero -->
     <section class="hero">
-        <img 
-            src="images/Hero Page.jpg" 
-            alt="Oil painting of a waterfall cascading through lush Montana forest" 
+        <!-- 15-20s muted autoplay loop from Robin — drop the file at images/hero-video.mp4 to go live.
+             Until then, the poster image below renders exactly like the original static hero. -->
+        <video
+            id="heroVideo"
             class="hero__image"
+            poster="images/Hero Page.jpg"
+            autoplay
+            muted
+            loop
+            playsinline
+            aria-hidden="true"
             width="917" height="1200"
         >
+            <source src="images/hero-video.mp4" type="video/mp4">
+        </video>
+        <button type="button" class="hero__unmute" id="heroUnmuteBtn" aria-label="Unmute video" aria-pressed="false" hidden>
+            <span class="hero__unmute-icon" aria-hidden="true">&#128263;</span>
+        </button>
         <div class="hero__overlay"></div>
         <div class="hero__content">
             <span class="hero__eyebrow">The Quiet Edge</span>

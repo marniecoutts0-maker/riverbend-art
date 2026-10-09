@@ -260,6 +260,34 @@ p {
     );
 }
 
+.hero__unmute {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 2;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(0,0,0,0.35);
+    color: var(--color-white);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.hero__unmute:hover {
+    background: rgba(0,0,0,0.55);
+}
+
+.hero__unmute[hidden] {
+    display: none;
+}
+
 .hero__content {
     position: absolute;
     bottom: 8%;

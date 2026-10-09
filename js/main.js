@@ -54,6 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScroll();
     }
 
+    // --- Hero Video Unmute Toggle (Home page only) ---
+    const heroVideo = document.getElementById('heroVideo');
+    const heroUnmuteBtn = document.getElementById('heroUnmuteBtn');
+
+    if (heroVideo && heroUnmuteBtn) {
+        // Only reveal the unmute control once a real video is actually playing
+        // (no-op while the poster image is the only thing showing).
+        heroVideo.addEventListener('playing', () => {
+            heroUnmuteBtn.hidden = false;
+        });
+
+        heroUnmuteBtn.addEventListener('click', () => {
+            heroVideo.muted = !heroVideo.muted;
+            heroUnmuteBtn.setAttribute('aria-pressed', String(!heroVideo.muted));
+            heroUnmuteBtn.setAttribute('aria-label', heroVideo.muted ? 'Unmute video' : 'Mute video');
+            heroUnmuteBtn.querySelector('.hero__unmute-icon').innerHTML = heroVideo.muted ? '&#128263;' : '&#128266;';
+        });
+    }
+
     // --- Status Label Map ---
     const statusLabels = {
         'available': '',
