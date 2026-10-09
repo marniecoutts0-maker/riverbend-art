@@ -1,6 +1,56 @@
 // AUTO-GENERATED from paintings.json
 window.PAINTINGS_DATA = [
     {
+        "id": "daisies",
+        "title": "Daisies",
+        "image": "images/Daisies.jpg",
+        "medium": "Oil on canvas panel",
+        "size": "7 x 5 in.",
+        "category": "landscape",
+        "status": "available",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": true,
+        "framed": false,
+        "price": 85
+    },
+    {
+        "id": "moose-majesty",
+        "title": "Moose Majesty",
+        "image": "images/moose-majesty.jpg",
+        "medium": "Oil on canvas",
+        "size": "24 × 18 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": true
+    },
+    {
+        "id": "morning-launch",
+        "title": "Morning Launch",
+        "image": "images/Untitled_Artworklakeadjusted.jpg",
+        "medium": "Oil on canvas panel",
+        "size": "9 × 12 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "landscape",
+        "printAvailable": true
+    },
+    {
+        "id": "the-catch",
+        "title": "The Catch",
+        "image": "images/IMG_20250824_123114634.JPG",
+        "medium": "Oil on canvas",
+        "size": "14 × 11 in.",
+        "category": "landscape",
+        "status": "private-collection",
+        "featured": false,
+        "orientation": "portrait",
+        "printAvailable": true
+    },
+    {
         "id": "last-light",
         "title": "Last Light",
         "image": "images/Last Light.jpg",
@@ -29,30 +79,6 @@ window.PAINTINGS_DATA = [
         "framed": true,
         "price": 495,
         "series": "glacier-glow"
-    },
-    {
-        "id": "moose-majesty",
-        "title": "Moose Majesty",
-        "image": "images/moose-majesty.jpg",
-        "medium": "Oil on canvas",
-        "size": "24 × 18 in.",
-        "category": "landscape",
-        "status": "private-collection",
-        "featured": false,
-        "orientation": "portrait",
-        "printAvailable": true
-    },
-    {
-        "id": "morning-launch",
-        "title": "Morning Launch",
-        "image": "images/Untitled_Artworklakeadjusted.jpg",
-        "medium": "Oil on canvas panel",
-        "size": "9 × 12 in.",
-        "category": "landscape",
-        "status": "private-collection",
-        "featured": false,
-        "orientation": "landscape",
-        "printAvailable": true
     },
     {
         "id": "painted-shore",
@@ -97,18 +123,6 @@ window.PAINTINGS_DATA = [
         "framed": true,
         "price": 310,
         "series": "glacier-glow"
-    },
-    {
-        "id": "the-catch",
-        "title": "The Catch",
-        "image": "images/IMG_20250824_123114634.JPG",
-        "medium": "Oil on canvas",
-        "size": "14 × 11 in.",
-        "category": "landscape",
-        "status": "private-collection",
-        "featured": false,
-        "orientation": "portrait",
-        "printAvailable": true
     },
     {
         "id": "the-long-way-home",
@@ -525,20 +539,6 @@ window.PAINTINGS_DATA = [
         "printAvailable": false,
         "framed": false,
         "price": 649
-    },
-    {
-        "id": "daisies",
-        "title": "Daisies",
-        "image": "images/Daisies.jpg",
-        "medium": "Oil on canvas panel",
-        "size": "7 x 5 in.",
-        "category": "landscape",
-        "status": "available",
-        "featured": false,
-        "orientation": "portrait",
-        "printAvailable": true,
-        "framed": false,
-        "price": 85
     },
     {
         "id": "black-wolf",
