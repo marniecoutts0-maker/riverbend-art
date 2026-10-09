@@ -1,8 +1,8 @@
 /* ============================================================
-   RIVERBEND ART — Montana Fur Traders Consignment Panel
-   Injected into the lightbox for priced originals on exhibit at
-   Montana Fur Traders Gallery. No on-site checkout — buyers
-   contact the gallery directly to purchase.
+   RIVERBEND ART — Montana Fur Traders Contact Panel
+   Injected into the lightbox for originals sold wholesale to and
+   now owned by Montana Fur Traders Gallery. No on-site checkout —
+   buyers contact the gallery directly to purchase.
    ============================================================ */
 
 var FurTradersPanel = (function () {
