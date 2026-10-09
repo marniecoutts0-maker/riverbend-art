@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const origCtaHTML = (!painting.printAvailable && painting.price &&
             (painting.status === 'available' || painting.status === 'available-at-montana-fur-traders'))
-            ? '<div class="grid__cta">View details &amp; purchase &rarr;</div>'
+            ? '<div class="grid__cta">View details, purchase &amp; see it in your room &rarr;</div>'
             : '';
 
         const leBadgeHTML = painting.limitedEdition
