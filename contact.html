@@ -126,6 +126,33 @@
                 </div>
 
                 </div>
+
+            <div class="contact__form-col" id="inquiry-form">
+                <div class="inquiry-context" id="inquiryContext" hidden>
+                    <p class="inquiry-context__label">Inquiring About</p>
+                    <p class="inquiry-context__title" id="inquiryContextTitle"></p>
+                    <p class="inquiry-context__meta" id="inquiryContextMeta"></p>
+                </div>
+                <form class="form" id="contactForm" novalidate>
+                    <div class="form__group">
+                        <label class="form__label" for="inquiryName">Name</label>
+                        <input class="form__input" type="text" id="inquiryName" name="name" autocomplete="name" required>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label" for="inquiryEmail">Email</label>
+                        <input class="form__input" type="email" id="inquiryEmail" name="email" autocomplete="email" inputmode="email" required>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label" for="inquiryMessage">Message</label>
+                        <textarea class="form__textarea" id="inquiryMessage" name="message" placeholder="Tell me a little about what you're looking for..."></textarea>
+                    </div>
+                    <p class="form__error" id="inquiryError" role="alert" hidden></p>
+                    <button type="submit" class="form__submit" id="inquirySubmit">Send Inquiry</button>
+                </form>
+                <div class="form__success" id="inquirySuccess" hidden>
+                    <p>Thanks &mdash; your email app should be opening now with your message ready to send. If nothing happened, email me directly at <a href="mailto:marnie@riverbendartgallery.com">marnie@riverbendartgallery.com</a>.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -137,5 +164,6 @@
 
     <script src="js/main.js?v=20260606a"></script>
     <script src="js/collector-signup.js?v=20261007a"></script>
+    <script src="js/inquiry-form.js?v=20261009a"></script>
 </body>
 </html>

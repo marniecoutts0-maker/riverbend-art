@@ -345,6 +345,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             RoomWidget.show(painting);
                         }
 
+                        var lightboxInquireLink = document.getElementById('lightboxInquireLink');
+                        if (lightboxInquireLink && painting) {
+                            var inquireParams = new URLSearchParams();
+                            inquireParams.set('piece', painting.id);
+                            inquireParams.set('title', painting.title);
+                            inquireParams.set('size', painting.size);
+                            if (painting.price) inquireParams.set('price', painting.price);
+                            lightboxInquireLink.href = 'contact.html?' + inquireParams.toString() + '#inquiry-form';
+                        }
+
                         lightbox.classList.add('lightbox--active');
                         document.body.style.overflow = 'hidden';
                     });
