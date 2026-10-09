@@ -231,6 +231,88 @@ p {
     transition: all 0.3s ease;
 }
 
+/* --- Nav submenu (Art for Sale: Originals / Prints) --- */
+.nav__item--has-submenu {
+    position: relative;
+}
+
+.nav__link-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.nav__submenu-toggle {
+    background: none;
+    border: none;
+    padding: 0.2rem;
+    margin: 0;
+    cursor: pointer;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav__submenu-caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    transition: transform 0.2s ease;
+}
+
+.nav__submenu-toggle[aria-expanded="true"] .nav__submenu-caret {
+    transform: rotate(180deg);
+}
+
+.nav__submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 769px) {
+    .nav__submenu {
+        position: absolute;
+        top: calc(100% + 0.9rem);
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 150px;
+        background: rgba(240, 235, 228, 0.98);
+        border: 1px solid var(--color-border);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        border-radius: 2px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        z-index: 1001;
+    }
+
+    .nav__item--has-submenu:hover .nav__submenu,
+    .nav__item--has-submenu:focus-within .nav__submenu,
+    .nav__item--has-submenu.nav__item--submenu-open .nav__submenu {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav__sublink {
+        display: block;
+        padding: 0.65rem 1.1rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-text-light);
+        white-space: nowrap;
+    }
+
+    .nav__sublink:hover {
+        color: var(--color-text);
+        background: var(--color-bg-warm);
+    }
+}
+
 /* --- Hero Section --- */
 .hero {
     position: relative;
@@ -1649,6 +1731,43 @@ p {
 
     .nav__link {
         font-size: 1rem;
+    }
+
+    .nav__item--has-submenu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav__submenu-toggle {
+        color: var(--color-white);
+    }
+
+    .nav__submenu-caret {
+        border-top-color: var(--color-white);
+    }
+
+    .nav__submenu {
+        max-height: 0;
+        overflow: hidden;
+        text-align: center;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav__item--submenu-open .nav__submenu {
+        max-height: 200px;
+        margin-top: 0.75rem;
+    }
+
+    .nav__sublink {
+        display: block;
+        padding: 0.5rem 0;
+        font-size: 0.95rem;
+        color: rgba(255,255,255,0.8);
+    }
+
+    .nav__sublink:hover {
+        color: var(--color-white);
     }
 
     .grid--home,

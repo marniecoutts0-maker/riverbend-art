@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeMenu = () => {
             navLinks.classList.remove('nav__links--open');
             navToggle.classList.remove('nav__toggle--open');
+            navLinks.querySelectorAll('.nav__item--has-submenu').forEach(item => {
+                item.classList.remove('nav__item--submenu-open');
+                const toggle = item.querySelector('.nav__submenu-toggle');
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            });
         };
 
         navToggle.addEventListener('click', (e) => {
@@ -26,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Close menu when a nav link is tapped
-        navLinks.querySelectorAll('.nav__link').forEach(link => {
+        navLinks.querySelectorAll('.nav__link, .nav__sublink').forEach(link => {
             link.addEventListener('click', closeMenu);
         });
 
@@ -37,6 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- Nav Submenu Toggle (Art for Sale: Originals / Prints) ---
+    document.querySelectorAll('.nav__submenu-toggle').forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const item = toggle.closest('.nav__item--has-submenu');
+            const isOpen = item.classList.toggle('nav__item--submenu-open');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+        });
+    });
 
     // --- Transparent Nav Scroll Behavior (Home page only) ---
     const nav = document.getElementById('nav');
@@ -227,6 +242,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 item.classList.remove('grid__item--hidden');
                             } else if (filter === 'print-collection') {
                                 if (item.getAttribute('data-print-available') === 'true') {
+                                    item.classList.remove('grid__item--hidden');
+                                } else {
+                                    item.classList.add('grid__item--hidden');
+                                }
+                            } else if (filter === 'originals') {
+                                if (item.getAttribute('data-print-available') !== 'true') {
                                     item.classList.remove('grid__item--hidden');
                                 } else {
                                     item.classList.add('grid__item--hidden');
