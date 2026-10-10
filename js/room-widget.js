@@ -43,10 +43,20 @@ var RoomWidget = (function () {
         if (existing) existing.remove();
     }
 
+    /* ArtPlacer.insert() places the button as a sibling AFTER the anchor
+       (not inside it), so removing the anchor alone leaves the button
+       orphaned in the DOM — it must be purged by its own classname too. */
+    function removeWidgetButtons() {
+        document.querySelectorAll('.room-widget-cta, .sample-room-cta').forEach(function (btn) {
+            btn.remove();
+        });
+    }
+
     function appendAnchor(id) {
         var info = document.querySelector('.lightbox__info');
         if (!info) return null;
         removeAnchor(id);
+        removeWidgetButtons();
         var anchor = document.createElement('div');
         anchor.id = id;
         info.appendChild(anchor);
@@ -127,6 +137,7 @@ var RoomWidget = (function () {
     function hide() {
         removeAnchor('clientRoomAnchor');
         removeAnchor('sampleRoomAnchor');
+        removeWidgetButtons();
         pendingPainting = null;
     }
 
