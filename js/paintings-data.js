@@ -140,7 +140,7 @@ window.PAINTINGS_DATA = [
     {
         "id": "winter-watch",
         "title": "Winter Watch",
-        "image": "images/IMG_20251230_163413411 (1).JPG",
+        "image": "images/winter-watch-CAMERA.jpg",
         "medium": "Oil on canvas",
         "size": "24 × 18 in.",
         "category": "landscape",
