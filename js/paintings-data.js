@@ -213,7 +213,7 @@ window.PAINTINGS_DATA = [
     },
     {
         "id": "grinnel-glacier",
-        "title": "Grinnel Glacier",
+        "title": "Grinnell Glacier",
         "image": "images/Grinnel Glacier.jpg",
         "medium": "Oil on linen",
         "size": "18 × 24 in.",
