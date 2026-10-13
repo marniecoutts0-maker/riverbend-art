@@ -8,6 +8,9 @@ lumaprints_creds.txt
 token.json
 client_secret.json
 
+# Internal cost/pricing notes — never publish
+ETSY_PRICING_NOTES.txt
+
 # Empty/broken files
 Grinel Glacier.JPG
 

@@ -370,10 +370,10 @@ var PrintOrder = (function () {
         removePanel();
         currentPainting = painting;
 
-        /* Default size based on painting orientation */
+        /* Default to the smallest/cheapest size based on painting orientation */
         var isLandscape = painting.orientation === 'landscape';
         state.medium       = 'fine-art-paper';
-        state.sizeId       = isLandscape ? '20x16' : '16x20';
+        state.sizeId       = isLandscape ? '10x8' : '8x10';
         state.paperType    = 'archival';
         state.frameId      = '105005';
         state.matSizeId    = 64;
@@ -431,13 +431,10 @@ var PrintOrder = (function () {
         function updateSizeOptions() {
             var isLandscape = currentPainting && currentPainting.orientation === 'landscape';
             sizeSel.innerHTML = sizeOptionsHTML(state.medium);
-            /* Pick orientation-appropriate default when medium changes */
+            /* Pick the smallest/cheapest orientation-appropriate size when medium changes */
             var sizes = PRINT_SIZES[state.medium] || [];
-            var preferred = sizes.find(function (s) {
-                return isLandscape ? (s.landscape && s.id === '20x16' || s.id === '24x18')
-                                   : (!s.landscape && (s.id === '16x20' || s.id === '18x24'));
-            }) || sizes.find(function (s) { return isLandscape ? s.landscape : !s.landscape; });
-            state.sizeId = preferred ? preferred.id : (sizes[0] ? sizes[0].id : '');
+            var smallest = sizes.find(function (s) { return isLandscape ? s.landscape : !s.landscape; });
+            state.sizeId = smallest ? smallest.id : (sizes[0] ? sizes[0].id : '');
             sizeSel.value = state.sizeId;
         }
 
