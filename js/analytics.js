@@ -136,6 +136,10 @@
             trackEvent('outbound_click', { platform: platform, url: url });
         },
 
+        roomPreviewOpen: function (title, id) {
+            trackEvent('room_preview_open', { artwork_title: title, artwork_id: id });
+        },
+
         contactFormSubmit: function () {
             trackEvent('contact_form_submit');
         },

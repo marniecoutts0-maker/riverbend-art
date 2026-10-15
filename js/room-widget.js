@@ -43,6 +43,38 @@ var RoomWidget = (function () {
         if (existing) existing.remove();
     }
 
+    /* GA4 tracking — ArtPlacer renders its button asynchronously as a DOM
+       sibling of the anchor, so watch for it instead of assuming timing.
+       data-rb-tracked guards against attaching the listener twice. */
+    function bindRoomPreviewTracking(selector, painting) {
+        function track(btn) {
+            if (btn.dataset.rbTracked) return;
+            btn.dataset.rbTracked = 'true';
+            btn.addEventListener('click', function () {
+                if (window.RiverbendAnalytics) {
+                    window.RiverbendAnalytics.roomPreviewOpen(painting.title, painting.id);
+                }
+            });
+        }
+
+        var existing = document.querySelector(selector);
+        if (existing) { track(existing); return; }
+
+        var info = document.querySelector('.lightbox__info');
+        if (!info) return;
+
+        var observer = new MutationObserver(function () {
+            var btn = document.querySelector(selector);
+            if (btn) {
+                track(btn);
+                observer.disconnect();
+            }
+        });
+        observer.observe(info, { childList: true, subtree: true });
+        /* Stop watching after 10s so we don't leak observers if ArtPlacer never renders the CTA */
+        setTimeout(function () { observer.disconnect(); }, 10000);
+    }
+
     /* ArtPlacer.insert() places the button as a sibling AFTER the anchor
        (not inside it), so removing the anchor alone leaves the button
        orphaned in the DOM — it must be purged by its own classname too. */
@@ -82,6 +114,7 @@ var RoomWidget = (function () {
             classname: 'room-widget-cta',
             after: '#clientRoomAnchor'
         }, sharedArtworkFields(painting)));
+        bindRoomPreviewTracking('.room-widget-cta', painting);
     }
 
     function insertSampleRoom(painting) {
@@ -105,6 +138,7 @@ var RoomWidget = (function () {
             classname: 'sample-room-cta',
             after: '#sampleRoomAnchor'
         }, sharedArtworkFields(painting)));
+        bindRoomPreviewTracking('.sample-room-cta', painting);
     }
 
     function insertBoth(painting) {
