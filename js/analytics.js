@@ -146,6 +146,14 @@
 
         emailSignupSubmit: function () {
             trackEvent('email_signup_submit');
+        },
+
+        /* Proxy signal only — fires when focus enters the cross-origin Buttondown
+           embed iframe (click or tab). This measures top-of-funnel interest/attempts,
+           NOT a successful subscription. True conversions must be read from the
+           Buttondown dashboard subscriber count, not from this event. */
+        signupAttempt: function () {
+            trackEvent('signup_attempt');
         }
     };
 
@@ -171,6 +179,20 @@
                 window.RiverbendAnalytics.contactFormSubmit();
             });
         }
+
+        /* Newsletter signup_attempt tracking — the Buttondown embed is a cross-origin
+           iframe, so we can't see clicks/focus on its internal email field. The closest
+           same-origin-safe signal is detecting focus landing on the <iframe> element
+           itself (via window blur + activeElement check), fired once per page load. */
+        document.querySelectorAll('.collector-signup__iframe').forEach(function (frame) {
+            var fired = false;
+            window.addEventListener('blur', function () {
+                if (!fired && document.activeElement === frame) {
+                    fired = true;
+                    window.RiverbendAnalytics.signupAttempt();
+                }
+            });
+        });
     });
 
     /* --- Init --- */
