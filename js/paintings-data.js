@@ -11,7 +11,7 @@ window.PAINTINGS_DATA = [
         "featured": false,
         "orientation": "portrait",
         "printAvailable": true,
-        "framed": false,
+        "framed": true,
         "price": 85
     },
     {
@@ -537,7 +537,7 @@ window.PAINTINGS_DATA = [
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": false,
+        "framed": true,
         "price": 649
     },
     {

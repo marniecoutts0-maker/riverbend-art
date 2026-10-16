@@ -10,7 +10,7 @@
         "featured": false,
         "orientation": "portrait",
         "printAvailable": true,
-        "framed": false,
+        "framed": true,
         "price": 85
     },
     {
@@ -536,7 +536,7 @@
         "featured": true,
         "orientation": "portrait",
         "printAvailable": false,
-        "framed": false,
+        "framed": true,
         "price": 649
     },
     {
