@@ -221,7 +221,7 @@ window.PAINTINGS_DATA = [
         "status": "private-collection",
         "featured": true,
         "orientation": "landscape",
-        "printAvailable": true,
+        "printAvailable": false,
         "framed": true,
         "price": 495,
         "series": "glacier-glow",
