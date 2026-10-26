@@ -45,10 +45,12 @@ window.PAINTINGS_DATA = [
         "medium": "Oil on canvas",
         "size": "14 × 11 in.",
         "category": "landscape",
-        "status": "private-collection",
+        "status": "available",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": true
+        "printAvailable": true,
+        "framed": true,
+        "price": 350
     },
     {
         "id": "last-light",
