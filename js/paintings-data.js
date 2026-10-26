@@ -48,7 +48,7 @@ window.PAINTINGS_DATA = [
         "status": "available",
         "featured": false,
         "orientation": "portrait",
-        "printAvailable": true,
+        "printAvailable": false,
         "framed": true,
         "price": 350
     },
